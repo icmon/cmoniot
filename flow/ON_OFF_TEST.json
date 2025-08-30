@@ -1,0 +1,526 @@
+[
+    {
+        "id": "09ce35b9c31ba3ee",
+        "type": "tab",
+        "label": "ON_OFF_TEST",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "d6cac651e3eed330",
+        "type": "mqtt out",
+        "z": "09ce35b9c31ba3ee",
+        "name": "MQTT- BAACTW02/CONTROL",
+        "topic": "BAACTW02/CONTROL",
+        "qos": "0",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "bc74fcfe95515206",
+        "x": 430,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "1ad1e17370745e6e",
+        "type": "inject",
+        "z": "09ce35b9c31ba3ee",
+        "name": "fan1 OFF",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "0",
+        "payloadType": "num",
+        "x": 120,
+        "y": 120,
+        "wires": [
+            [
+                "d6cac651e3eed330",
+                "b7b32a605fb39190",
+                "d80302278e1ada61"
+            ]
+        ]
+    },
+    {
+        "id": "dc68ba1ab95d6563",
+        "type": "inject",
+        "z": "09ce35b9c31ba3ee",
+        "name": "fan1 ON",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 120,
+        "y": 160,
+        "wires": [
+            [
+                "d6cac651e3eed330",
+                "b7b32a605fb39190",
+                "d80302278e1ada61"
+            ]
+        ]
+    },
+    {
+        "id": "9ebfac52e877c281",
+        "type": "inject",
+        "z": "09ce35b9c31ba3ee",
+        "name": "fan2 OFF",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "2",
+        "payloadType": "num",
+        "x": 120,
+        "y": 220,
+        "wires": [
+            [
+                "d6cac651e3eed330",
+                "b7b32a605fb39190",
+                "3c877ddeac52f701"
+            ]
+        ]
+    },
+    {
+        "id": "7005b32064f6211c",
+        "type": "inject",
+        "z": "09ce35b9c31ba3ee",
+        "name": "fan2 ON",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "3",
+        "payloadType": "num",
+        "x": 120,
+        "y": 260,
+        "wires": [
+            [
+                "d6cac651e3eed330",
+                "b7b32a605fb39190",
+                "3c877ddeac52f701"
+            ]
+        ]
+    },
+    {
+        "id": "b7b32a605fb39190",
+        "type": "debug",
+        "z": "09ce35b9c31ba3ee",
+        "name": "debug mqtt out",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 760,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "be1c610762e8e131",
+        "type": "inject",
+        "z": "09ce35b9c31ba3ee",
+        "d": true,
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "Test send Email",
+        "payloadType": "str",
+        "x": 110,
+        "y": 460,
+        "wires": [
+            [
+                "114f0fdd039306b4"
+            ]
+        ]
+    },
+    {
+        "id": "3bf413847dd86877",
+        "type": "comment",
+        "z": "09ce35b9c31ba3ee",
+        "name": "",
+        "info": "monitoring.system.report@gmail.com\nowortggrxrqhubxa\n\nsendemail",
+        "x": 80,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "114f0fdd039306b4",
+        "type": "function",
+        "z": "09ce35b9c31ba3ee",
+        "name": "alexsomsap@gmail.com",
+        "func": "msg.topic = \"ROOM Alert\";\nmsg.to = \"alexsomsap@gmail.com\";    // ได้มาจากการอ่านข้อมูล email ใน file   email ที่เราต้องการส่งถึง\nmsg.payload = \"alarm high temperature room\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2a9c82e768227730",
+        "type": "inject",
+        "z": "09ce35b9c31ba3ee",
+        "name": "10",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "10",
+        "payloadType": "str",
+        "x": 110,
+        "y": 720,
+        "wires": [
+            [
+                "446cef509440481e",
+                "76701b4c344fe4d5"
+            ]
+        ]
+    },
+    {
+        "id": "5a408fa122bb7741",
+        "type": "inject",
+        "z": "09ce35b9c31ba3ee",
+        "name": "settings",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 110,
+        "y": 780,
+        "wires": [
+            [
+                "446cef509440481e",
+                "76701b4c344fe4d5"
+            ]
+        ]
+    },
+    {
+        "id": "446cef509440481e",
+        "type": "http request",
+        "z": "09ce35b9c31ba3ee",
+        "d": true,
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://172.25.99.60:3003/v1/settings/scheduleproces",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 310,
+        "y": 740,
+        "wires": [
+            [
+                "a08de37fe75b3f03"
+            ]
+        ]
+    },
+    {
+        "id": "a08de37fe75b3f03",
+        "type": "debug",
+        "z": "09ce35b9c31ba3ee",
+        "name": "debug mqtt out",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 580,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "76701b4c344fe4d5",
+        "type": "http request",
+        "z": "09ce35b9c31ba3ee",
+        "d": true,
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://172.25.99.60:3003/v1/settings/alarmdevicestatus",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 310,
+        "y": 800,
+        "wires": [
+            [
+                "0ada2c15dfa75bd8"
+            ]
+        ]
+    },
+    {
+        "id": "0ada2c15dfa75bd8",
+        "type": "debug",
+        "z": "09ce35b9c31ba3ee",
+        "name": "debug mqtt out",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 580,
+        "y": 800,
+        "wires": []
+    },
+    {
+        "id": "f04244f22279ab0d",
+        "type": "comment",
+        "z": "09ce35b9c31ba3ee",
+        "name": "sendemail",
+        "info": "monitoring.system.report@gmail.com\nowortggrxrqhubxa\n\nhttp://172.25.99.60:3003/v1/settings/sendemail",
+        "x": 100,
+        "y": 840,
+        "wires": []
+    },
+    {
+        "id": "daf9a38cc7d2c3a4",
+        "type": "inject",
+        "z": "09ce35b9c31ba3ee",
+        "name": "settings-sendemail",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 130,
+        "y": 880,
+        "wires": [
+            [
+                "b02d885492049875"
+            ]
+        ]
+    },
+    {
+        "id": "b02d885492049875",
+        "type": "http request",
+        "z": "09ce35b9c31ba3ee",
+        "d": true,
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://172.25.99.60:3003/v1/settings/sendemail?to=icmon0955@gmail.com",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 410,
+        "y": 880,
+        "wires": [
+            [
+                "8d6371ea2581aa2e"
+            ]
+        ]
+    },
+    {
+        "id": "8d6371ea2581aa2e",
+        "type": "debug",
+        "z": "09ce35b9c31ba3ee",
+        "name": "debug mqtt out",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 620,
+        "y": 880,
+        "wires": []
+    },
+    {
+        "id": "d80302278e1ada61",
+        "type": "redis out",
+        "z": "09ce35b9c31ba3ee",
+        "hostname": "172.25.99.60",
+        "port": "6379",
+        "name": "Location-1-BAACTW02/CONTROL",
+        "key": "Redis-BAACTW02/DATA-1",
+        "structtype": "string",
+        "x": 420,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "3c877ddeac52f701",
+        "type": "redis out",
+        "z": "09ce35b9c31ba3ee",
+        "hostname": "172.25.99.60",
+        "port": "6379",
+        "name": "Location-1-BAACTW02/CONTROL",
+        "key": "Redis-BAACTW02/DATA-2",
+        "structtype": "string",
+        "x": 420,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "415674e6d6dcd4e1",
+        "type": "e-mail",
+        "z": "09ce35b9c31ba3ee",
+        "server": "smtp.gmail.com",
+        "port": "465",
+        "authtype": "BASIC",
+        "saslformat": true,
+        "token": "oauth2Response.access_token",
+        "secure": true,
+        "tls": true,
+        "name": "",
+        "dname": "",
+        "x": 70,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "bc74fcfe95515206",
+        "type": "mqtt-broker",
+        "name": "MQTT",
+        "broker": "172.25.99.60",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    }
+]

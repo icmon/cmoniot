@@ -1,0 +1,966 @@
+[
+    {
+        "id": "0eba769d91b3e925",
+        "type": "tab",
+        "label": "Data Air Control",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "f39e898fa78bd88f",
+        "type": "mqtt in",
+        "z": "0eba769d91b3e925",
+        "name": "",
+        "topic": "KEICR21072025V4203/DATA",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "fc2a7a8fd08b2b4b",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 260,
+        "y": 160,
+        "wires": [
+            [
+                "06ebd70d6245acf9",
+                "82dd73083f4f7d5c"
+            ]
+        ]
+    },
+    {
+        "id": "06ebd70d6245acf9",
+        "type": "function",
+        "z": "0eba769d91b3e925",
+        "name": "String to array",
+        "func": "let str = msg.payload;\nmsg.payload = str.split(',').map(item => item.trim());\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 160,
+        "wires": [
+            [
+                "5756f3e9b2e6af7a"
+            ]
+        ]
+    },
+    {
+        "id": "5756f3e9b2e6af7a",
+        "type": "split",
+        "z": "0eba769d91b3e925",
+        "name": "",
+        "splt": ",",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "property": "payload",
+        "x": 230,
+        "y": 260,
+        "wires": [
+            [
+                "8ee163dca3f532d0"
+            ]
+        ]
+    },
+    {
+        "id": "8ee163dca3f532d0",
+        "type": "function",
+        "z": "0eba769d91b3e925",
+        "name": "parts.index",
+        "func": "msg.idx = msg.parts.index;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 260,
+        "wires": [
+            [
+                "83d93f8ccfe684cb"
+            ]
+        ]
+    },
+    {
+        "id": "83d93f8ccfe684cb",
+        "type": "switch",
+        "z": "0eba769d91b3e925",
+        "name": "Route by index",
+        "property": "idx",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "0",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "2",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "3",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "4",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "5",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "6",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "7",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "8",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "9",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "10",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "11",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "12",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "13",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "14",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "15",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "16",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "17",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 18,
+        "x": 640,
+        "y": 600,
+        "wires": [
+            [
+                "2bf6322ca85440b3"
+            ],
+            [
+                "d059363dc6bea4d2"
+            ],
+            [
+                "38ab0d1fc72278ea"
+            ],
+            [
+                "eda8d289ebc8e0d0"
+            ],
+            [
+                "43a202e700dade9b"
+            ],
+            [
+                "27322ca258a132a4"
+            ],
+            [
+                "9e6a4ea41e0fb52e"
+            ],
+            [
+                "122a358901739f08"
+            ],
+            [
+                "4d2e55e30cb7108e"
+            ],
+            [
+                "84f3336a268cc205"
+            ],
+            [
+                "0624efbd6feab298"
+            ],
+            [
+                "e0bd594eee141165"
+            ],
+            [
+                "cb674e2e59c95cc3"
+            ],
+            [
+                "5eaeb5f51c74188e"
+            ],
+            [
+                "c433aa51ca9b5fbe"
+            ],
+            [
+                "1aad126e67951427"
+            ],
+            [
+                "4a4c9cb8919c0b7b"
+            ],
+            [
+                "740277bb6906a6f3"
+            ]
+        ]
+    },
+    {
+        "id": "2bf6322ca85440b3",
+        "type": "link out",
+        "z": "0eba769d91b3e925",
+        "name": "link out temp",
+        "mode": "link",
+        "links": [
+            "3b61e69c18fd0cb2"
+        ],
+        "x": 865,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "82dd73083f4f7d5c",
+        "type": "debug",
+        "z": "0eba769d91b3e925",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 540,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "8bf6cd29242c9e0b",
+        "type": "comment",
+        "z": "0eba769d91b3e925",
+        "name": "Temp",
+        "info": "",
+        "x": 950,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "d059363dc6bea4d2",
+        "type": "link out",
+        "z": "0eba769d91b3e925",
+        "name": "link out warning",
+        "mode": "link",
+        "links": [
+            "4009ca34b66e4f0c"
+        ],
+        "x": 865,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "8e9e5fe8cb4ffacc",
+        "type": "comment",
+        "z": "0eba769d91b3e925",
+        "name": "warning",
+        "info": "",
+        "x": 950,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "38ab0d1fc72278ea",
+        "type": "link out",
+        "z": "0eba769d91b3e925",
+        "name": "link out Recovery",
+        "mode": "link",
+        "links": [
+            "d19f5a38ce445f17"
+        ],
+        "x": 865,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "c737e8c00f8a721a",
+        "type": "comment",
+        "z": "0eba769d91b3e925",
+        "name": "Recovery",
+        "info": "",
+        "x": 960,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "eda8d289ebc8e0d0",
+        "type": "link out",
+        "z": "0eba769d91b3e925",
+        "name": "link out Period",
+        "mode": "link",
+        "links": [
+            "0eb9e62e2ededb5b"
+        ],
+        "x": 865,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "a7ca7c0ac1868ef9",
+        "type": "comment",
+        "z": "0eba769d91b3e925",
+        "name": "Period",
+        "info": "",
+        "x": 950,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "43a202e700dade9b",
+        "type": "link out",
+        "z": "0eba769d91b3e925",
+        "name": "link out percent",
+        "mode": "link",
+        "links": [
+            "5b5c4c54a147f702"
+        ],
+        "x": 865,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "432c8aced256a6ea",
+        "type": "comment",
+        "z": "0eba769d91b3e925",
+        "name": "percent",
+        "info": "",
+        "x": 950,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "27322ca258a132a4",
+        "type": "link out",
+        "z": "0eba769d91b3e925",
+        "name": "link out FireAlarm",
+        "mode": "link",
+        "links": [
+            "c800328023631c87"
+        ],
+        "x": 865,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "1c03e018421d1a5a",
+        "type": "comment",
+        "z": "0eba769d91b3e925",
+        "name": "FireAlarm",
+        "info": "",
+        "x": 960,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "9e6a4ea41e0fb52e",
+        "type": "link out",
+        "z": "0eba769d91b3e925",
+        "name": "link out HumiAlarm",
+        "mode": "link",
+        "links": [
+            "b93d18934a42ec4d"
+        ],
+        "x": 865,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "dd7f57a101f318a0",
+        "type": "comment",
+        "z": "0eba769d91b3e925",
+        "name": "HumiAlarm",
+        "info": "",
+        "x": 960,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "122a358901739f08",
+        "type": "link out",
+        "z": "0eba769d91b3e925",
+        "name": "link out Air2Alarm",
+        "mode": "link",
+        "links": [
+            "b29f92c96a16c21c"
+        ],
+        "x": 865,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "7a2bd41b222b3840",
+        "type": "comment",
+        "z": "0eba769d91b3e925",
+        "name": "Air2Alarm",
+        "info": "",
+        "x": 960,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "4d2e55e30cb7108e",
+        "type": "link out",
+        "z": "0eba769d91b3e925",
+        "name": "link out Air1Alarm",
+        "mode": "link",
+        "links": [
+            "b4d616133942284a"
+        ],
+        "x": 865,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "911d3b92a0358382",
+        "type": "comment",
+        "z": "0eba769d91b3e925",
+        "name": "Air1Alarm",
+        "info": "",
+        "x": 960,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "84f3336a268cc205",
+        "type": "link out",
+        "z": "0eba769d91b3e925",
+        "name": "link out temp_alarm",
+        "mode": "link",
+        "links": [
+            "4301ee4c8dae3ca3"
+        ],
+        "x": 865,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "0634c8a0b2d7fd48",
+        "type": "comment",
+        "z": "0eba769d91b3e925",
+        "name": "temp_alarm",
+        "info": "",
+        "x": 970,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "0624efbd6feab298",
+        "type": "link out",
+        "z": "0eba769d91b3e925",
+        "name": "link out MODE",
+        "mode": "link",
+        "links": [
+            "29cb6f064e1f80ca"
+        ],
+        "x": 865,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "7d1d15d3a57be77f",
+        "type": "comment",
+        "z": "0eba769d91b3e925",
+        "name": "MODE",
+        "info": "",
+        "x": 950,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "e0bd594eee141165",
+        "type": "link out",
+        "z": "0eba769d91b3e925",
+        "name": "link out state_AIR1",
+        "mode": "link",
+        "links": [
+            "f6bdc3d14f8faee6"
+        ],
+        "x": 865,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "eb730c9bdde6338a",
+        "type": "comment",
+        "z": "0eba769d91b3e925",
+        "name": "state_AIR1",
+        "info": "",
+        "x": 960,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "cb674e2e59c95cc3",
+        "type": "link out",
+        "z": "0eba769d91b3e925",
+        "name": "link out state_AIR2",
+        "mode": "link",
+        "links": [
+            "8a47e2132c815f97"
+        ],
+        "x": 865,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "27e273d316acf0b6",
+        "type": "comment",
+        "z": "0eba769d91b3e925",
+        "name": "state_AIR2",
+        "info": "",
+        "x": 960,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "5eaeb5f51c74188e",
+        "type": "link out",
+        "z": "0eba769d91b3e925",
+        "name": "link out TempAlarmOFF",
+        "mode": "link",
+        "links": [
+            "5e4c5151b2a38dfb"
+        ],
+        "x": 865,
+        "y": 840,
+        "wires": []
+    },
+    {
+        "id": "3de4fd2353a580e5",
+        "type": "comment",
+        "z": "0eba769d91b3e925",
+        "name": "TempAlarmOFF",
+        "info": "",
+        "x": 980,
+        "y": 840,
+        "wires": []
+    },
+    {
+        "id": "c433aa51ca9b5fbe",
+        "type": "link out",
+        "z": "0eba769d91b3e925",
+        "name": "link out UPS1Alarm",
+        "mode": "link",
+        "links": [
+            "c08c0896ecb32bd2"
+        ],
+        "x": 865,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "56f89f4353e5aab5",
+        "type": "comment",
+        "z": "0eba769d91b3e925",
+        "name": "UPS1Alarm",
+        "info": "",
+        "x": 970,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "1aad126e67951427",
+        "type": "link out",
+        "z": "0eba769d91b3e925",
+        "name": "link out UPS2Alarm",
+        "mode": "link",
+        "links": [
+            "f6e108cf977c6e11"
+        ],
+        "x": 865,
+        "y": 960,
+        "wires": []
+    },
+    {
+        "id": "b85d55cd28d58adb",
+        "type": "comment",
+        "z": "0eba769d91b3e925",
+        "name": "UPS2Alarm",
+        "info": "",
+        "x": 970,
+        "y": 960,
+        "wires": []
+    },
+    {
+        "id": "4a4c9cb8919c0b7b",
+        "type": "link out",
+        "z": "0eba769d91b3e925",
+        "name": "link out HSSDAlarm",
+        "mode": "link",
+        "links": [
+            "aba7402a62208349"
+        ],
+        "x": 865,
+        "y": 1020,
+        "wires": []
+    },
+    {
+        "id": "ca55cbd5e138c20a",
+        "type": "comment",
+        "z": "0eba769d91b3e925",
+        "name": "HSSDAlarm",
+        "info": "",
+        "x": 970,
+        "y": 1020,
+        "wires": []
+    },
+    {
+        "id": "740277bb6906a6f3",
+        "type": "link out",
+        "z": "0eba769d91b3e925",
+        "name": "link out WaterleakAlarm",
+        "mode": "link",
+        "links": [
+            "4fd8102fea93db34"
+        ],
+        "x": 865,
+        "y": 1080,
+        "wires": []
+    },
+    {
+        "id": "c9ebffd9d9e09b88",
+        "type": "comment",
+        "z": "0eba769d91b3e925",
+        "name": "WaterleakAlarm",
+        "info": "",
+        "x": 980,
+        "y": 1080,
+        "wires": []
+    },
+    {
+        "id": "3b61e69c18fd0cb2",
+        "type": "link in",
+        "z": "0eba769d91b3e925",
+        "name": "link in Temp",
+        "links": [
+            "2bf6322ca85440b3"
+        ],
+        "x": 1095,
+        "y": 60,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4009ca34b66e4f0c",
+        "type": "link in",
+        "z": "0eba769d91b3e925",
+        "name": "link in warning",
+        "links": [
+            "d059363dc6bea4d2"
+        ],
+        "x": 1095,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d19f5a38ce445f17",
+        "type": "link in",
+        "z": "0eba769d91b3e925",
+        "name": "link in Recovery",
+        "links": [
+            "38ab0d1fc72278ea"
+        ],
+        "x": 1095,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0eb9e62e2ededb5b",
+        "type": "link in",
+        "z": "0eba769d91b3e925",
+        "name": "link in Period",
+        "links": [
+            "eda8d289ebc8e0d0"
+        ],
+        "x": 1095,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5b5c4c54a147f702",
+        "type": "link in",
+        "z": "0eba769d91b3e925",
+        "name": "link in percent",
+        "links": [
+            "43a202e700dade9b"
+        ],
+        "x": 1095,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c800328023631c87",
+        "type": "link in",
+        "z": "0eba769d91b3e925",
+        "name": "link in FireAlarm",
+        "links": [
+            "27322ca258a132a4"
+        ],
+        "x": 1095,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b93d18934a42ec4d",
+        "type": "link in",
+        "z": "0eba769d91b3e925",
+        "name": "link in HumiAlarm",
+        "links": [
+            "9e6a4ea41e0fb52e"
+        ],
+        "x": 1095,
+        "y": 420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b29f92c96a16c21c",
+        "type": "link in",
+        "z": "0eba769d91b3e925",
+        "name": "link in Air2Alarm",
+        "links": [
+            "122a358901739f08"
+        ],
+        "x": 1095,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b4d616133942284a",
+        "type": "link in",
+        "z": "0eba769d91b3e925",
+        "name": "link in Air1Alarm",
+        "links": [
+            "4d2e55e30cb7108e"
+        ],
+        "x": 1095,
+        "y": 540,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4301ee4c8dae3ca3",
+        "type": "link in",
+        "z": "0eba769d91b3e925",
+        "name": "link in temp_alarm",
+        "links": [
+            "84f3336a268cc205"
+        ],
+        "x": 1095,
+        "y": 600,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "29cb6f064e1f80ca",
+        "type": "link in",
+        "z": "0eba769d91b3e925",
+        "name": "link in MODE",
+        "links": [
+            "0624efbd6feab298"
+        ],
+        "x": 1095,
+        "y": 660,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f6bdc3d14f8faee6",
+        "type": "link in",
+        "z": "0eba769d91b3e925",
+        "name": "link in state_AIR1",
+        "links": [
+            "e0bd594eee141165"
+        ],
+        "x": 1095,
+        "y": 720,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8a47e2132c815f97",
+        "type": "link in",
+        "z": "0eba769d91b3e925",
+        "name": "link in state_AIR2",
+        "links": [
+            "cb674e2e59c95cc3"
+        ],
+        "x": 1095,
+        "y": 780,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5e4c5151b2a38dfb",
+        "type": "link in",
+        "z": "0eba769d91b3e925",
+        "name": "link in TempAlarmOFF",
+        "links": [
+            "5eaeb5f51c74188e"
+        ],
+        "x": 1095,
+        "y": 840,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c08c0896ecb32bd2",
+        "type": "link in",
+        "z": "0eba769d91b3e925",
+        "name": "link in UPS1Alarm",
+        "links": [
+            "c433aa51ca9b5fbe"
+        ],
+        "x": 1095,
+        "y": 900,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f6e108cf977c6e11",
+        "type": "link in",
+        "z": "0eba769d91b3e925",
+        "name": "link in UPS2Alarm",
+        "links": [
+            "1aad126e67951427"
+        ],
+        "x": 1095,
+        "y": 960,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "aba7402a62208349",
+        "type": "link in",
+        "z": "0eba769d91b3e925",
+        "name": "link in HSSDAlarm",
+        "links": [
+            "4a4c9cb8919c0b7b"
+        ],
+        "x": 1095,
+        "y": 1020,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4fd8102fea93db34",
+        "type": "link in",
+        "z": "0eba769d91b3e925",
+        "name": "link in WaterleakAlarm",
+        "links": [
+            "740277bb6906a6f3"
+        ],
+        "x": 1095,
+        "y": 1080,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "fc2a7a8fd08b2b4b",
+        "type": "mqtt-broker",
+        "name": "broker.hivemq.com",
+        "broker": "broker.hivemq.com",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    }
+]

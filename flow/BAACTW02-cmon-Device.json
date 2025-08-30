@@ -1,0 +1,571 @@
+[
+    {
+        "id": "1aab2ad0a3dd88ab",
+        "type": "tab",
+        "label": "BAACTW02-cmon-Device",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "c753da1773f8d13d",
+        "type": "function",
+        "z": "1aab2ad0a3dd88ab",
+        "name": "BAACTW02/DATA",
+        "func": "// msg.payload = msg.payload[0];\n// return msg;\nglobal.set('BAACTW02/DATA',msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 510,
+        "y": 100,
+        "wires": [
+            [
+                "8923934e851b89a4",
+                "56acc6843dc9010c"
+            ]
+        ]
+    },
+    {
+        "id": "e1991d900dbe4217",
+        "type": "comment",
+        "z": "1aab2ad0a3dd88ab",
+        "name": "Board",
+        "info": "\"BAACTW02,33.40,0,0,1,0,1,0,1,0\"\n\nvar sn = \"BAACTW02\";\nvar tTemp = flow.get(\"BAACTW02Temp\");\nvar tContRelay1 = flow.get(\"BAACTW02ContRelay1\");\nvar tContRelay2 = flow.get(\"BAACTW02ContRelay2\");\nvar tActRelay1 = flow.get(\"BAACTW02ActRelay1\");\nvar tActRelay2 = flow.get(\"BAACTW02ActRelay2\");\nvar tFan1 = flow.get(\"BAACTW02Fan1\");\nvar tFan2 = flow.get(\"BAACTW02Fan2\");\nvar tOverFan1 = flow.get(\"BAACTW02OverFan1\");\nvar tOverFan2 = flow.get(\"BAACTW02OverFan2\");\n\nflow.set(\"BAACTW02Temp\",tTemp);\n\nmsg.payload = sn + \",\" + tTemp + \",\" + tContRelay1 + \",\" + tActRelay1 + \",\" + tFan1 + \",\" + tOverFan1 + \",\" + tContRelay2 + \",\" + tActRelay2 + \",\" + tFan2 + \",\" + tOverFan2;\nreturn msg;\n\nSN:BAACTW02\n***********\ntemperature \nContRelay1\nActRelay1\nFan1\nOverFan1\n***********\nContRelay2\nActRelay2\nFan2\nOverFan2\n***********\n***********\nhumidity  sensor \n\nconst dataObject = {\n    // เพิ่ม timestamp เป็น field แรก\n    timestamp: timestamp,\n\n    // field ข้อมูลเดิม\n  \n    temperature: parseFloat(parts[0]),\n    contRelay1: parseInt(parts[1]),\n    actRelay1: parseInt(parts[2]),\n    fan1: parseInt(parts[3]),\n    overFan1: parseInt(parts[4]),\n    contRelay2: parseInt(parts[5]),\n    actRelay2: parseInt(parts[6]),\n    fan2: parseInt(parts[7]),\n    overFan2: parseInt(parts[8]),\n    deviceId: parts[9]\n};",
+        "x": 630,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "7870047eddaf8e03",
+        "type": "function",
+        "z": "1aab2ad0a3dd88ab",
+        "name": "ContRelay1 to influx db",
+        "func": "// แยกข้อมูล\nvar parts = msg.payload.split(',');\nvar value = parseFloat(parts[1]);\nmsg.payload = value\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 630,
+        "y": 320,
+        "wires": [
+            [
+                "623deb8d5d4244f6"
+            ]
+        ]
+    },
+    {
+        "id": "e922432652899d0d",
+        "type": "function",
+        "z": "1aab2ad0a3dd88ab",
+        "name": "ActRelay1 to influx db",
+        "func": "// แยกข้อมูล\nvar parts = msg.payload.split(',');\nvar value = parseFloat(parts[2]);\nmsg.payload = value\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 620,
+        "y": 360,
+        "wires": [
+            [
+                "6faed956f15ea4ba"
+            ]
+        ]
+    },
+    {
+        "id": "6442faf82a8d9855",
+        "type": "function",
+        "z": "1aab2ad0a3dd88ab",
+        "name": "Fan1 to influx db",
+        "func": "// แยกข้อมูล\nvar parts = msg.payload.split(',');\nvar value = parseFloat(parts[3]);\nmsg.payload = value\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 610,
+        "y": 400,
+        "wires": [
+            [
+                "31106071cf6ad52c"
+            ]
+        ]
+    },
+    {
+        "id": "38543b09fb51e0ea",
+        "type": "function",
+        "z": "1aab2ad0a3dd88ab",
+        "name": "OverFan1 to influx db",
+        "func": "// แยกข้อมูล\nvar parts = msg.payload.split(',');\nvar value = parseFloat(parts[4]);\nmsg.payload = value\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 620,
+        "y": 440,
+        "wires": [
+            [
+                "6372e3192cbcea28"
+            ]
+        ]
+    },
+    {
+        "id": "1359d462d1854f55",
+        "type": "function",
+        "z": "1aab2ad0a3dd88ab",
+        "name": "ContRelay2 to influx db",
+        "func": "// แยกข้อมูล\nvar parts = msg.payload.split(',');\nvar value = parseFloat(parts[5]);\nmsg.payload = value\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 630,
+        "y": 480,
+        "wires": [
+            [
+                "ad73b163b5abb1c6"
+            ]
+        ]
+    },
+    {
+        "id": "d0ac276e60556ab1",
+        "type": "function",
+        "z": "1aab2ad0a3dd88ab",
+        "name": "ActRelay2 to influx db",
+        "func": "// แยกข้อมูล\nvar parts = msg.payload.split(',');\nvar value = parseFloat(parts[6]);\nmsg.payload = value\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 620,
+        "y": 520,
+        "wires": [
+            [
+                "c168910895b11b8e"
+            ]
+        ]
+    },
+    {
+        "id": "5a17113dd233db1d",
+        "type": "function",
+        "z": "1aab2ad0a3dd88ab",
+        "name": "Fan2 to influx db",
+        "func": "// แยกข้อมูล\nvar parts = msg.payload.split(',');\nvar value = parseFloat(parts[7]);\nmsg.payload = value\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 610,
+        "y": 560,
+        "wires": [
+            [
+                "0774b764d3a7760f"
+            ]
+        ]
+    },
+    {
+        "id": "8c83df78bd536c34",
+        "type": "function",
+        "z": "1aab2ad0a3dd88ab",
+        "name": "OverFan2 to influx db",
+        "func": "// แยกข้อมูล\nvar parts = msg.payload.split(',');\nvar value = parseFloat(parts[8]);\nmsg.payload = value\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 620,
+        "y": 600,
+        "wires": [
+            [
+                "b49283c4a2392461"
+            ]
+        ]
+    },
+    {
+        "id": "c1cba55656be556b",
+        "type": "influxdb out",
+        "z": "1aab2ad0a3dd88ab",
+        "influxdb": "fd32a3c5f192569a",
+        "name": "Buket-BAACTW02-Mea-temperature",
+        "measurement": "temperature",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "cmon_org",
+        "bucket": "BAACTW02",
+        "x": 990,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "623deb8d5d4244f6",
+        "type": "influxdb out",
+        "z": "1aab2ad0a3dd88ab",
+        "influxdb": "fd32a3c5f192569a",
+        "name": "Buket-BAACTW02-Mea-ContRelay1",
+        "measurement": "ContRelay1",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "cmon_org",
+        "bucket": "BAACTW02",
+        "x": 990,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "6faed956f15ea4ba",
+        "type": "influxdb out",
+        "z": "1aab2ad0a3dd88ab",
+        "influxdb": "fd32a3c5f192569a",
+        "name": "Buket-BAACTW02-Mea-ActRelay1",
+        "measurement": "ActRelay1",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "cmon_org",
+        "bucket": "BAACTW02",
+        "x": 980,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "31106071cf6ad52c",
+        "type": "influxdb out",
+        "z": "1aab2ad0a3dd88ab",
+        "influxdb": "fd32a3c5f192569a",
+        "name": "Buket-BAACTW02-Mea-Fan1",
+        "measurement": "Fan1",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "cmon_org",
+        "bucket": "BAACTW02",
+        "x": 970,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "6372e3192cbcea28",
+        "type": "influxdb out",
+        "z": "1aab2ad0a3dd88ab",
+        "influxdb": "fd32a3c5f192569a",
+        "name": "Buket-BAACTW02-Mea-OverFan1",
+        "measurement": "OverFan1",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "cmon_org",
+        "bucket": "BAACTW02",
+        "x": 980,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "ad73b163b5abb1c6",
+        "type": "influxdb out",
+        "z": "1aab2ad0a3dd88ab",
+        "influxdb": "fd32a3c5f192569a",
+        "name": "Buket-BAACTW02-Mea-ContRelay2",
+        "measurement": "ContRelay2",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "cmon_org",
+        "bucket": "BAACTW02",
+        "x": 990,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "c168910895b11b8e",
+        "type": "influxdb out",
+        "z": "1aab2ad0a3dd88ab",
+        "influxdb": "fd32a3c5f192569a",
+        "name": "Buket-BAACTW02-Mea-ActRelay2",
+        "measurement": "ActRelay2",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "cmon_org",
+        "bucket": "BAACTW02",
+        "x": 980,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "0774b764d3a7760f",
+        "type": "influxdb out",
+        "z": "1aab2ad0a3dd88ab",
+        "influxdb": "fd32a3c5f192569a",
+        "name": "Buket-BAACTW02-Mea-Fan2",
+        "measurement": "Fan2",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "cmon_org",
+        "bucket": "BAACTW02",
+        "x": 970,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "b49283c4a2392461",
+        "type": "influxdb out",
+        "z": "1aab2ad0a3dd88ab",
+        "influxdb": "fd32a3c5f192569a",
+        "name": "Buket-BAACTW02-Mea-OverFan2",
+        "measurement": "OverFan2",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "cmon_org",
+        "bucket": "BAACTW02",
+        "x": 980,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "f1be81b6bff864aa",
+        "type": "mqtt in",
+        "z": "1aab2ad0a3dd88ab",
+        "name": "รับค่า-MQTT-BAACTW02/DATA",
+        "topic": "BAACTW02/DATA",
+        "qos": "0",
+        "datatype": "utf8",
+        "broker": "bc74fcfe95515206",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 150,
+        "y": 100,
+        "wires": [
+            [
+                "c753da1773f8d13d",
+                "15fc3e7fd80934d3",
+                "7870047eddaf8e03",
+                "e922432652899d0d",
+                "6442faf82a8d9855",
+                "38543b09fb51e0ea",
+                "1359d462d1854f55",
+                "d0ac276e60556ab1",
+                "5a17113dd233db1d",
+                "8c83df78bd536c34",
+                "e693d5bd5beb1eb4"
+            ]
+        ]
+    },
+    {
+        "id": "588afe0b13c17419",
+        "type": "debug",
+        "z": "1aab2ad0a3dd88ab",
+        "name": "debug mqtt out",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 200,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "fb2efe01ab4360c4",
+        "type": "json",
+        "z": "1aab2ad0a3dd88ab",
+        "name": "",
+        "property": "payload",
+        "action": "str",
+        "pretty": false,
+        "x": 310,
+        "y": 200,
+        "wires": [
+            [
+                "766ee8bc5b68031d",
+                "588afe0b13c17419"
+            ]
+        ]
+    },
+    {
+        "id": "e693d5bd5beb1eb4",
+        "type": "function",
+        "z": "1aab2ad0a3dd88ab",
+        "name": "Location-1Json",
+        "func": "// msg.payload = msg.payload[0];\n// return msg;\n// global.set('BAACTW02/DATA',msg.payload);\n// return msg;\n// --- ส่วนที่เพิ่มเข้ามาสำหรับสร้าง Timestamp ---\nconst now = new Date();\n\n// ฟังก์ชันสำหรับเติมเลข 0 ข้างหน้าตัวเลขที่น้อยกว่า 10\nconst pad = (num) => String(num).padStart(2, '0');\n\n// จัดรูปแบบวันที่ YYYY-MM-DD\nconst datePart = [\n    now.getFullYear(),\n    pad(now.getMonth() + 1), // getMonth() คืนค่า 0-11 เลยต้อง +1\n    pad(now.getDate())\n].join('-');\n\n// จัดรูปแบบเวลา HH:MM:SS\nconst timePart = [\n    pad(now.getHours()),\n    pad(now.getMinutes()),\n    pad(now.getSeconds())\n].join(':');\n\n// รวมวันที่และเวลาเข้าด้วยกัน\nconst timestamp = datePart + ' ' + timePart;\n\n\n// --- โค้ดเดิมของคุณที่ใช้ประมวลผลข้อมูล ---\n// BAACTW02,31.38,0,0,0,0,1,0,0,1\nconst parts = msg.payload.split(',');\n\nconst dataObject = {\n    // เพิ่ม timestamp เป็น field แรก\n    timestamp: timestamp,\n    // field ข้อมูลเดิม\n    temperature: parseFloat(parts[0]) || parseFloat(0.0),\n    contRelay1: parseInt(parts[1]),\n    actRelay1: parseInt(parts[2]),\n    fan1: parseInt(parts[3]),\n    overFan1: parseInt(parts[4]),\n    contRelay2: parseInt(parts[5]),\n    actRelay2: parseInt(parts[6]),\n    fan2: parseInt(parts[7]),\n    overFan2: parseInt(parts[8]),\n    deviceId: \"Location 1\"\n};\n\n// กำหนด object ใหม่ให้เป็น payload\nmsg.payload = dataObject;\n\n// บันทึก object ที่มี timestamp แล้วลง flow context\nflow.set('BAACTW02_DeviceData', dataObject);\nif(parts[0]!=\"\"){\n  return msg;\n}\n\n\n \n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 140,
+        "y": 200,
+        "wires": [
+            [
+                "fb2efe01ab4360c4"
+            ]
+        ]
+    },
+    {
+        "id": "766ee8bc5b68031d",
+        "type": "redis out",
+        "z": "1aab2ad0a3dd88ab",
+        "hostname": "172.25.99.60",
+        "port": "6379",
+        "name": "Location-1-BAACTW02/DATA",
+        "key": "BAACTW02/DATA",
+        "structtype": "string",
+        "x": 210,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "8923934e851b89a4",
+        "type": "redis out",
+        "z": "1aab2ad0a3dd88ab",
+        "hostname": "172.25.99.60",
+        "port": "6379",
+        "name": "MQTT-Cmon",
+        "key": "MQTT-Cmon",
+        "structtype": "string",
+        "x": 750,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "10a5242bfe33e9e8",
+        "type": "redis out",
+        "z": "1aab2ad0a3dd88ab",
+        "hostname": "172.25.99.60",
+        "port": "6379",
+        "name": "MQTT-Cmon",
+        "key": "temperature-BAACTW02/DATA",
+        "structtype": "string",
+        "x": 910,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "15fc3e7fd80934d3",
+        "type": "function",
+        "z": "1aab2ad0a3dd88ab",
+        "name": "temperature to influx db",
+        "func": "// --- โค้ดเดิมของคุณที่ใช้ประมวลผลข้อมูล ---\nconst parts = msg.payload.split(',');\nconst temperature = parseFloat(parts[0]) || parseFloat(0.0);\nif (temperature){\n    msg.payload = parseFloat(temperature);\n    return msg;\n}else{\n    msg.payload = parseFloat(0.0);\n    return msg;\n} \n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 630,
+        "y": 280,
+        "wires": [
+            [
+                "10a5242bfe33e9e8",
+                "c1cba55656be556b"
+            ]
+        ]
+    },
+    {
+        "id": "56acc6843dc9010c",
+        "type": "debug",
+        "z": "1aab2ad0a3dd88ab",
+        "name": "debug mqtt out",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 760,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "fd32a3c5f192569a",
+        "type": "influxdb",
+        "hostname": "127.0.0.1",
+        "port": "8086",
+        "protocol": "http",
+        "database": "my_data",
+        "name": "InfluxDB-Cmon",
+        "usetls": false,
+        "tls": "",
+        "influxdbVersion": "2.0",
+        "url": "http://172.25.99.60:8086",
+        "timeout": "",
+        "rejectUnauthorized": true
+    },
+    {
+        "id": "bc74fcfe95515206",
+        "type": "mqtt-broker",
+        "name": "MQTT",
+        "broker": "172.25.99.60",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    }
+]

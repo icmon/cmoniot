@@ -1,0 +1,1381 @@
+[
+    {
+        "id": "6221f246b44c97c7",
+        "type": "tab",
+        "label": "AIR1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "56bdf0b661db7709",
+        "type": "random",
+        "z": "6221f246b44c97c7",
+        "name": "AIRtemp",
+        "low": "25.00",
+        "high": "35.99",
+        "inte": "false",
+        "property": "payload",
+        "x": 420,
+        "y": 120,
+        "wires": [
+            [
+                "d319a850d3e7d63d"
+            ]
+        ]
+    },
+    {
+        "id": "d319a850d3e7d63d",
+        "type": "function",
+        "z": "6221f246b44c97c7",
+        "name": "AIRTemp",
+        "func": "msg.payload = parseFloat(msg.payload).toFixed(2);\nflow.set(\"AIRTemp\",msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 750,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1198712e1693ffd2",
+        "type": "random",
+        "z": "6221f246b44c97c7",
+        "name": "AIRContRelay1",
+        "low": "0",
+        "high": "1",
+        "inte": "true",
+        "property": "payload",
+        "x": 440,
+        "y": 180,
+        "wires": [
+            [
+                "db0575d6aecb8864"
+            ]
+        ]
+    },
+    {
+        "id": "db0575d6aecb8864",
+        "type": "function",
+        "z": "6221f246b44c97c7",
+        "name": "AIRContRelay1",
+        "func": "\n//msg.payload = parseFloat(msg.payload).toFixed(2);\nflow.set(\"AIRContRelay1\",msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 770,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "59c6fefe7cd6e0c6",
+        "type": "random",
+        "z": "6221f246b44c97c7",
+        "name": "AIRContRelay2",
+        "low": "0",
+        "high": "1",
+        "inte": "true",
+        "property": "payload",
+        "x": 440,
+        "y": 360,
+        "wires": [
+            [
+                "935e0385205d411c"
+            ]
+        ]
+    },
+    {
+        "id": "935e0385205d411c",
+        "type": "function",
+        "z": "6221f246b44c97c7",
+        "name": "AIRContRelay2",
+        "func": "\n//msg.payload = parseFloat(msg.payload).toFixed(2);\nflow.set(\"AIRContRelay2\",msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 770,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c3d2ab44f72ed4d2",
+        "type": "random",
+        "z": "6221f246b44c97c7",
+        "name": "AIRActRelay1",
+        "low": "0",
+        "high": "1",
+        "inte": "true",
+        "property": "payload",
+        "x": 430,
+        "y": 220,
+        "wires": [
+            [
+                "38c4e1e4e6fcfd9c"
+            ]
+        ]
+    },
+    {
+        "id": "38c4e1e4e6fcfd9c",
+        "type": "function",
+        "z": "6221f246b44c97c7",
+        "name": "AIRActRelay1",
+        "func": "\n//msg.payload = parseFloat(msg.payload).toFixed(2);\nflow.set(\"AIRActRelay1\",msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f92ad1d1509a2c4b",
+        "type": "random",
+        "z": "6221f246b44c97c7",
+        "name": "AIRActRelay2",
+        "low": "0",
+        "high": "1",
+        "inte": "true",
+        "property": "payload",
+        "x": 430,
+        "y": 400,
+        "wires": [
+            [
+                "b50582e3186e10bc"
+            ]
+        ]
+    },
+    {
+        "id": "b50582e3186e10bc",
+        "type": "function",
+        "z": "6221f246b44c97c7",
+        "name": "AIRActRelay2",
+        "func": "\n//msg.payload = parseFloat(msg.payload).toFixed(2);\nflow.set(\"AIRActRelay2\",msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ca6af45e25386347",
+        "type": "random",
+        "z": "6221f246b44c97c7",
+        "name": "AIRIO1",
+        "low": "0",
+        "high": "1",
+        "inte": "true",
+        "property": "payload",
+        "x": 420,
+        "y": 260,
+        "wires": [
+            [
+                "6ef20251cc45a8b3"
+            ]
+        ]
+    },
+    {
+        "id": "6ef20251cc45a8b3",
+        "type": "function",
+        "z": "6221f246b44c97c7",
+        "name": "AIRIO1",
+        "func": "\n//msg.payload = parseFloat(msg.payload).toFixed(2);\nflow.set(\"AIRIO1\",msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 750,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "76dd4984ea460f92",
+        "type": "random",
+        "z": "6221f246b44c97c7",
+        "name": "AIRIO2",
+        "low": "0",
+        "high": "1",
+        "inte": "true",
+        "property": "payload",
+        "x": 420,
+        "y": 440,
+        "wires": [
+            [
+                "3c1f08bb739052dc"
+            ]
+        ]
+    },
+    {
+        "id": "3c1f08bb739052dc",
+        "type": "function",
+        "z": "6221f246b44c97c7",
+        "name": "AIRIO2",
+        "func": "\n//msg.payload = parseFloat(msg.payload).toFixed(2);\nflow.set(\"AIRIO2\",msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 750,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5762cca2daf10b68",
+        "type": "random",
+        "z": "6221f246b44c97c7",
+        "name": "AIROverIO1",
+        "low": "0",
+        "high": "1",
+        "inte": "true",
+        "property": "payload",
+        "x": 430,
+        "y": 300,
+        "wires": [
+            [
+                "863c0f8e273cbc2b"
+            ]
+        ]
+    },
+    {
+        "id": "863c0f8e273cbc2b",
+        "type": "function",
+        "z": "6221f246b44c97c7",
+        "name": "AIROverIO1",
+        "func": "\n//msg.payload = parseFloat(msg.payload).toFixed(2);\nflow.set(\"AIROverIO1\",msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b38e103bd962cd07",
+        "type": "random",
+        "z": "6221f246b44c97c7",
+        "name": "AIROverIO2",
+        "low": "0",
+        "high": "1",
+        "inte": "true",
+        "property": "payload",
+        "x": 430,
+        "y": 480,
+        "wires": [
+            [
+                "26b6936b2f2b7229"
+            ]
+        ]
+    },
+    {
+        "id": "26b6936b2f2b7229",
+        "type": "function",
+        "z": "6221f246b44c97c7",
+        "name": "AIROverIO2",
+        "func": "\n//msg.payload = parseFloat(msg.payload).toFixed(2);\nflow.set(\"AIROverIO2\",msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5d037843b032d0f0",
+        "type": "inject",
+        "z": "6221f246b44c97c7",
+        "name": "20",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "20",
+        "payloadType": "num",
+        "x": 110,
+        "y": 120,
+        "wires": [
+            [
+                "56bdf0b661db7709"
+            ]
+        ]
+    },
+    {
+        "id": "bb40154fa071909c",
+        "type": "inject",
+        "z": "6221f246b44c97c7",
+        "name": "20",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "20",
+        "payloadType": "num",
+        "x": 110,
+        "y": 280,
+        "wires": [
+            [
+                "1198712e1693ffd2",
+                "c3d2ab44f72ed4d2",
+                "ca6af45e25386347",
+                "59c6fefe7cd6e0c6",
+                "f92ad1d1509a2c4b",
+                "76dd4984ea460f92"
+            ]
+        ]
+    },
+    {
+        "id": "369de03453d8beae",
+        "type": "inject",
+        "z": "6221f246b44c97c7",
+        "name": "20",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "20",
+        "payloadType": "num",
+        "x": 110,
+        "y": 440,
+        "wires": [
+            [
+                "5762cca2daf10b68",
+                "b38e103bd962cd07"
+            ]
+        ]
+    },
+    {
+        "id": "626c434adb12c7bb",
+        "type": "mqtt out",
+        "z": "6221f246b44c97c7",
+        "name": "AIR1/DATA",
+        "topic": "AIR1/DATA",
+        "qos": "0",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "bc74fcfe95515206",
+        "x": 470,
+        "y": 840,
+        "wires": []
+    },
+    {
+        "id": "a1e81162b28881ff",
+        "type": "mqtt in",
+        "z": "6221f246b44c97c7",
+        "name": "รับ-Data- AIR/DATA-MQTT-Cmon",
+        "topic": "AIR1/DATA",
+        "qos": "0",
+        "datatype": "utf8",
+        "broker": "bc74fcfe95515206",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 170,
+        "y": 840,
+        "wires": [
+            [
+                "eb621e86494cbd88",
+                "93e1dcc4d388cc63"
+            ]
+        ]
+    },
+    {
+        "id": "460090bf4ddbc0ae",
+        "type": "function",
+        "z": "6221f246b44c97c7",
+        "name": "temperature to influx db",
+        "func": "// แยกข้อมูล\nvar parts = msg.payload.split(',');\nvar address = parts[0].trim();\n// var value = parseInt(parts[1]);\nvar value = parseFloat(parts[1]);\n// สร้าง payload สำหรับ InfluxDB\nmsg.payload = value\nreturn msg;\n\n/**\nSN:AIR02\n***********\ntemperature \nContRelay1\nActRelay1\nIO1\nOverIO1\n***********\nContRelay2\nActRelay2\nIO2\nOverIO2\n***********\n***********\nhumidity  sensor \n */",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 730,
+        "y": 1280,
+        "wires": [
+            [
+                "867bcb22301bb20d"
+            ]
+        ]
+    },
+    {
+        "id": "eb621e86494cbd88",
+        "type": "function",
+        "z": "6221f246b44c97c7",
+        "name": "AIR1/DATA",
+        "func": "global.set('AIR1/DATA',msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 430,
+        "y": 960,
+        "wires": [
+            [
+                "24fdf90393dbaa8c",
+                "460090bf4ddbc0ae",
+                "34b57a62a52c7139",
+                "b9d1e0199b20687a",
+                "bd1f9b71a9abf121",
+                "5a124d3367be3ba3",
+                "73c3c28e9aa82117",
+                "a8f78007c307c5b8",
+                "8e7ade2a85140799",
+                "87788af588dd4e2f",
+                "3a6f7db7a0013a08",
+                "a2cdf89509cf9564",
+                "536bdf5dcdf96584",
+                "a81aa689b7417add"
+            ]
+        ]
+    },
+    {
+        "id": "0420968fa9033665",
+        "type": "debug",
+        "z": "6221f246b44c97c7",
+        "name": "debug mqtt out",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 700,
+        "y": 1240,
+        "wires": []
+    },
+    {
+        "id": "bb9d8e81dee7b5fd",
+        "type": "comment",
+        "z": "6221f246b44c97c7",
+        "name": "Board",
+        "info": "\"AIR02,33.40,0,0,1,0,1,0,1,0\"\n\nvar sn = \"AIR02\";\nvar tTemp = flow.get(\"AIR02Temp\");\nvar tContRelay1 = flow.get(\"AIR02ContRelay1\");\nvar tContRelay2 = flow.get(\"AIR02ContRelay2\");\nvar tActRelay1 = flow.get(\"AIR02ActRelay1\");\nvar tActRelay2 = flow.get(\"AIR02ActRelay2\");\nvar tIO1 = flow.get(\"AIR02IO1\");\nvar tIO2 = flow.get(\"AIR02IO2\");\nvar tOverIO1 = flow.get(\"AIR02OverIO1\");\nvar tOverIO2 = flow.get(\"AIR02OverIO2\");\n\nflow.set(\"AIR02Temp\",tTemp);\n\nmsg.payload = sn + \",\" + tTemp + \",\" + tContRelay1 + \",\" + tActRelay1 + \",\" + tIO1 + \",\" + tOverIO1 + \",\" + tContRelay2 + \",\" + tActRelay2 + \",\" + tIO2 + \",\" + tOverIO2;\nreturn msg;\n\nSN:AIR02\n***********\ntemperature \nContRelay1\nActRelay1\nIO1\nOverIO1\n***********\nContRelay2\nActRelay2\nIO2\nOverIO2\n***********\n***********\nhumidity  sensor ",
+        "x": 950,
+        "y": 1240,
+        "wires": []
+    },
+    {
+        "id": "34b57a62a52c7139",
+        "type": "function",
+        "z": "6221f246b44c97c7",
+        "name": "ContRelay1 to influx db",
+        "func": "// แยกข้อมูล\nvar parts = msg.payload.split(',');\nvar address = parts[0].trim();\nvar value = parseInt(parts[2]);\n// สร้าง payload สำหรับ InfluxDB\nmsg.payload = value\nreturn msg;\n\n/**\nSN:AIR02\n***********\ntemperature \nContRelay1\nActRelay1\nIO1\nOverIO1\n***********\nContRelay2\nActRelay2\nIO2\nOverIO2\n***********\n***********\nhumidity  sensor \n */",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 890,
+        "y": 1360,
+        "wires": [
+            [
+                "a659b4c07f6f8ba5"
+            ]
+        ]
+    },
+    {
+        "id": "b9d1e0199b20687a",
+        "type": "function",
+        "z": "6221f246b44c97c7",
+        "name": "ActRelay1 to influx db",
+        "func": "// แยกข้อมูล\nvar parts = msg.payload.split(',');\nvar address = parts[0].trim();\nvar value = parseInt(parts[3]);\n// สร้าง payload สำหรับ InfluxDB\nmsg.payload = value\nreturn msg;\n\n/**\nSN:AIR02\n***********\ntemperature \nContRelay1\nActRelay1\nIO1\nOverIO1\n***********\nContRelay2\nActRelay2\nIO2\nOverIO2\n***********\n***********\nhumidity  sensor \n */",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 880,
+        "y": 1400,
+        "wires": [
+            [
+                "7c3f56caddcef234"
+            ]
+        ]
+    },
+    {
+        "id": "bd1f9b71a9abf121",
+        "type": "function",
+        "z": "6221f246b44c97c7",
+        "name": "IO1 to influx db",
+        "func": "// แยกข้อมูล\nvar parts = msg.payload.split(',');\nvar address = parts[0].trim();\nvar value = parseInt(parts[4]);\n// สร้าง payload สำหรับ InfluxDB\nmsg.payload = value\nreturn msg;\n\n/**\nSN:AIR02\n***********\ntemperature \nContRelay1\nActRelay1\nIO1\nOverIO1\n***********\nContRelay2\nActRelay2\nIO2\nOverIO2\n***********\n***********\nhumidity  sensor \n */",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 870,
+        "y": 1440,
+        "wires": [
+            [
+                "987ebee2c02c6f8f"
+            ]
+        ]
+    },
+    {
+        "id": "5a124d3367be3ba3",
+        "type": "function",
+        "z": "6221f246b44c97c7",
+        "name": "OverIO1 to influx db",
+        "func": "// แยกข้อมูล\nvar parts = msg.payload.split(',');\nvar address = parts[0].trim();\nvar value = parseInt(parts[5]);\n// สร้าง payload สำหรับ InfluxDB\nmsg.payload = value\nreturn msg;\n\n/**\nSN:AIR02\n***********\ntemperature \nContRelay1\nActRelay1\nIO1\nOverIO1\n***********\nContRelay2\nActRelay2\nIO2\nOverIO2\n***********\n***********\nhumidity  sensor \n */",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 880,
+        "y": 1480,
+        "wires": [
+            [
+                "b699bc5ba898bd91"
+            ]
+        ]
+    },
+    {
+        "id": "73c3c28e9aa82117",
+        "type": "function",
+        "z": "6221f246b44c97c7",
+        "name": "ContRelay2 to influx db",
+        "func": "// แยกข้อมูล\nvar parts = msg.payload.split(',');\nvar address = parts[0].trim();\nvar value = parseInt(parts[6]);\n// สร้าง payload สำหรับ InfluxDB\nmsg.payload = value\nreturn msg;\n\n/**\nSN:AIR02\n***********\ntemperature \nContRelay1\nActRelay1\nIO1\nOverIO1\n***********\nContRelay2\nActRelay2\nIO2\nOverIO2\n***********\n***********\nhumidity  sensor \n */",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 750,
+        "y": 1580,
+        "wires": [
+            [
+                "dae2342fbcaf1990"
+            ]
+        ]
+    },
+    {
+        "id": "a8f78007c307c5b8",
+        "type": "function",
+        "z": "6221f246b44c97c7",
+        "name": "ActRelay2 to influx db",
+        "func": "// แยกข้อมูล\nvar parts = msg.payload.split(',');\nvar address = parts[0].trim();\nvar value = parseInt(parts[7]);\n// สร้าง payload สำหรับ InfluxDB\nmsg.payload = value\nreturn msg;\n\n/**\nSN:AIR02\n***********\ntemperature \nContRelay1\nActRelay1\nIO1\nOverIO1\n***********\nContRelay2\nActRelay2\nIO2\nOverIO2\n***********\n***********\nhumidity  sensor \n */",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 720,
+        "y": 1620,
+        "wires": [
+            [
+                "7c92dd959a3746c9"
+            ]
+        ]
+    },
+    {
+        "id": "8e7ade2a85140799",
+        "type": "function",
+        "z": "6221f246b44c97c7",
+        "name": "IO2 to influx db",
+        "func": "// แยกข้อมูล\nvar parts = msg.payload.split(',');\nvar address = parts[0].trim();\nvar value = parseInt(parts[8]);\n// สร้าง payload สำหรับ InfluxDB\nmsg.payload = value\nreturn msg;\n\n/**\nSN:AIR02\n***********\ntemperature \nContRelay1\nActRelay1\nIO1\nOverIO1\n***********\nContRelay2\nActRelay2\nIO2\nOverIO2\n***********\n***********\nhumidity  sensor \n */",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 710,
+        "y": 1660,
+        "wires": [
+            [
+                "078a3f74246359be"
+            ]
+        ]
+    },
+    {
+        "id": "87788af588dd4e2f",
+        "type": "function",
+        "z": "6221f246b44c97c7",
+        "name": "OverIO2 to influx db",
+        "func": "// แยกข้อมูล\nvar parts = msg.payload.split(',');\nvar address = parts[0].trim();\nvar value = parseInt(parts[9]);\n// สร้าง payload สำหรับ InfluxDB\nmsg.payload = value\nreturn msg;\n\n/**\nSN:AIR02\n***********\ntemperature \nContRelay1\nActRelay1\nIO1\nOverIO1\n***********\nContRelay2\nActRelay2\nIO2\nOverIO2\n***********\n***********\nhumidity  sensor \n */",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 720,
+        "y": 1700,
+        "wires": [
+            [
+                "1446a2176b911148"
+            ]
+        ]
+    },
+    {
+        "id": "fed6626a10450981",
+        "type": "debug",
+        "z": "6221f246b44c97c7",
+        "name": "debug mqtt out",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 220,
+        "y": 1200,
+        "wires": []
+    },
+    {
+        "id": "992b93db602c608f",
+        "type": "json",
+        "z": "6221f246b44c97c7",
+        "name": "",
+        "property": "payload",
+        "action": "str",
+        "pretty": false,
+        "x": 130,
+        "y": 1080,
+        "wires": [
+            [
+                "6dc00f0ce9b6b998",
+                "fed6626a10450981"
+            ]
+        ]
+    },
+    {
+        "id": "93e1dcc4d388cc63",
+        "type": "function",
+        "z": "6221f246b44c97c7",
+        "name": "Location-4-Json",
+        "func": "// msg.payload = msg.payload[0];\n// return msg;\n// global.set('AIR02/DATA',msg.payload);\n// return msg;\n// --- ส่วนที่เพิ่มเข้ามาสำหรับสร้าง Timestamp ---\nconst now = new Date();\n\n// ฟังก์ชันสำหรับเติมเลข 0 ข้างหน้าตัวเลขที่น้อยกว่า 10\nconst pad = (num) => String(num).padStart(2, '0');\n\n// จัดรูปแบบวันที่ YYYY-MM-DD\nconst datePart = [\n    now.getFullYear(),\n    pad(now.getMonth() + 1), // getMonth() คืนค่า 0-11 เลยต้อง +1\n    pad(now.getDate())\n].join('-');\n\n// จัดรูปแบบเวลา HH:MM:SS\nconst timePart = [\n    pad(now.getHours()),\n    pad(now.getMinutes()),\n    pad(now.getSeconds())\n].join(':');\n\n// รวมวันที่และเวลาเข้าด้วยกัน\nconst timestamp = datePart + ' ' + timePart;\n\n\n// --- โค้ดเดิมของคุณที่ใช้ประมวลผลข้อมูล ---\nconst parts = msg.payload.split(',');\n\nconst dataObject = {\n    // เพิ่ม timestamp เป็น field แรก\n    timestamp: timestamp,\n\n    // field ข้อมูลเดิม\n  \n    temperature: parseFloat(parts[1]),\n    contRelay1: parseInt(parts[2]),\n    actRelay1: parseInt(parts[3]),\n    IO1: parseInt(parts[4]),\n    overIO1: parseInt(parts[5]),\n\n    contRelay2: parseInt(parts[6]),\n    actRelay2: parseInt(parts[7]),\n    IO2: parseInt(parts[8]),\n    overIO2: parseInt(parts[9]),\n\n    contRelay3: parseInt(parts[10]),\n    actRelay3: parseInt(parts[11]),\n    IO3: parseInt(parts[12]),\n    overIO3: parseInt(parts[13]),\n\n\n    deviceId: \"AIR1/DATA\"\n};\n\n// กำหนด object ใหม่ให้เป็น payload\nmsg.payload = dataObject;\n\n// บันทึก object ที่มี timestamp แล้วลง flow context\nflow.set('AIR1_DeviceData', dataObject);\nif(parts[0]!=\"\"){\n  return msg;\n}\n\n\n \n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 220,
+        "y": 980,
+        "wires": [
+            [
+                "992b93db602c608f"
+            ]
+        ]
+    },
+    {
+        "id": "6dc00f0ce9b6b998",
+        "type": "redis out",
+        "z": "6221f246b44c97c7",
+        "hostname": "172.25.99.60",
+        "port": "6379",
+        "name": "Location-4-AIR/DATA",
+        "key": "AIR/DATA",
+        "structtype": "string",
+        "x": 380,
+        "y": 1080,
+        "wires": []
+    },
+    {
+        "id": "a76c61b0ddfa3ef5",
+        "type": "random",
+        "z": "6221f246b44c97c7",
+        "name": "AIRContRelay3",
+        "low": "0",
+        "high": "1",
+        "inte": "true",
+        "property": "payload",
+        "x": 460,
+        "y": 580,
+        "wires": [
+            [
+                "4835686b23addb7f"
+            ]
+        ]
+    },
+    {
+        "id": "4835686b23addb7f",
+        "type": "function",
+        "z": "6221f246b44c97c7",
+        "name": "AIRContRelay3",
+        "func": "\n//msg.payload = parseFloat(msg.payload).toFixed(2);\nflow.set(\"AIRContRelay3\",msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 780,
+        "y": 580,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5ff058dc2a034823",
+        "type": "random",
+        "z": "6221f246b44c97c7",
+        "name": "AIRActRelay3",
+        "low": "0",
+        "high": "1",
+        "inte": "true",
+        "property": "payload",
+        "x": 450,
+        "y": 620,
+        "wires": [
+            [
+                "7bbe8f72f0dab383"
+            ]
+        ]
+    },
+    {
+        "id": "7bbe8f72f0dab383",
+        "type": "function",
+        "z": "6221f246b44c97c7",
+        "name": "AIRActRelay3",
+        "func": "\n//msg.payload = parseFloat(msg.payload).toFixed(2);\nflow.set(\"AIRActRelay3\",msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 780,
+        "y": 620,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "45f55330080f9ee9",
+        "type": "random",
+        "z": "6221f246b44c97c7",
+        "name": "AIRIO3",
+        "low": "0",
+        "high": "1",
+        "inte": "true",
+        "property": "payload",
+        "x": 440,
+        "y": 660,
+        "wires": [
+            [
+                "4c361e6a999a6972"
+            ]
+        ]
+    },
+    {
+        "id": "4c361e6a999a6972",
+        "type": "function",
+        "z": "6221f246b44c97c7",
+        "name": "AIRIO3",
+        "func": "\n//msg.payload = parseFloat(msg.payload).toFixed(2);\nflow.set(\"AIRIO3\",msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 770,
+        "y": 660,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "fa8b5c84edb22d59",
+        "type": "random",
+        "z": "6221f246b44c97c7",
+        "name": "AIROverIO3",
+        "low": "0",
+        "high": "1",
+        "inte": "true",
+        "property": "payload",
+        "x": 450,
+        "y": 700,
+        "wires": [
+            [
+                "d4737f927f87ac73"
+            ]
+        ]
+    },
+    {
+        "id": "d4737f927f87ac73",
+        "type": "function",
+        "z": "6221f246b44c97c7",
+        "name": "AIROverIO3",
+        "func": "\n//msg.payload = parseFloat(msg.payload).toFixed(2);\nflow.set(\"AIROverIO3\",msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 770,
+        "y": 700,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f6fc8f1dfbae486b",
+        "type": "inject",
+        "z": "6221f246b44c97c7",
+        "name": "20",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "20",
+        "payloadType": "num",
+        "x": 110,
+        "y": 640,
+        "wires": [
+            [
+                "a76c61b0ddfa3ef5",
+                "5ff058dc2a034823",
+                "45f55330080f9ee9",
+                "fa8b5c84edb22d59"
+            ]
+        ]
+    },
+    {
+        "id": "3a6f7db7a0013a08",
+        "type": "function",
+        "z": "6221f246b44c97c7",
+        "name": "ContRelay2 to influx db",
+        "func": "// แยกข้อมูล\nvar parts = msg.payload.split(',');\nvar address = parts[0].trim();\nvar value = parseInt(parts[10]);\n// สร้าง payload สำหรับ InfluxDB\nmsg.payload = value\nreturn msg;\n\n/**\nSN:AIR02\n***********\ntemperature \nContRelay1\nActRelay1\nIO1\nOverIO1\n***********\nContRelay2\nActRelay2\nIO2\nOverIO2\n***********\n***********\nhumidity  sensor \n */",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 710,
+        "y": 1780,
+        "wires": [
+            [
+                "993cc36d4ed6bf49"
+            ]
+        ]
+    },
+    {
+        "id": "a2cdf89509cf9564",
+        "type": "function",
+        "z": "6221f246b44c97c7",
+        "name": "ActRelay2 to influx db",
+        "func": "// แยกข้อมูล\nvar parts = msg.payload.split(',');\nvar address = parts[0].trim();\nvar value = parseInt(parts[11]);\n// สร้าง payload สำหรับ InfluxDB\nmsg.payload = value\nreturn msg;\n\n/**\nSN:AIR02\n***********\ntemperature \nContRelay1\nActRelay1\nIO1\nOverIO1\n***********\nContRelay2\nActRelay2\nIO2\nOverIO2\n***********\n***********\nhumidity  sensor \n */",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 680,
+        "y": 1820,
+        "wires": [
+            [
+                "5e5b65a01c737274"
+            ]
+        ]
+    },
+    {
+        "id": "536bdf5dcdf96584",
+        "type": "function",
+        "z": "6221f246b44c97c7",
+        "name": "IO2 to influx db",
+        "func": "// แยกข้อมูล\nvar parts = msg.payload.split(',');\nvar address = parts[0].trim();\nvar value = parseInt(parts[12]);\n// สร้าง payload สำหรับ InfluxDB\nmsg.payload = value\nreturn msg;\n\n/**\nSN:AIR02\n***********\ntemperature \nContRelay1\nActRelay1\nIO1\nOverIO1\n***********\nContRelay2\nActRelay2\nIO2\nOverIO2\n***********\n***********\nhumidity  sensor \n */",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 670,
+        "y": 1860,
+        "wires": [
+            [
+                "24563accebfd0e1e"
+            ]
+        ]
+    },
+    {
+        "id": "a81aa689b7417add",
+        "type": "function",
+        "z": "6221f246b44c97c7",
+        "name": "OverIO2 to influx db",
+        "func": "// แยกข้อมูล\nvar parts = msg.payload.split(',');\nvar address = parts[0].trim();\nvar value = parseInt(parts[13]);\n// สร้าง payload สำหรับ InfluxDB\nmsg.payload = value\nreturn msg;\n\n/**\nSN:AIR02\n***********\ntemperature \nContRelay1\nActRelay1\nIO1\nOverIO1\n***********\nContRelay2\nActRelay2\nIO2\nOverIO2\n***********\n***********\nhumidity  sensor \n */",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 680,
+        "y": 1900,
+        "wires": [
+            [
+                "babc3c2d19f4dce7"
+            ]
+        ]
+    },
+    {
+        "id": "c15bb0c783e873a6",
+        "type": "debug",
+        "z": "6221f246b44c97c7",
+        "name": "debug mqtt out",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 460,
+        "y": 800,
+        "wires": []
+    },
+    {
+        "id": "635725bae9a7e984",
+        "type": "function",
+        "z": "6221f246b44c97c7",
+        "name": "AIR1",
+        "func": "var sn = \"AIR1\";\n/********/\nvar tTemp = flow.get(\"AIRTemp\");\n/********/\nvar tContRelay1 = flow.get(\"AIRContRelay1\");\nvar tContRelay2 = flow.get(\"AIRContRelay2\");\nvar tContRelay3 = flow.get(\"AIRContRelay3\");\n/********/\nvar tActRelay1 = flow.get(\"AIRActRelay1\");\nvar tActRelay2 = flow.get(\"AIRActRelay2\");\nvar tActRelay3 = flow.get(\"AIRActRelay3\");\n/********/\nvar tIO1 = flow.get(\"AIRIO1\");\nvar tIO2 = flow.get(\"AIRIO2\");\nvar tIO3 = flow.get(\"AIRIO3\");\n/********/\nvar tOverIO1 = flow.get(\"AIROverIO1\");\nvar tOverIO2 = flow.get(\"AIROverIO2\");\nvar tOverIO3 = flow.get(\"AIROverIO3\");\n/********/\nmsg.payload = sn + \",\" + tTemp + \",\" + tContRelay1 + \",\" + tActRelay1 + \",\" + tIO1 + \",\" + tOverIO1 + \",\" + tContRelay2 + \",\" + tActRelay2 + \",\" + tIO2 + \",\" + tOverIO2 + \",\" + tContRelay3 + \",\" + tActRelay3 + \",\" + tIO3 + \",\" + tOverIO3;\n/********/\nreturn msg;\n/********/",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 250,
+        "y": 800,
+        "wires": [
+            [
+                "c15bb0c783e873a6",
+                "626c434adb12c7bb"
+            ]
+        ]
+    },
+    {
+        "id": "4eedc2ca41d7914e",
+        "type": "inject",
+        "z": "6221f246b44c97c7",
+        "name": "20",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "10",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "20",
+        "payloadType": "str",
+        "x": 110,
+        "y": 800,
+        "wires": [
+            [
+                "635725bae9a7e984"
+            ]
+        ]
+    },
+    {
+        "id": "24fdf90393dbaa8c",
+        "type": "debug",
+        "z": "6221f246b44c97c7",
+        "name": "debug mqtt out",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 620,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "867bcb22301bb20d",
+        "type": "influxdb out",
+        "z": "6221f246b44c97c7",
+        "influxdb": "fe50005a99c7a16e",
+        "name": "Buket-AIR1-temperature",
+        "measurement": "temperature",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "cmon_org",
+        "bucket": "AIR1",
+        "x": 1070,
+        "y": 1280,
+        "wires": []
+    },
+    {
+        "id": "b699bc5ba898bd91",
+        "type": "influxdb out",
+        "z": "6221f246b44c97c7",
+        "influxdb": "fe50005a99c7a16e",
+        "name": "OverIO1",
+        "measurement": "OverIO1",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "cmon_org",
+        "bucket": "AIR1",
+        "x": 1160,
+        "y": 1480,
+        "wires": []
+    },
+    {
+        "id": "987ebee2c02c6f8f",
+        "type": "influxdb out",
+        "z": "6221f246b44c97c7",
+        "influxdb": "fe50005a99c7a16e",
+        "name": "IO1",
+        "measurement": "IO1",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "cmon_org",
+        "bucket": "AIR1",
+        "x": 1170,
+        "y": 1440,
+        "wires": []
+    },
+    {
+        "id": "7c3f56caddcef234",
+        "type": "influxdb out",
+        "z": "6221f246b44c97c7",
+        "influxdb": "fe50005a99c7a16e",
+        "name": "ActRelay1",
+        "measurement": "ActRelay1",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "cmon_org",
+        "bucket": "AIR1",
+        "x": 1170,
+        "y": 1400,
+        "wires": []
+    },
+    {
+        "id": "a659b4c07f6f8ba5",
+        "type": "influxdb out",
+        "z": "6221f246b44c97c7",
+        "influxdb": "fe50005a99c7a16e",
+        "name": "ContRelay1",
+        "measurement": "ContRelay1",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "cmon_org",
+        "bucket": "AIR1",
+        "x": 1170,
+        "y": 1360,
+        "wires": []
+    },
+    {
+        "id": "1446a2176b911148",
+        "type": "influxdb out",
+        "z": "6221f246b44c97c7",
+        "influxdb": "fe50005a99c7a16e",
+        "name": "OverIO2",
+        "measurement": "OverIO2",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "cmon_org",
+        "bucket": "AIR1",
+        "x": 1040,
+        "y": 1700,
+        "wires": []
+    },
+    {
+        "id": "078a3f74246359be",
+        "type": "influxdb out",
+        "z": "6221f246b44c97c7",
+        "influxdb": "fe50005a99c7a16e",
+        "name": "IO2",
+        "measurement": "IO2",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "cmon_org",
+        "bucket": "AIR1",
+        "x": 1050,
+        "y": 1660,
+        "wires": []
+    },
+    {
+        "id": "7c92dd959a3746c9",
+        "type": "influxdb out",
+        "z": "6221f246b44c97c7",
+        "influxdb": "fe50005a99c7a16e",
+        "name": "ActRelay2",
+        "measurement": "ActRelay2",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "cmon_org",
+        "bucket": "AIR1",
+        "x": 1050,
+        "y": 1620,
+        "wires": []
+    },
+    {
+        "id": "dae2342fbcaf1990",
+        "type": "influxdb out",
+        "z": "6221f246b44c97c7",
+        "influxdb": "fe50005a99c7a16e",
+        "name": "ContRelay2",
+        "measurement": "ContRelay2",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "cmon_org",
+        "bucket": "AIR1",
+        "x": 1050,
+        "y": 1580,
+        "wires": []
+    },
+    {
+        "id": "babc3c2d19f4dce7",
+        "type": "influxdb out",
+        "z": "6221f246b44c97c7",
+        "influxdb": "fe50005a99c7a16e",
+        "name": "OverIO2",
+        "measurement": "OverIO2",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "cmon_org",
+        "bucket": "AIR1",
+        "x": 980,
+        "y": 1900,
+        "wires": []
+    },
+    {
+        "id": "24563accebfd0e1e",
+        "type": "influxdb out",
+        "z": "6221f246b44c97c7",
+        "influxdb": "fe50005a99c7a16e",
+        "name": "IO3",
+        "measurement": "IO3",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "cmon_org",
+        "bucket": "AIR1",
+        "x": 990,
+        "y": 1860,
+        "wires": []
+    },
+    {
+        "id": "5e5b65a01c737274",
+        "type": "influxdb out",
+        "z": "6221f246b44c97c7",
+        "influxdb": "fe50005a99c7a16e",
+        "name": "ActRelay3",
+        "measurement": "ActRelay3",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "cmon_org",
+        "bucket": "AIR1",
+        "x": 990,
+        "y": 1820,
+        "wires": []
+    },
+    {
+        "id": "993cc36d4ed6bf49",
+        "type": "influxdb out",
+        "z": "6221f246b44c97c7",
+        "influxdb": "fe50005a99c7a16e",
+        "name": "ContRelay3",
+        "measurement": "ContRelay3",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "cmon_org",
+        "bucket": "AIR1",
+        "x": 990,
+        "y": 1780,
+        "wires": []
+    },
+    {
+        "id": "bc74fcfe95515206",
+        "type": "mqtt-broker",
+        "name": "MQTT",
+        "broker": "172.25.99.60",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "fe50005a99c7a16e",
+        "type": "influxdb",
+        "hostname": "127.0.0.1",
+        "port": "8086",
+        "protocol": "http",
+        "database": "my_data",
+        "name": "InfluxDB-Cmon",
+        "usetls": false,
+        "tls": "",
+        "influxdbVersion": "2.0",
+        "url": "http://172.25.99.60:8086",
+        "timeout": "",
+        "rejectUnauthorized": true
+    }
+]
