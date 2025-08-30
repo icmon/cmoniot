@@ -1,0 +1,128 @@
+version: "3.8"
+networks:
+  demet:
+    driver: bridge
+
+services:
+  #--WEBSERVER--#
+  # webserver:
+  #   build:
+  #     context: ${DEMET_PATH}/docker/apache
+  #     args:
+  #       - PHP_CONTAINER=${DEMET_PREFIX}-php
+  #   image: ${DEMET_PREFIX}-webserver
+  #   container_name: frontendcmon
+  #   #container_name: ${DEMET_PREFIX}-webserver
+  #   environment:
+  #     - PHP_CONTAINER=${DEMET_PREFIX}-php
+  #   networks:
+  #     - demet
+  #   ports:
+  #     - ${HOST_PORT_WEBSERVER}:80
+  #     - ${HOST_PORT_WEBSERVER_SSL}:443
+  #   volumes:
+  #     - ${DEMET_PATH}/public:/var/www/html
+  #     - ${DEMET_PATH}/logs/webserver:/var/log/apache:rw${MOUNT_OPTIONS}
+  #   depends_on:
+  #     #--PHP83--#
+  #     - php83
+      #--/PHP83--#
+  #--/WEBSERVER--#
+  #--PHP83--#
+  webserver:
+    build:
+      # CHANGED: Point to the new Nginx Dockerfile location
+      context: ${DEMET_PATH}/docker/nginx 
+      args:
+        # This argument is passed to the Nginx Dockerfile to locate the PHP container
+        - PHP_CONTAINER=${DEMET_PREFIX}-php
+    image: ${DEMET_PREFIX}-webserver
+    container_name: frontendcmon
+    restart: always
+    # container_name: ${DEMET_PREFIX}-webserver
+    # NOTE: No environment variable needed if using build args, but harmless to keep
+    environment:
+      - PHP_CONTAINER=${DEMET_PREFIX}-php
+    networks:
+      - demet
+    ports:
+      - ${HOST_PORT_WEBSERVER}:80
+      - ${HOST_PORT_WEBSERVER_SSL}:443
+    volumes:
+      # This volume remains the same
+      - ${DEMET_PATH}/public:/var/www/html
+      # CHANGED: Nginx log path is different from Apache's
+      - ${DEMET_PATH}/logs/webserver:/var/log/nginx:rw${MOUNT_OPTIONS} 
+    depends_on:
+      # This dependency remains the same
+      - php83
+
+  php83:
+    build:
+      context: ${DEMET_PATH}/docker/php83
+    image: ${DEMET_PREFIX}-php
+    container_name: ${DEMET_PREFIX}-php
+    restart: always
+    networks:
+      - demet
+    environment:
+      TZ: ${TIMEZONE}
+    volumes:
+      - ${DEMET_PATH}/public:/var/www/html
+      #--MYSQL--#
+    # depends_on:
+    #   - mysql
+      #--/MYSQL--#
+  #--/PHP83--#
+  #--MYSQL--#
+#   mysql:
+#     #--MARIADB-IMAGE--#
+#     image: mariadb:${MARIADB_VERSION}
+#     #--/MARIADB-IMAGE--#
+#     container_name: ${DEMET_PREFIX}-mysql
+#     networks:
+#       - demet
+#     environment:
+#       MYSQL_ROOT_PASSWORD: ${MYSQL_DEFAULT_PASSWORD}
+#       MYSQL_DATABASE: ${MYSQL_DEFAULT_DB}
+#       MYSQL_USER: ${MYSQL_DEFAULT_USER}
+#       MYSQL_PASSWORD: ${MYSQL_DEFAULT_PASSWORD}
+#     ports:
+#       - ${HOST_PORT_MYSQL}:3306
+#     volumes:
+#       - ${DEMET_PATH}/docker/mysql/custom.cnf:/etc/mysql/conf.d/local.cnf
+#       - ${DEMET_PATH}/logs/mysql:/var/log/mysql:rw${MOUNT_OPTIONS}
+#       - mysql-data:/var/lib/mysql
+#   #--/MYSQL--#
+#   #--PHPMYADMIN--#
+#   phpmyadmin:
+#     image: phpmyadmin/phpmyadmin:${PHPMYADMIN_VERSION}
+#     container_name: ${DEMET_PREFIX}-phpmyadmin
+#     networks:
+#       - demet
+#     depends_on:
+#       #--PHP83--#
+#       - php83
+#       #--/PHP83--#
+#       - mysql
+#     ports:
+#         - ${HOST_PORT_PHPMYADMIN}:80
+#     environment:
+#       MYSQL_USERNAME: ${MYSQL_DEFAULT_USER}
+#       MYSQL_ROOT_PASSWORD: ${MYSQL_DEFAULT_PASSWORD}
+#       PMA_HOST: mysql
+#       PMA_PORT: ${HOST_PORT_MYSQL}
+#   #--/PHPMYADMIN--#
+# volumes:
+#   demet-data:
+#     driver: "local"
+#   #--MYSQL--#
+#   mysql-data:
+#     driver: "local"
+#   #--/MYSQL--#
+
+###
+#  docker compose up --build -d  
+#  docker ps               
+#  docker-compose down
+#  docker-compose up --build

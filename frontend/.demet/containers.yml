@@ -1,0 +1,272 @@
+version: "3.8"
+
+networks:
+  demet:
+    driver: bridge
+
+services:
+  #--WEBSERVER--#
+  webserver:
+    build:
+      context: ${DEMET_PATH}/docker/${WEBSERVER}
+      args:
+        - PHP_CONTAINER=${DEMET_PREFIX}-php
+    image: ${DEMET_PREFIX}-webserver
+    container_name: ${DEMET_PREFIX}-webserver
+    environment:
+      - PHP_CONTAINER=${DEMET_PREFIX}-php
+    networks:
+      - demet
+    ports:
+      - ${HOST_PORT_WEBSERVER}:80
+      - ${HOST_PORT_WEBSERVER_SSL}:443
+    volumes:
+      - ${DEMET_PATH}/public:/var/www/html
+      - ${DEMET_PATH}/logs/webserver:/var/log/${WEBSERVER}:rw${MOUNT_OPTIONS}
+    depends_on:
+      #--PHP81--#
+      - php81
+      #--/PHP81--#
+      #--PHP82--#
+      - php82
+      #--/PHP82--#
+      #--PHP83--#
+      - php83
+      #--/PHP83--#
+  #--/WEBSERVER--#
+  #--PHP81--#
+  php81:
+    build:
+      context: ${DEMET_PATH}/docker/php81
+    image: ${DEMET_PREFIX}-php
+    container_name: ${DEMET_PREFIX}-php
+    networks:
+      - demet
+    environment:
+      TZ: ${TIMEZONE}
+    volumes:
+      - ${DEMET_PATH}/public:/var/www/html
+    depends_on:
+      #--MYSQL--#
+      - mysql
+      #--/MYSQL--#
+      #--PGSQL--#
+      - pgsql
+      #--/PGSQL--#
+  #--/PHP81--#
+  #--PHP82--#
+  php82:
+    build:
+      context: ${DEMET_PATH}/docker/php82
+    image: ${DEMET_PREFIX}-php
+    container_name: ${DEMET_PREFIX}-php
+    networks:
+      - demet
+    environment:
+      TZ: ${TIMEZONE}
+    volumes:
+      - ${DEMET_PATH}/public:/var/www/html
+    depends_on:
+      #--MYSQL--#
+      - mysql
+      #--/MYSQL--#
+      #--PGSQL--#
+      - pgsql
+      #--/PGSQL--#
+  #--/PHP82--#
+  #--PHP83--#
+  php83:
+    build:
+      context: ${DEMET_PATH}/docker/php83
+    image: ${DEMET_PREFIX}-php
+    container_name: ${DEMET_PREFIX}-php
+    networks:
+      - demet
+    environment:
+      TZ: ${TIMEZONE}
+    volumes:
+      - ${DEMET_PATH}/public:/var/www/html
+    depends_on:
+      #--MYSQL--#
+      - mysql
+      #--/MYSQL--#
+      #--PGSQL--#
+      - pgsql
+      #--/PGSQL--#
+  #--/PHP83--#
+  #--MYSQL--#
+  mysql:
+    #--MYSQL-IMAGE--#
+    image: mysql:${MYSQL_VERSION}
+    #--/MYSQL-IMAGE--#
+    #--MARIADB-IMAGE--#
+    image: mariadb:${MARIADB_VERSION}
+    #--/MARIADB-IMAGE--#
+    container_name: ${DEMET_PREFIX}-mysql
+    networks:
+      - demet
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_DEFAULT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DEFAULT_DB}
+      MYSQL_USER: ${MYSQL_DEFAULT_USER}
+      MYSQL_PASSWORD: ${MYSQL_DEFAULT_PASSWORD}
+    ports:
+      - ${HOST_PORT_MYSQL}:3306
+    volumes:
+      - ${DEMET_PATH}/docker/mysql/custom.cnf:/etc/mysql/conf.d/local.cnf
+      - ${DEMET_PATH}/logs/mysql:/var/log/mysql:rw${MOUNT_OPTIONS}
+      - mysql-data:/var/lib/mysql
+  #--/MYSQL--#
+  #--PHPMYADMIN--#
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:${PHPMYADMIN_VERSION}
+    container_name: ${DEMET_PREFIX}-phpmyadmin
+    networks:
+      - demet
+    depends_on:
+      #--PHP81--#
+      - php81
+      #--/PHP81--#
+      #--PHP82--#
+      - php82
+      #--/PHP82--#
+      #--PHP83--#
+      - php83
+      #--/PHP83--#
+      - mysql
+    ports:
+        - ${HOST_PORT_PHPMYADMIN}:80
+    environment:
+      MYSQL_USERNAME: ${MYSQL_DEFAULT_USER}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_DEFAULT_PASSWORD}
+      PMA_HOST: mysql
+      PMA_PORT: ${HOST_PORT_MYSQL}
+  #--/PHPMYADMIN--#
+  #--PGSQL--#
+  pgsql:
+    image: postgres:${PGSQL_VERSION}
+    container_name: ${DEMET_PREFIX}-pgsql
+    networks:
+      - demet
+    environment:
+      - POSTGRES_USER=${PGSQL_DEFAULT_USER}
+      - POSTGRES_PASSWORD=${PGSQL_DEFAULT_PASSWORD}
+      - POSTGRES_DATABASE=${PGSQL_DEFAULT_DB}
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    ports:
+      - ${HOST_PORT_PGSQL}:5432
+    volumes:
+      - ${DEMET_PATH}/logs/pgsql:/var/log/postgresql:rw${MOUNT_OPTIONS}
+      - pgsql-data:/var/lib/postgresql/data
+  #--/PGSQL--#
+  #--PGADMIN--#
+  pgadmin:
+    image: dpage/pgadmin4:${PGADMIN_VERSION}
+    container_name: ${DEMET_PREFIX}-pgadmin
+    networks:
+      - demet
+    depends_on:
+      #--PHP81--#
+      - php81
+      #--/PHP81--#
+      #--PHP82--#
+      - php82
+      #--/PHP82--#
+      #--PHP83--#
+      - php83
+      #--/PHP83--#
+      - pgsql
+    ports:
+      - ${HOST_PORT_PGADMIN}:${HOST_PORT_WEBSERVER}
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_USER}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD}
+  #--/PGADMIN--#
+  #--MONGODB--#
+  mongodb:
+    image: mongo:${MONGO_VERSION}
+    container_name: ${DEMET_PREFIX}-mongodb
+    networks:
+      - demet
+    ports:
+        - ${HOST_PORT_MONGODB}:27017
+    command: mongod --logpath=/dev/null
+    restart: on-failure
+    environment:
+      MONGO_DATA_DIR: /data/db
+      MONGO_LOG_DIR: /dev/null
+      MONGO_INITDB_ROOT_USERNAME: ${MONGODB_ADMIN_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_ADMIN_PASSWORD}
+    volumes:
+      - mongodb-data:/data/db
+  #--/MONGODB--#
+  #--MONGOEXPRESS--#
+  mongoexpress:
+    image: mongo-express:${MONGOEXPRESS_VERSION}
+    container_name: ${DEMET_PREFIX}-mongoexpress
+    networks:
+      - demet
+    depends_on:
+      - mongodb
+    ports:
+      - ${HOST_PORT_MONGOEXPRESS}:8081
+    environment:
+      ME_CONFIG_MONGODB_SERVER: mongodb
+      ME_CONFIG_BASICAUTH_USERNAME: ${MONGOEXPRESS_USER}
+      ME_CONFIG_BASICAUTH_PASSWORD: ${MONGOEXPRESS_PASSWORD}
+      ME_CONFIG_MONGODB_PORT: ${HOST_PORT_MONGODB}
+      ME_CONFIG_MONGODB_ADMINUSERNAME: ${MONGODB_ADMIN_USER}
+      ME_CONFIG_MONGODB_ADMINPASSWORD: ${MONGODB_ADMIN_PASSWORD}
+  #--/MONGOEXPRESS--#
+  #--REDIS--#
+  redis:
+    image: redis:${REDIS_VERSION}
+    container_name: ${DEMET_PREFIX}-redis
+    networks:
+      - demet
+    ports:
+      - ${HOST_PORT_REDIS}:6379
+    restart: on-failure
+    command: redis-server --appendonly yes
+    volumes:
+      - ${DEMET_PATH}/logs/redis:/var/log/redis:rw${MOUNT_OPTIONS}
+      - redis-data:/data
+  #--/REDIS--#
+  #--RABBITMQ--#
+  rabbitmq:
+    image: rabbitmq:${RABBITMQ_VERSION}
+    container_name: ${DEMET_PREFIX}-rabbitmq
+    restart: on-failure
+    ports:
+      - ${HOST_PORT_RABBITMQ_ADMIN}:15672
+      - ${HOST_PORT_RABBITMQ}:5672
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASSWORD}
+    volumes:
+      - ${DEMET_PATH}/logs/rabbitmq/logs/:/var/log/rabbitmq:rw${MOUNT_OPTIONS}
+      - rabbitmq-data:/var/lib/rabbitmq/mnesia
+  #--/RABBITMQ--#
+volumes:
+  demet-data:
+    driver: "local"
+  #--MYSQL--#
+  mysql-data:
+    driver: "local"
+  #--/MYSQL--#
+  #--PGSQL--#
+  pgsql-data:
+    driver: "local"
+  #--/PGSQL--#
+  #--REDIS--#
+  redis-data:
+    driver: "local"
+  #--/REDIS--#
+  #--MONGODB--#
+  mongodb-data:
+    driver: "local"
+  #--/MONGODB--#
+  #--RABBITMQ--#
+  rabbitmq-data:
+    driver: "local"
+  #--/RABBITMQ--#
