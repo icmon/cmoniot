@@ -1,0 +1,52 @@
+version: "3.8"
+networks:
+  demet:
+    driver: bridge
+
+services:
+  webserver:
+    build:
+      # CHANGED: Point to the new Nginx Dockerfile location
+      context: ${DEMET_PATH}/docker/nginx 
+      args:
+        # This argument is passed to the Nginx Dockerfile to locate the PHP container
+        - PHP_CONTAINER=${DEMET_PREFIX}-php
+    image: ${DEMET_PREFIX}-webserver
+    container_name: frontendcmon
+    restart: always
+    # container_name: ${DEMET_PREFIX}-webserver
+    # NOTE: No environment variable needed if using build args, but harmless to keep
+    environment:
+      - PHP_CONTAINER=${DEMET_PREFIX}-php
+    networks:
+      - demet
+    ports:
+      - ${HOST_PORT_WEBSERVER}:80
+      - ${HOST_PORT_WEBSERVER_SSL}:443
+    volumes:
+      # This volume remains the same
+      - ${DEMET_PATH}/public:/var/www/html
+      # CHANGED: Nginx log path is different from Apache's
+      - ${DEMET_PATH}/logs/webserver:/var/log/nginx:rw${MOUNT_OPTIONS} 
+    depends_on:
+      # This dependency remains the same
+      - php83
+
+  php83:
+    build:
+      context: ${DEMET_PATH}/docker/php83
+    image: ${DEMET_PREFIX}-php
+    container_name: ${DEMET_PREFIX}-php
+    restart: always
+    networks:
+      - demet
+    environment:
+      TZ: ${TIMEZONE}
+    volumes:
+      - ${DEMET_PATH}/public:/var/www/html
+     
+###
+#  docker compose up --build -d  
+#  docker ps               
+#  docker-compose down
+#  docker-compose up --build

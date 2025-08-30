@@ -1,0 +1,12 @@
+# Project files #
+######################
+.idea
+.DS_Store
+!.gitkeep
+/docker/nginx/sites/*
+!/docker/nginx/sites/local.conf
+/logs/**/*.log
+.env
+/frontend/public/application/config/config.php
+/frontend/public/application/config/callapi.php
+/frontend/public/application/config/api.php

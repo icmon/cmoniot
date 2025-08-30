@@ -1,0 +1,40 @@
+version: "3.8"
+
+networks:
+  demet:
+    driver: bridge
+
+services:
+  webserver:
+    build:
+      context: ${DEMET_PATH}/docker/nginx
+      args:
+        - PHP_CONTAINER=${DEMET_PREFIX}-php
+    image: ${DEMET_PREFIX}-webserver
+    container_name: frontendcmon
+    restart: always
+    environment:
+      - PHP_CONTAINER=${DEMET_PREFIX}-php
+    networks:
+      - demet
+    ports:
+      - ${HOST_PORT_WEBSERVER}:80
+      - ${HOST_PORT_WEBSERVER_SSL}:443
+    volumes:
+      - ${DEMET_PATH}/public:/var/www/html
+      - ${DEMET_PATH}/logs/webserver:/var/log/nginx:rw${MOUNT_OPTIONS}
+    depends_on:
+      - php83
+
+  php83:
+    build:
+      context: ${DEMET_PATH}/docker/php83
+    image: ${DEMET_PREFIX}-php
+    container_name: ${DEMET_PREFIX}-php
+    restart: always
+    networks:
+      - demet
+    environment:
+      TZ: ${TIMEZONE}
+    volumes:
+      - ${DEMET_PATH}/public:/var/www/html
