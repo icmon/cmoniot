@@ -1,0 +1,24 @@
+[
+    {
+        "id": "eccc8bc2.133378",
+        "type": "websocket in",
+        "z": "2149094e5105438a",
+        "name": "",
+        "server": "985ecbc7.67a138",
+        "client": "",
+        "x": 417,
+        "y": 292,
+        "wires": [
+            [
+                "9adfff59.652"
+            ]
+        ]
+    },
+    {
+        "id": "985ecbc7.67a138",
+        "type": "websocket-listener",
+        "z": "2149094e5105438a",
+        "path": "/ws/simple",
+        "wholemsg": "false"
+    }
+]

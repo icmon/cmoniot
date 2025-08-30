@@ -1,0 +1,131 @@
+[
+    {
+        "id": "f6f2187d.f17ca8",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "c9a946df0fbc7708",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "0.5",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 110,
+        "y": 120,
+        "wires": [
+            [
+                "04a51e7006123b81"
+            ]
+        ]
+    },
+    {
+        "id": "04a51e7006123b81",
+        "type": "http request",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "https://dashboard.elering.ee/api/balance?start=2020-05-31T20%3A59%3A59.999Z&end=2020-06-30T20%3A59%3A59.999Z",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 310,
+        "y": 120,
+        "wires": [
+            [
+                "94e70e6c1519b366"
+            ]
+        ]
+    },
+    {
+        "id": "cda4556bcefc8f69",
+        "type": "influxdb out",
+        "z": "f6f2187d.f17ca8",
+        "influxdb": "69d3ebcdba70cea3",
+        "name": "influxDb",
+        "measurement": "test",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "Taltech",
+        "bucket": "Taltech",
+        "x": 620,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "3642b0e2a2849df0",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 620,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "94e70e6c1519b366",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "set_influx_field",
+        "func": "msg.payload = [\n    {\n        measurement: msg.measurement,\n        fields: { imbalance_buy_price: msg.payload.data[0].imbalance_buy_price, imbalance_sell_price: msg.payload.data[0].imbalance_sell_price },\n        timestamp: msg.payload.data[0].timestamp\n    }\n]\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 260,
+        "wires": [
+            [
+                "3642b0e2a2849df0",
+                "cda4556bcefc8f69"
+            ]
+        ]
+    },
+    {
+        "id": "69d3ebcdba70cea3",
+        "type": "influxdb",
+        "hostname": "127.0.0.1",
+        "port": "8086",
+        "protocol": "http",
+        "database": "database",
+        "name": "influxdb",
+        "usetls": false,
+        "tls": "",
+        "influxdbVersion": "2.0",
+        "url": "http://172.18.0.2:8086",
+        "rejectUnauthorized": false
+    }
+]

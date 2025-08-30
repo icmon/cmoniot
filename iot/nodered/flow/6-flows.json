@@ -1,0 +1,368 @@
+[
+    {
+        "id": "cc8f3277.2aaf1",
+        "type": "tab",
+        "label": "mqtt_server_onsite",
+        "disabled": true,
+        "info": ""
+    },
+    {
+        "id": "821e6942.e429e8",
+        "type": "mqtt in",
+        "z": "cc8f3277.2aaf1",
+        "name": "TEMP1",
+        "topic": "cifs_TH1_2565/temp",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "f94943df.4b82a",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 90,
+        "y": 40,
+        "wires": [
+            [
+                "1199c006.75d1f"
+            ]
+        ]
+    },
+    {
+        "id": "4e039e6b.5b0f5",
+        "type": "mqtt in",
+        "z": "cc8f3277.2aaf1",
+        "name": "TEMP2",
+        "topic": "PDU1/temperature",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "f94943df.4b82a",
+        "inputs": 0,
+        "x": 90,
+        "y": 100,
+        "wires": [
+            [
+                "1199c006.75d1f"
+            ]
+        ]
+    },
+    {
+        "id": "a97042cb.3237b",
+        "type": "mqtt in",
+        "z": "cc8f3277.2aaf1",
+        "name": "PF",
+        "topic": "PDU1/pf",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "f94943df.4b82a",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 90,
+        "y": 160,
+        "wires": [
+            [
+                "1199c006.75d1f"
+            ]
+        ]
+    },
+    {
+        "id": "6ce8b117.c9539",
+        "type": "mqtt in",
+        "z": "cc8f3277.2aaf1",
+        "name": "FREQ",
+        "topic": "PDU1/freq",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "f94943df.4b82a",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 90,
+        "y": 220,
+        "wires": [
+            [
+                "1199c006.75d1f"
+            ]
+        ]
+    },
+    {
+        "id": "ef8bc854.3726e8",
+        "type": "mqtt in",
+        "z": "cc8f3277.2aaf1",
+        "name": "Energy",
+        "topic": "PDU1/energy",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "f94943df.4b82a",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 90,
+        "y": 280,
+        "wires": [
+            [
+                "1199c006.75d1f"
+            ]
+        ]
+    },
+    {
+        "id": "f26e34e2.27aa18",
+        "type": "mqtt in",
+        "z": "cc8f3277.2aaf1",
+        "name": "Power",
+        "topic": "PDU1/power",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "f94943df.4b82a",
+        "inputs": 0,
+        "x": 90,
+        "y": 340,
+        "wires": [
+            [
+                "1199c006.75d1f"
+            ]
+        ]
+    },
+    {
+        "id": "deceff86.774cf",
+        "type": "mqtt in",
+        "z": "cc8f3277.2aaf1",
+        "name": "Amp",
+        "topic": "PDU1/amp",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "f94943df.4b82a",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 90,
+        "y": 400,
+        "wires": [
+            [
+                "1199c006.75d1f"
+            ]
+        ]
+    },
+    {
+        "id": "cd9483c2.9b29",
+        "type": "mqtt in",
+        "z": "cc8f3277.2aaf1",
+        "name": "Volt",
+        "topic": "PDU1/volt",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "f94943df.4b82a",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 90,
+        "y": 460,
+        "wires": [
+            [
+                "1199c006.75d1f"
+            ]
+        ]
+    },
+    {
+        "id": "1199c006.75d1f",
+        "type": "join",
+        "z": "cc8f3277.2aaf1",
+        "name": "filesave",
+        "mode": "custom",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "useparts": true,
+        "accumulate": true,
+        "timeout": "1000",
+        "count": "8",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 300,
+        "y": 260,
+        "wires": [
+            [
+                "123d8f9d.4f072"
+            ]
+        ]
+    },
+    {
+        "id": "123d8f9d.4f072",
+        "type": "json",
+        "z": "cc8f3277.2aaf1",
+        "name": "ob_to_json",
+        "property": "payload",
+        "action": "",
+        "pretty": true,
+        "x": 490,
+        "y": 260,
+        "wires": [
+            [
+                "8bbdef3aba9ef5f9",
+                "f7443be9.c9a708"
+            ]
+        ]
+    },
+    {
+        "id": "f7443be9.c9a708",
+        "type": "file",
+        "z": "cc8f3277.2aaf1",
+        "name": "save_file_log",
+        "filename": "C:\\Program Files\\Ampps\\www\\mqtt.json",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 750,
+        "y": 260,
+        "wires": [
+            [
+                "4c2f2b53.61ac14"
+            ]
+        ]
+    },
+    {
+        "id": "4c2f2b53.61ac14",
+        "type": "debug",
+        "z": "cc8f3277.2aaf1",
+        "name": "debug",
+        "active": false,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "payload",
+        "statusType": "auto",
+        "x": 880,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "38f77707.ff7cb8",
+        "type": "mqtt in",
+        "z": "cc8f3277.2aaf1",
+        "name": "harmonics_p1",
+        "topic": "cmon/harmonics_p1",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "f94943df.4b82a",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 70,
+        "y": 540,
+        "wires": [
+            [
+                "1199c006.75d1f"
+            ]
+        ]
+    },
+    {
+        "id": "3268528e.2e011e",
+        "type": "mqtt in",
+        "z": "cc8f3277.2aaf1",
+        "name": "harmonics_p2",
+        "topic": "cmon/harmonics_p2",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "f94943df.4b82a",
+        "inputs": 0,
+        "x": 70,
+        "y": 600,
+        "wires": [
+            [
+                "1199c006.75d1f"
+            ]
+        ]
+    },
+    {
+        "id": "c2e05638.7af178",
+        "type": "mqtt in",
+        "z": "cc8f3277.2aaf1",
+        "name": "harmonics_p3",
+        "topic": "cmon/harmonics_p3",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "f94943df.4b82a",
+        "inputs": 0,
+        "x": 90,
+        "y": 660,
+        "wires": [
+            [
+                "1199c006.75d1f"
+            ]
+        ]
+    },
+    {
+        "id": "9a2fe444.c6e4d8",
+        "type": "mqtt in",
+        "z": "cc8f3277.2aaf1",
+        "name": "Motor",
+        "topic": "KEIMM00001/data",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "f94943df.4b82a",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 150,
+        "y": 720,
+        "wires": [
+            [
+                "1199c006.75d1f"
+            ]
+        ]
+    },
+    {
+        "id": "8bbdef3aba9ef5f9",
+        "type": "debug",
+        "z": "cc8f3277.2aaf1",
+        "name": "debug",
+        "active": false,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "payload",
+        "statusType": "auto",
+        "x": 680,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "f94943df.4b82a",
+        "type": "mqtt-broker",
+        "name": "Cmon-mqtt",
+        "broker": "broker.hivemq.com",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    }
+]

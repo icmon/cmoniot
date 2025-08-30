@@ -1,0 +1,88 @@
+version: "3.7"
+services:
+  
+  influxdb:
+    image: influxdb:latest
+    container_name: influxdb
+    restart: unless-stopped
+    # restart: always
+    ports:
+      - "8086:8086"
+    expose:
+      - "8086"
+    networks:
+      - iot
+    volumes:
+      - influxdb-data:/var/lib/influxdb
+      - influxdb-config:/etc/influxdb
+      - ./init-buckets.sh:/docker-entrypoint-initdb.d/init-buckets.sh:ro
+    environment: 
+      - DOCKER_INFLUXDB_INIT_MODE=setup
+      - DOCKER_INFLUXDB_INIT_USERNAME=${DOCKER_INFLUXDB_INIT_USERNAME}
+      - DOCKER_INFLUXDB_INIT_PASSWORD=${DOCKER_INFLUXDB_INIT_PASSWORD}
+      - DOCKER_INFLUXDB_INIT_ORG=${DOCKER_INFLUXDB_INIT_ORG}
+      - DOCKER_INFLUXDB_INIT_BUCKET=${DOCKER_INFLUXDB_INIT_BUCKET}
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=mxYn3SLqHtx80XwUJAmBHduCy25sLHDnQUGIWRcFsIgnbdasvJMNFQNIuSOAbW81JjhDGc4kSfaFrd0cYZ8eYw==
+      # - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=${DOCKER_INFLUXDB_INIT_BUCKET}
+      
+
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    # restart: unless-stopped
+    restart: always
+    ports:
+      - "3008:3000"
+    expose:
+      - "3008"
+    networks:
+      - iot
+    volumes:
+      - ./grafana-provisioning:/etc/grafana/provisioning
+      - grafana-data:/var/lib/grafana
+    depends_on:
+      - influxdb
+    environment:
+      - GF_SECURITY_ADMIN_USER=${GRAFANA_USERNAME}
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD}
+  node-red-service:
+    build: node-red-service
+    restart: unless-stopped
+    # restart: always
+    ports:
+      - "1881:1880"
+    expose:
+      - "1881"
+    environment:
+      - TZ=${TZ:-Asia/Bangkok}
+      - NODE_RED_ENABLE_PROJECTS=false  # must be set to true if you want to modify the node-red flow files through node-red editor
+    volumes:
+      - 'node-red-data:/data:rw'
+networks:
+  iot:
+    driver: bridge
+  nodedrednet:
+      # use the bridge driver, but enable IPv6
+      driver: bridge
+      driver_opts:
+          com.docker.network.enable_ipv6: "true"
+volumes:
+  grafana-data:
+  influxdb-data:
+  influxdb-config:
+  node-red-data:
+
+###
+#  docker compose up --build -d  
+#  docker ps               
+#  docker-compose down
+#  docker-compose up --build
+#  docker-compose logs grafana
+#  docker ps -a
+#  docker logs grafana
+#  docker-compose down
+#  docker-compose up -d
+#  docker-compose down -v
+#  docker-compose up -d
+#  docker volume ls
+#  docker compose up --build node-red-service -d  

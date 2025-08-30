@@ -1,0 +1,19 @@
+{
+    "dependencies": {},
+    "node-red": {
+        "settings": {
+            "flowFile": "flows.json",
+            "credentialsFile": "flows_cred.json",
+            "BAACTW02": "BAACTW02.json",
+            "BAACTW03": "BAACTW03.json",
+            "BAACTW04": "BAACTW04.json",
+            "BAACTW05": "BAACTW05.json",
+            "BAACTW06": "BAACTW06.json",
+            "BAACTW07": "BAACTW07.json",
+            "BAACTW08": "BAACTW08.json",
+            "BAACTW09": "BAACTW09.json"
+        }
+    },
+    "description": "Test Node-RED flow",
+    "version": "0.0.1"
+}

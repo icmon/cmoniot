@@ -1,0 +1,17 @@
+
+1.create entity  type Orm postgresql
+2.role.entity.ts
+3.CREATE TABLE "public"."sd_user_roles_permision" (
+  "role_type_id" int4 NOT NULL,
+  "name" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
+  "detail" text COLLATE "pg_catalog"."default",
+  "created" timestamp(6) NOT NULL,
+  "updated" timestamp(6),
+  "insert" int4,
+  "update" int4,
+  "delete" int4,
+  "select" int4,
+  "log" int4,
+  "config" int4,
+  "truncate" int4
+)

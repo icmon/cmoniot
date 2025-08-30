@@ -1,0 +1,291 @@
+[
+    {
+        "id": "0190bb4b0d94623a",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "b636f796.281928",
+        "type": "switch",
+        "z": "0190bb4b0d94623a",
+        "name": "Check Bierkelder alarmlog change",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "C:\\Users\\Administrator\\Documents\\Logfiles Alarmen HMI's\\Proceskamer Bierkelder\\Alarm_log_Test.csv",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 360,
+        "y": 100,
+        "wires": [
+            [
+                "7759b3f4.77b7fc"
+            ]
+        ]
+    },
+    {
+        "id": "38988be5.525ec4",
+        "type": "watch",
+        "z": "0190bb4b0d94623a",
+        "name": "Logfiles Proceskamer Bierkelder",
+        "files": "C:\\Users\\Administrator\\Documents\\Logfiles Alarmen HMI's\\Proceskamer Bierkelder\\",
+        "recursive": true,
+        "x": 170,
+        "y": 220,
+        "wires": [
+            [
+                "b636f796.281928"
+            ]
+        ]
+    },
+    {
+        "id": "7759b3f4.77b7fc",
+        "type": "file in",
+        "z": "0190bb4b0d94623a",
+        "name": "Alarmen Bierkelder csv file",
+        "filename": "C:\\Users\\Administrator\\Documents\\Logfiles Alarmen HMI's\\Proceskamer Bierkelder\\Alarm_log_Test.csv",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "x": 600,
+        "y": 220,
+        "wires": [
+            [
+                "dca5b0f.49d0f5"
+            ]
+        ]
+    },
+    {
+        "id": "dca5b0f.49d0f5",
+        "type": "csv",
+        "z": "0190bb4b0d94623a",
+        "name": "Seperate csv through semicolon",
+        "sep": ";",
+        "hdrin": false,
+        "hdrout": "",
+        "multi": "mult",
+        "ret": "\\r\\n",
+        "temp": "",
+        "skip": "0",
+        "strings": false,
+        "x": 1010,
+        "y": 180,
+        "wires": [
+            [
+                "dcf807d6.1971c8"
+            ]
+        ]
+    },
+    {
+        "id": "dcf807d6.1971c8",
+        "type": "function",
+        "z": "0190bb4b0d94623a",
+        "name": "Copy payload",
+        "func": "msg.payloadFile = msg.payload;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1520,
+        "y": 220,
+        "wires": [
+            [
+                "4426d49b.8daedc"
+            ]
+        ]
+    },
+    {
+        "id": "3c29370c.ede8a8",
+        "type": "function",
+        "z": "0190bb4b0d94623a",
+        "name": "Search last written line to InfluxDB",
+        "func": "//msg.payloadFile = msg.payload;\nmsg.payloadFileLength = msg.payloadFile.length;\n\nvar i = 1;\nvar x= msg.payload;\nvar y;\nvar found = 0;\n\nwhile (found === 0) {\n  y = msg.payloadFile[msg.payloadFileLength - i];  \n  if (x === JSON.stringify(y)) found = 1;\n  msg.NewAlarms = i - 1;\n  i++;\n  if (i === msg.payloadFileLength) found = 1;\n}\n\nmsg.last = msg.payloadFile[msg.payloadFileLength -1];\nmsg.payload = x;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 980,
+        "y": 280,
+        "wires": [
+            [
+                "bfaa47e9.cb7af8",
+                "f605b276.91a3d",
+                "870c47c.97e0eb8"
+            ]
+        ]
+    },
+    {
+        "id": "4426d49b.8daedc",
+        "type": "file in",
+        "z": "0190bb4b0d94623a",
+        "name": "Last Alarm Bierkelder txt file",
+        "filename": "C:\\Users\\Administrator\\Documents\\Logfiles Alarmen HMI's\\Proceskamer Bierkelder\\Alarm_log_10_Last.txt",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "x": 580,
+        "y": 420,
+        "wires": [
+            [
+                "3c29370c.ede8a8"
+            ]
+        ]
+    },
+    {
+        "id": "b5eff9b9.6a05e8",
+        "type": "inject",
+        "z": "0190bb4b0d94623a",
+        "name": "",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "10",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 340,
+        "y": 340,
+        "wires": [
+            [
+                "7759b3f4.77b7fc"
+            ]
+        ]
+    },
+    {
+        "id": "94f08eb3.57588",
+        "type": "file",
+        "z": "0190bb4b0d94623a",
+        "name": "",
+        "filename": "C:\\Users\\Administrator\\Documents\\Logfiles Alarmen HMI's\\Proceskamer Bierkelder\\Alarm_log_10_Last.txt",
+        "appendNewline": false,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 2160,
+        "y": 280,
+        "wires": [
+            [
+                "eb854a4.778eeb8"
+            ]
+        ]
+    },
+    {
+        "id": "eb854a4.778eeb8",
+        "type": "debug",
+        "z": "0190bb4b0d94623a",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 2630,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "bfaa47e9.cb7af8",
+        "type": "function",
+        "z": "0190bb4b0d94623a",
+        "name": "Copy last Messagge in msg.payload",
+        "func": "msg.payload = msg.last;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1590,
+        "y": 280,
+        "wires": [
+            [
+                "94f08eb3.57588"
+            ]
+        ]
+    },
+    {
+        "id": "f605b276.91a3d",
+        "type": "debug",
+        "z": "0190bb4b0d94623a",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "NewAlarms",
+        "targetType": "msg",
+        "x": 1540,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "870c47c.97e0eb8",
+        "type": "function",
+        "z": "0190bb4b0d94623a",
+        "name": "Alarmen wegschrijven in Array",
+        "func": "var i;\nvar Alarmen = [];\nvar FieldValue1;\nvar FieldValue2;\nvar FieldValue3;\nvar FieldValue4;\nvar FieldValue5;\nvar Tagvalue1;\n\nfor (i = 0; msg.NewAlarms !== 0; i++) {\n    FieldValue1 = msg.payloadFile[msg.payloadFileLength - msg.NewAlarms].col2;\n    FieldValue2 = msg.payloadFile[msg.payloadFileLength - msg.NewAlarms].col3;\n    FieldValue3 = msg.payloadFile[msg.payloadFileLength - msg.NewAlarms].col4;\n    FieldValue4 = msg.payloadFile[msg.payloadFileLength - msg.NewAlarms].col5;\n    FieldValue5 = msg.payloadFile[msg.payloadFileLength - msg.NewAlarms].col15;\n    Tagvalue1 = msg.payloadFile[msg.payloadFileLength - msg.NewAlarms].col14;\n     var dt = new Date();\n         dt.setSeconds( dt.getMilliseconds() + i );\n    Alarmen [i] = {\n        measurement: 'Proceskamer_Bierkelder_Alarmen',\n        fields: {\n            MsgProc: FieldValue1,\n            StateAfter: FieldValue2,\n            MsgClass: FieldValue3,\n            MsgNumber: FieldValue4,\n            MsgText: FieldValue5\n        },\n        tags: {\n            time: Tagvalue1\n        },\n        timestamp: dt\n    }\n\n    msg.NewAlarms--;\n}\nmsg.payload = Alarmen;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 930,
+        "y": 440,
+        "wires": [
+            [
+                "ec9d8848.045fc8",
+                "5fb36f65.27d87"
+            ]
+        ]
+    },
+    {
+        "id": "ec9d8848.045fc8",
+        "type": "debug",
+        "z": "0190bb4b0d94623a",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 1530,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "5fb36f65.27d87",
+        "type": "influxdb batch",
+        "z": "0190bb4b0d94623a",
+        "influxdb": "3c34d289.ea64de",
+        "precision": "",
+        "retentionPolicy": "",
+        "name": "InfluxDB Test",
+        "x": 1530,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "3c34d289.ea64de",
+        "type": "influxdb",
+        "hostname": "127.0.0.1",
+        "port": "8086",
+        "protocol": "http",
+        "database": "Test",
+        "name": "TestDB",
+        "usetls": false,
+        "tls": "d05a2116.ca1dd",
+        "influxdbVersion": "1.x"
+    },
+    {
+        "id": "d05a2116.ca1dd",
+        "type": "tls-config",
+        "name": "local-tls",
+        "cert": "",
+        "key": "",
+        "ca": "",
+        "certname": "",
+        "keyname": "",
+        "caname": "",
+        "verifyservercert": false
+    }
+]

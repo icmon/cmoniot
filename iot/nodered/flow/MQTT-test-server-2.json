@@ -1,0 +1,152 @@
+[
+    {
+        "id": "8078f0e2458c6a84",
+        "type": "tab",
+        "label": "MQTT-test-server-2",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "2c6873d2.992abc",
+        "type": "mqtt out",
+        "z": "8078f0e2458c6a84",
+        "name": "",
+        "topic": "sensors/livingroom/temp1",
+        "qos": "1",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "407a01e4.6b637",
+        "x": 650,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "d9beed59.94155",
+        "type": "inject",
+        "z": "8078f0e2458c6a84",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "sensors/livingroom/temp1",
+        "payload": "22",
+        "payloadType": "num",
+        "x": 330,
+        "y": 180,
+        "wires": [
+            [
+                "2c6873d2.992abc",
+                "d2db0e9d669bde86"
+            ]
+        ]
+    },
+    {
+        "id": "be80048.8f232f8",
+        "type": "mqtt in",
+        "z": "8078f0e2458c6a84",
+        "name": "",
+        "topic": "sensors/livingroom/temp1",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "407a01e4.6b637",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 490,
+        "y": 260,
+        "wires": [
+            [
+                "8640b8ff.f82ff8",
+                "dfe73f9aa7e6894b"
+            ]
+        ]
+    },
+    {
+        "id": "8640b8ff.f82ff8",
+        "type": "debug",
+        "z": "8078f0e2458c6a84",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "false",
+        "x": 790,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "dfe73f9aa7e6894b",
+        "type": "debug",
+        "z": "8078f0e2458c6a84",
+        "name": "debug",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 710,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "d2db0e9d669bde86",
+        "type": "debug",
+        "z": "8078f0e2458c6a84",
+        "name": "debug",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 650,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "407a01e4.6b637",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    }
+]

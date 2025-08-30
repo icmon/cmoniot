@@ -1,0 +1,272 @@
+[
+    {
+        "id": "6c2a0c5d301e022b",
+        "type": "tab",
+        "label": "Influxdb-mqtt-localhost",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "f549370422c1bee2",
+        "type": "inject",
+        "z": "6c2a0c5d301e022b",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "[     {         \"time\": 1688987984,         \"temperature\": 24     },     {         \"device\": \"dQBgXeWLRE\",         \"deviceType\": \"Pi4\",         \"deviceName\": \"demo-pi-rob\"     } ]",
+        "payload": "",
+        "payloadType": "date",
+        "x": 130,
+        "y": 280,
+        "wires": [
+            [
+                "8652763b4aec785b"
+            ]
+        ]
+    },
+    {
+        "id": "8652763b4aec785b",
+        "type": "random",
+        "z": "6c2a0c5d301e022b",
+        "name": "",
+        "low": "-10",
+        "high": "100",
+        "inte": "false",
+        "property": "payload",
+        "x": 280,
+        "y": 280,
+        "wires": [
+            [
+                "edf930ae73e3379f"
+            ]
+        ]
+    },
+    {
+        "id": "edf930ae73e3379f",
+        "type": "mqtt out",
+        "z": "6c2a0c5d301e022b",
+        "name": "",
+        "topic": "Cmon/Temp1",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "f94943df.4b82a",
+        "x": 450,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "add7f2a95189dec7",
+        "type": "mqtt in",
+        "z": "6c2a0c5d301e022b",
+        "name": "",
+        "topic": "Cmon/Temp1",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "f94943df.4b82a",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 110,
+        "y": 340,
+        "wires": [
+            [
+                "2baa200778f69ced",
+                "e91bd10583d5b9b6"
+            ]
+        ]
+    },
+    {
+        "id": "2baa200778f69ced",
+        "type": "debug",
+        "z": "6c2a0c5d301e022b",
+        "name": "debug",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 290,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "e91bd10583d5b9b6",
+        "type": "influxdb out",
+        "z": "6c2a0c5d301e022b",
+        "influxdb": "42576b829bebb39b",
+        "name": "InfugdbOut",
+        "measurement": "",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "s",
+        "retentionPolicyV18Flux": "",
+        "org": "cmon",
+        "bucket": "cmon",
+        "x": 310,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "80318809c82a4c3d",
+        "type": "influxdb in",
+        "z": "6c2a0c5d301e022b",
+        "influxdb": "42576b829bebb39b",
+        "name": "InfugdbIn",
+        "query": "",
+        "rawOutput": false,
+        "precision": "",
+        "retentionPolicy": "",
+        "org": "organisation",
+        "x": 420,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7004d7926fb6d37f",
+        "type": "influxdb out",
+        "z": "6c2a0c5d301e022b",
+        "influxdb": "1c1a5edef41716e3",
+        "name": "InfluxDB",
+        "measurement": "temperature",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "s",
+        "retentionPolicyV18Flux": "",
+        "org": "cmon",
+        "bucket": "temperature",
+        "x": 400,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "37432119307431bb",
+        "type": "inject",
+        "z": "6c2a0c5d301e022b",
+        "name": "",
+        "props": [
+            {
+                "p": "measurement",
+                "v": "temperature",
+                "vt": "str"
+            },
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "[{\"time\":1688987984,\"temperature\":24},{\"device\":\"dQBgXeWLRE\",\"deviceType\":\"Pi4\",\"deviceName\":\"demo-pi-rob\"}]",
+        "payloadType": "json",
+        "x": 130,
+        "y": 580,
+        "wires": [
+            [
+                "7004d7926fb6d37f",
+                "a3ead2ed3e20aef0"
+            ]
+        ]
+    },
+    {
+        "id": "a3ead2ed3e20aef0",
+        "type": "debug",
+        "z": "6c2a0c5d301e022b",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 400,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "f94943df.4b82a",
+        "type": "mqtt-broker",
+        "name": "Cmon-mqtt",
+        "broker": "broker.hivemq.com",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "42576b829bebb39b",
+        "type": "influxdb",
+        "hostname": "127.0.0.1",
+        "port": 8086,
+        "protocol": "http",
+        "database": "database",
+        "name": "cmon",
+        "usetls": false,
+        "tls": "",
+        "influxdbVersion": "2.0",
+        "url": "http://localhost:8086",
+        "timeout": "1",
+        "rejectUnauthorized": true
+    },
+    {
+        "id": "1c1a5edef41716e3",
+        "type": "influxdb",
+        "hostname": "127.0.0.1",
+        "port": "8086",
+        "protocol": "http",
+        "database": "my_data",
+        "name": "CmonInfuxDb",
+        "usetls": false,
+        "tls": "",
+        "influxdbVersion": "2.0",
+        "url": "https://localhost:8086",
+        "timeout": "",
+        "rejectUnauthorized": true
+    }
+]

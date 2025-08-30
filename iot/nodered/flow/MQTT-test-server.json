@@ -1,0 +1,185 @@
+[
+    {
+        "id": "6a3ba3dbfdb96f55",
+        "type": "tab",
+        "label": "MQTT-test-server",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "3297959a.e7fe7a",
+        "type": "inject",
+        "z": "6a3ba3dbfdb96f55",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "Topic",
+        "payload": "Hello from Injector through mqtt",
+        "payloadType": "str",
+        "x": 270,
+        "y": 220,
+        "wires": [
+            [
+                "d56cce71.5286a"
+            ]
+        ]
+    },
+    {
+        "id": "99bf04c.196c7f8",
+        "type": "debug",
+        "z": "6a3ba3dbfdb96f55",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 506,
+        "y": 283,
+        "wires": []
+    },
+    {
+        "id": "d56cce71.5286a",
+        "type": "mqtt out",
+        "z": "6a3ba3dbfdb96f55",
+        "name": "",
+        "topic": "test",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "4c4d79bc.7bd778",
+        "x": 500,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "a326a57d.bccd28",
+        "type": "mqtt in",
+        "z": "6a3ba3dbfdb96f55",
+        "name": "",
+        "topic": "test",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "4c4d79bc.7bd778",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 246,
+        "y": 283,
+        "wires": [
+            [
+                "99bf04c.196c7f8"
+            ]
+        ]
+    },
+    {
+        "id": "ba66d419d1beeed5",
+        "type": "inject",
+        "z": "6a3ba3dbfdb96f55",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 290,
+        "y": 360,
+        "wires": [
+            [
+                "aef2512fc5cbe592"
+            ]
+        ]
+    },
+    {
+        "id": "aef2512fc5cbe592",
+        "type": "random",
+        "z": "6a3ba3dbfdb96f55",
+        "name": "",
+        "outputs": 1,
+        "scope": null,
+        "x": 460,
+        "y": 360,
+        "wires": [
+            [
+                "27b846e5b26df7a9"
+            ]
+        ]
+    },
+    {
+        "id": "27b846e5b26df7a9",
+        "type": "mqtt out",
+        "z": "6a3ba3dbfdb96f55",
+        "name": "",
+        "topic": "test2",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "4c4d79bc.7bd778",
+        "x": 630,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "4c4d79bc.7bd778",
+        "type": "mqtt-broker",
+        "z": "6a3ba3dbfdb96f55",
+        "name": "",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "test2",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    }
+]

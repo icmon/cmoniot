@@ -1,0 +1,209 @@
+[
+    {
+        "id": "f6f2187d.f17ca8",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "04a51e7006123b81",
+        "type": "http request",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "https://dashboard.elering.ee/api/gas-balance/price?start=2020-05-31T20%3A59%3A59.999Z&end=2020-06-30T20%3A59%3A59.999Z",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 270,
+        "y": 80,
+        "wires": [
+            [
+                "60a331f6302ccdfb"
+            ]
+        ]
+    },
+    {
+        "id": "cda4556bcefc8f69",
+        "type": "influxdb out",
+        "z": "f6f2187d.f17ca8",
+        "influxdb": "69d3ebcdba70cea3",
+        "name": "influxDb",
+        "measurement": "prices",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "Taltech",
+        "bucket": "ESG",
+        "x": 660,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "60a331f6302ccdfb",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "imbalance gas price",
+        "func": "msg.payload = msg.payload.data[0];\nreturn msg;\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 80,
+        "wires": [
+            [
+                "cda4556bcefc8f69",
+                "b84466a7a30cff7b"
+            ]
+        ]
+    },
+    {
+        "id": "4461e1552883d21f",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "3600",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 110,
+        "y": 180,
+        "wires": [
+            [
+                "04a51e7006123b81",
+                "ea63362e9ec23388"
+            ]
+        ]
+    },
+    {
+        "id": "5098cb2dd54460f3",
+        "type": "influxdb out",
+        "z": "f6f2187d.f17ca8",
+        "influxdb": "69d3ebcdba70cea3",
+        "name": "influxDb",
+        "measurement": "domestic",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "Taltech",
+        "bucket": "GAS",
+        "x": 660,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "ea63362e9ec23388",
+        "type": "http request",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "https://dashboard.elering.ee/api/gas-system/latest",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 270,
+        "y": 240,
+        "wires": [
+            [
+                "6b47c9e6ab2d1c23"
+            ]
+        ]
+    },
+    {
+        "id": "0d3e2a14a7c9600d",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 660,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "6b47c9e6ab2d1c23",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "latest domestic gas",
+        "func": "msg.payload = msg.payload.data[0];\nreturn msg;\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 240,
+        "wires": [
+            [
+                "0d3e2a14a7c9600d",
+                "5098cb2dd54460f3"
+            ]
+        ]
+    },
+    {
+        "id": "b84466a7a30cff7b",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 660,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "69d3ebcdba70cea3",
+        "type": "influxdb",
+        "hostname": "127.0.0.1",
+        "port": "8086",
+        "protocol": "http",
+        "database": "database",
+        "name": "influxdb",
+        "usetls": false,
+        "tls": "",
+        "influxdbVersion": "2.0",
+        "url": "http://172.20.0.2:8086",
+        "rejectUnauthorized": false
+    }
+]

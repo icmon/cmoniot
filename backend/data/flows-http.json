@@ -1,0 +1,71 @@
+[
+  {
+    "id": "32b083d0ca67265f",
+    "type": "inject",
+    "z": "977143edb097b685",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 240,
+    "y": 1100,
+    "wires": [
+      [
+        "53db14b9a848d5ce"
+      ]
+    ]
+  },
+  {
+    "id": "53db14b9a848d5ce",
+    "type": "http request",
+    "z": "977143edb097b685",
+    "name": "",
+    "method": "GET",
+    "ret": "obj",
+    "paytoqs": "ignore",
+    "url": "https://api.npmjs.org/downloads/range/last-month/@flowforge/node-red-dashboard",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "insecureHTTPParser": false,
+    "authType": "",
+    "senderr": false,
+    "headers": [],
+    "x": 410,
+    "y": 1100,
+    "wires": [
+      [
+        "9e08fa8d25a19f24"
+      ]
+    ]
+  },
+  {
+    "id": "9e08fa8d25a19f24",
+    "type": "debug",
+    "z": "977143edb097b685",
+    "name": "debug 1",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "false",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 580,
+    "y": 1100,
+    "wires": []
+  }
+]

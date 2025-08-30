@@ -1,0 +1,1083 @@
+[
+    {
+        "id": "b4176e94e3b770eb",
+        "type": "tab",
+        "label": "MQTT-server-Influxdb-Cmon",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "af77986756df2020",
+        "type": "inject",
+        "z": "b4176e94e3b770eb",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "2",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 130,
+        "y": 240,
+        "wires": [
+            [
+                "2f6e5ba680c9e7f2",
+                "9015ce659b65d521",
+                "4e93da6cf9c4233a",
+                "cbe4dd8e444a2b88",
+                "790bf2058cfa1da0",
+                "22a0a1c63cda92d5",
+                "ebff167d450690af"
+            ]
+        ]
+    },
+    {
+        "id": "4e93da6cf9c4233a",
+        "type": "change",
+        "z": "b4176e94e3b770eb",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "timeStamp",
+                "pt": "global",
+                "to": "",
+                "tot": "date"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 420,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3dc2784b4cc86767",
+        "type": "function",
+        "z": "b4176e94e3b770eb",
+        "name": "global set temp",
+        "func": "global.set('Temp',msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 620,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "21af4234bb69e7d3",
+        "type": "function",
+        "z": "b4176e94e3b770eb",
+        "name": "global set humi",
+        "func": "global.set('Humi',msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 620,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b515ed1a06d2bba4",
+        "type": "inject",
+        "z": "b4176e94e3b770eb",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "2",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 150,
+        "y": 760,
+        "wires": [
+            [
+                "e4e3bf0596c5625c"
+            ]
+        ]
+    },
+    {
+        "id": "e4e3bf0596c5625c",
+        "type": "function",
+        "z": "b4176e94e3b770eb",
+        "name": "get data ",
+        "func": "msg.topic = \"InfluxData\";\n\nvar  timeStamp = global.get('timeStamp');\nvar  temp  = global.get('Temp');\nvar  humi = global.get('Humi');\nvar Amp = global.get('Amp');\nvar Voltage = global.get('Voltage');\nvar sensors_temp = global.get('sensors/temp1');\nvar sensors_Relay1 = global.get('sensors/Relay1');\n\n//var Latitude = global.get('Latitude');\n//var Longitude = global.get('Longitude');\n\nmsg.payload = {\n    \"TimeStamp\": timeStamp,\n    \"Temperature\":temp,\n    \"Temperature2\": sensors_temp,\n    \"sensors_Relay1\": sensors_Relay1,\n    \"Humidity\" : humi,\n    \"Amp\": Amp,\n    \"Voltage\": Voltage,\n    \"Latitude\": 13.8170338,\n    \"Longitude\": 100.6848789\n}\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 760,
+        "wires": [
+            [
+                "7b96ea67f466d892",
+                "2fded731da827cc0"
+            ]
+        ]
+    },
+    {
+        "id": "7b96ea67f466d892",
+        "type": "debug",
+        "z": "b4176e94e3b770eb",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 820,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "92c088084c492b12",
+        "type": "inject",
+        "z": "b4176e94e3b770eb",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 150,
+        "y": 880,
+        "wires": [
+            [
+                "71675fc76255d692",
+                "0ba07826179f0cca",
+                "3e423972a83252d1",
+                "eac5de76c3094bb3",
+                "53a50976179bf106",
+                "bb31f140f86959be"
+            ]
+        ]
+    },
+    {
+        "id": "a51bf4da316b4ee0",
+        "type": "function",
+        "z": "b4176e94e3b770eb",
+        "name": "Humidity",
+        "func": "msg.payload = msg.payload[0]._value;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 500,
+        "y": 840,
+        "wires": [
+            [
+                "021365e9400ad6db"
+            ]
+        ]
+    },
+    {
+        "id": "11d33f215ff4f68a",
+        "type": "function",
+        "z": "b4176e94e3b770eb",
+        "name": "Temperature",
+        "func": "msg.payload = msg.payload[0]._value;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 510,
+        "y": 880,
+        "wires": [
+            [
+                "a80225e6988956c0"
+            ]
+        ]
+    },
+    {
+        "id": "5e338d3ceedc3d13",
+        "type": "function",
+        "z": "b4176e94e3b770eb",
+        "name": "global set Latitude",
+        "func": "global.set('Latitude',msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 630,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9673c68e168193e8",
+        "type": "function",
+        "z": "b4176e94e3b770eb",
+        "name": "global set Longitude",
+        "func": "global.set('Longitude',msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "bbc362398f1cf05b",
+        "type": "function",
+        "z": "b4176e94e3b770eb",
+        "name": "global set Amp",
+        "func": "global.set('Amp',msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 620,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "59caa0fcdea63f29",
+        "type": "function",
+        "z": "b4176e94e3b770eb",
+        "name": "global set Voltage",
+        "func": "global.set('Voltage',msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 630,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "68896e2020d7faef",
+        "type": "function",
+        "z": "b4176e94e3b770eb",
+        "name": "Amp",
+        "func": "msg.payload = msg.payload[0]._value;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 490,
+        "y": 920,
+        "wires": [
+            [
+                "2df96a8d9953b03e"
+            ]
+        ]
+    },
+    {
+        "id": "fa8c24deff20d32a",
+        "type": "function",
+        "z": "b4176e94e3b770eb",
+        "name": "Voltage",
+        "func": "msg.payload = msg.payload[0]._value;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 500,
+        "y": 960,
+        "wires": [
+            [
+                "405b5c71f9aaee2e"
+            ]
+        ]
+    },
+    {
+        "id": "01454d432393791d",
+        "type": "mqtt out",
+        "z": "b4176e94e3b770eb",
+        "name": "",
+        "topic": "sensors/temp1",
+        "qos": "1",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "407a01e4.6b637",
+        "x": 640,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "1a3b51164f9f1a9a",
+        "type": "inject",
+        "z": "b4176e94e3b770eb",
+        "name": "",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "sensors/temp1",
+        "x": 170,
+        "y": 460,
+        "wires": [
+            [
+                "7e862875729183af"
+            ]
+        ]
+    },
+    {
+        "id": "d1e5deb85a614087",
+        "type": "mqtt in",
+        "z": "b4176e94e3b770eb",
+        "name": "",
+        "topic": "sensors/temp1",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "407a01e4.6b637",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 140,
+        "y": 600,
+        "wires": [
+            [
+                "129e7a61bb9c76c5",
+                "0354b2a9c3ec9ff6"
+            ]
+        ]
+    },
+    {
+        "id": "129e7a61bb9c76c5",
+        "type": "debug",
+        "z": "b4176e94e3b770eb",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "false",
+        "x": 630,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "cd69c584878613c4",
+        "type": "function",
+        "z": "b4176e94e3b770eb",
+        "name": "Temperature2",
+        "func": "msg.payload = msg.payload[0]._value;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 520,
+        "y": 1000,
+        "wires": [
+            [
+                "6339d07d435c8512"
+            ]
+        ]
+    },
+    {
+        "id": "0354b2a9c3ec9ff6",
+        "type": "function",
+        "z": "b4176e94e3b770eb",
+        "name": "global set sensors/temp1",
+        "func": "global.set('sensors/temp1',msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 410,
+        "y": 600,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7318d568684ee3f5",
+        "type": "inject",
+        "z": "b4176e94e3b770eb",
+        "name": "",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "sensors/Relay1",
+        "x": 170,
+        "y": 520,
+        "wires": [
+            [
+                "035632263db7565b"
+            ]
+        ]
+    },
+    {
+        "id": "ae770203e9b2e63e",
+        "type": "mqtt out",
+        "z": "b4176e94e3b770eb",
+        "name": "",
+        "topic": "sensors/Relay1",
+        "qos": "1",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "407a01e4.6b637",
+        "x": 640,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "4af3dfe9159a6efd",
+        "type": "mqtt in",
+        "z": "b4176e94e3b770eb",
+        "name": "",
+        "topic": "sensors/Relay1",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "407a01e4.6b637",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 140,
+        "y": 660,
+        "wires": [
+            [
+                "fbda66a4852a7b83",
+                "875fc9e674c3280d"
+            ]
+        ]
+    },
+    {
+        "id": "fbda66a4852a7b83",
+        "type": "debug",
+        "z": "b4176e94e3b770eb",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "false",
+        "x": 630,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "875fc9e674c3280d",
+        "type": "function",
+        "z": "b4176e94e3b770eb",
+        "name": "global set sensors/Relay1",
+        "func": "global.set('sensors/Relay1',msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 410,
+        "y": 660,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c9d344d23e888a90",
+        "type": "function",
+        "z": "b4176e94e3b770eb",
+        "name": "sensors_Relay1",
+        "func": "msg.payload = msg.payload[0]._value;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 520,
+        "y": 1040,
+        "wires": [
+            [
+                "0fecbd7425f619b2"
+            ]
+        ]
+    },
+    {
+        "id": "9015ce659b65d521",
+        "type": "random",
+        "z": "b4176e94e3b770eb",
+        "name": "random temp",
+        "low": "15",
+        "high": "55",
+        "inte": "true",
+        "property": "payload",
+        "x": 390,
+        "y": 220,
+        "wires": [
+            [
+                "3dc2784b4cc86767"
+            ]
+        ]
+    },
+    {
+        "id": "2f6e5ba680c9e7f2",
+        "type": "random",
+        "z": "b4176e94e3b770eb",
+        "name": "random humi",
+        "low": "55",
+        "high": "75",
+        "inte": "true",
+        "property": "payload",
+        "x": 390,
+        "y": 260,
+        "wires": [
+            [
+                "21af4234bb69e7d3"
+            ]
+        ]
+    },
+    {
+        "id": "cbe4dd8e444a2b88",
+        "type": "random",
+        "z": "b4176e94e3b770eb",
+        "name": "random Latitude",
+        "low": "000.000000000000000",
+        "high": "999.999999999999999",
+        "inte": "false",
+        "property": "payload",
+        "x": 400,
+        "y": 140,
+        "wires": [
+            [
+                "5e338d3ceedc3d13"
+            ]
+        ]
+    },
+    {
+        "id": "790bf2058cfa1da0",
+        "type": "random",
+        "z": "b4176e94e3b770eb",
+        "name": "random Longitude",
+        "low": "000.000000000000000",
+        "high": "999.999999999999999",
+        "inte": "false",
+        "property": "payload",
+        "x": 410,
+        "y": 180,
+        "wires": [
+            [
+                "9673c68e168193e8"
+            ]
+        ]
+    },
+    {
+        "id": "22a0a1c63cda92d5",
+        "type": "random",
+        "z": "b4176e94e3b770eb",
+        "name": "random Amp",
+        "low": "100",
+        "high": "350",
+        "inte": "true",
+        "property": "payload",
+        "x": 390,
+        "y": 300,
+        "wires": [
+            [
+                "bbc362398f1cf05b"
+            ]
+        ]
+    },
+    {
+        "id": "ebff167d450690af",
+        "type": "random",
+        "z": "b4176e94e3b770eb",
+        "name": "random Voltage",
+        "low": "1",
+        "high": "350",
+        "inte": "true",
+        "property": "payload",
+        "x": 400,
+        "y": 340,
+        "wires": [
+            [
+                "59caa0fcdea63f29"
+            ]
+        ]
+    },
+    {
+        "id": "7e862875729183af",
+        "type": "random",
+        "z": "b4176e94e3b770eb",
+        "name": "random sensors_temp",
+        "low": "15",
+        "high": "55",
+        "inte": "true",
+        "property": "payload",
+        "x": 400,
+        "y": 460,
+        "wires": [
+            [
+                "01454d432393791d"
+            ]
+        ]
+    },
+    {
+        "id": "035632263db7565b",
+        "type": "random",
+        "z": "b4176e94e3b770eb",
+        "name": "random sensors/Relay1",
+        "low": "0",
+        "high": "1",
+        "inte": "true",
+        "property": "payload",
+        "x": 410,
+        "y": 520,
+        "wires": [
+            [
+                "ae770203e9b2e63e"
+            ]
+        ]
+    },
+    {
+        "id": "2fded731da827cc0",
+        "type": "influxdb out",
+        "z": "b4176e94e3b770eb",
+        "influxdb": "1c1a5edef41716e3",
+        "name": "http://192.168.1.37:8086",
+        "measurement": "Envavorment",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "cmon_org",
+        "bucket": "cmon_bucket",
+        "x": 570,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "71675fc76255d692",
+        "type": "influxdb in",
+        "z": "b4176e94e3b770eb",
+        "influxdb": "1c1a5edef41716e3",
+        "name": "Humidity",
+        "query": "from(bucket: \"cmon_bucket\")\n  |> range(start:-30m)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"Envavorment\")\n  |> filter(fn: (r) => r[\"_field\"] == \"Humidity\")\n  |> last()",
+        "rawOutput": false,
+        "precision": "",
+        "retentionPolicy": "",
+        "org": "cmon_org",
+        "x": 320,
+        "y": 840,
+        "wires": [
+            [
+                "a51bf4da316b4ee0"
+            ]
+        ]
+    },
+    {
+        "id": "0ba07826179f0cca",
+        "type": "influxdb in",
+        "z": "b4176e94e3b770eb",
+        "influxdb": "1c1a5edef41716e3",
+        "name": "Temperature",
+        "query": "from(bucket: \"cmon_bucket\")\n  |> range(start:-30m)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"Envavorment\")\n  |> filter(fn: (r) => r[\"_field\"] == \"Temperature\")\n  |> last()",
+        "rawOutput": false,
+        "precision": "",
+        "retentionPolicy": "",
+        "org": "cmon_org",
+        "x": 330,
+        "y": 880,
+        "wires": [
+            [
+                "11d33f215ff4f68a"
+            ]
+        ]
+    },
+    {
+        "id": "3e423972a83252d1",
+        "type": "influxdb in",
+        "z": "b4176e94e3b770eb",
+        "influxdb": "1c1a5edef41716e3",
+        "name": "Amp",
+        "query": "from(bucket: \"cmon_bucket\")\n  |> range(start:-30m)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"Envavorment\")\n  |> filter(fn: (r) => r[\"_field\"] == \"Amp\")\n  |> last()",
+        "rawOutput": false,
+        "precision": "",
+        "retentionPolicy": "",
+        "org": "cmon_org",
+        "x": 310,
+        "y": 920,
+        "wires": [
+            [
+                "68896e2020d7faef"
+            ]
+        ]
+    },
+    {
+        "id": "eac5de76c3094bb3",
+        "type": "influxdb in",
+        "z": "b4176e94e3b770eb",
+        "influxdb": "1c1a5edef41716e3",
+        "name": "Voltage",
+        "query": "from(bucket: \"cmon_bucket\")\n  |> range(start:-30m)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"Envavorment\")\n  |> filter(fn: (r) => r[\"_field\"] == \"Voltage\")\n  |> last()",
+        "rawOutput": false,
+        "precision": "",
+        "retentionPolicy": "",
+        "org": "cmon_org",
+        "x": 320,
+        "y": 960,
+        "wires": [
+            [
+                "fa8c24deff20d32a"
+            ]
+        ]
+    },
+    {
+        "id": "53a50976179bf106",
+        "type": "influxdb in",
+        "z": "b4176e94e3b770eb",
+        "influxdb": "1c1a5edef41716e3",
+        "name": "Temperature2",
+        "query": "from(bucket: \"cmon_bucket\")\n  |> range(start:-30m)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"Envavorment\")\n  |> filter(fn: (r) => r[\"_field\"] == \"Temperature2\")\n  |> last()",
+        "rawOutput": false,
+        "precision": "",
+        "retentionPolicy": "",
+        "org": "cmon_org",
+        "x": 340,
+        "y": 1000,
+        "wires": [
+            [
+                "cd69c584878613c4"
+            ]
+        ]
+    },
+    {
+        "id": "bb31f140f86959be",
+        "type": "influxdb in",
+        "z": "b4176e94e3b770eb",
+        "influxdb": "1c1a5edef41716e3",
+        "name": "sensors_Relay1",
+        "query": "from(bucket: \"cmon_bucket\")\n  |> range(start:-30m)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"Envavorment\")\n  |> filter(fn: (r) => r[\"_field\"] == \"sensors_Relay1\")\n  |> last()",
+        "rawOutput": false,
+        "precision": "",
+        "retentionPolicy": "",
+        "org": "cmon_org",
+        "x": 340,
+        "y": 1040,
+        "wires": [
+            [
+                "c9d344d23e888a90"
+            ]
+        ]
+    },
+    {
+        "id": "021365e9400ad6db",
+        "type": "ui_gauge",
+        "z": "b4176e94e3b770eb",
+        "name": "",
+        "group": "5dce26ecd485ef49",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "donut",
+        "title": "Humidity",
+        "label": "%Hr.",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "75",
+        "seg2": "85",
+        "diff": false,
+        "className": "",
+        "x": 680,
+        "y": 840,
+        "wires": []
+    },
+    {
+        "id": "a80225e6988956c0",
+        "type": "ui_gauge",
+        "z": "b4176e94e3b770eb",
+        "name": "",
+        "group": "5dce26ecd485ef49",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "donut",
+        "title": "Temperature",
+        "label": "*C",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "60",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "35",
+        "seg2": "40",
+        "diff": false,
+        "className": "",
+        "x": 690,
+        "y": 880,
+        "wires": []
+    },
+    {
+        "id": "2df96a8d9953b03e",
+        "type": "ui_gauge",
+        "z": "b4176e94e3b770eb",
+        "name": "",
+        "group": "5dce26ecd485ef49",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "donut",
+        "title": "Amp",
+        "label": "Amp",
+        "format": "{{value}}",
+        "min": "100",
+        "max": "360",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "150",
+        "seg2": "250",
+        "diff": false,
+        "className": "",
+        "x": 670,
+        "y": 920,
+        "wires": []
+    },
+    {
+        "id": "405b5c71f9aaee2e",
+        "type": "ui_gauge",
+        "z": "b4176e94e3b770eb",
+        "name": "",
+        "group": "5dce26ecd485ef49",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "donut",
+        "title": "Voltage",
+        "label": "V",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "360",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "50",
+        "seg2": "220",
+        "diff": false,
+        "className": "",
+        "x": 680,
+        "y": 960,
+        "wires": []
+    },
+    {
+        "id": "6339d07d435c8512",
+        "type": "ui_gauge",
+        "z": "b4176e94e3b770eb",
+        "name": "",
+        "group": "5dce26ecd485ef49",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "donut",
+        "title": "Temperature2",
+        "label": "*C",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "60",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "35",
+        "seg2": "40",
+        "diff": false,
+        "className": "",
+        "x": 700,
+        "y": 1000,
+        "wires": []
+    },
+    {
+        "id": "0fecbd7425f619b2",
+        "type": "ui_gauge",
+        "z": "b4176e94e3b770eb",
+        "name": "",
+        "group": "5dce26ecd485ef49",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "donut",
+        "title": "sensors_Relay1",
+        "label": "",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "60",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "0",
+        "seg2": "1",
+        "diff": false,
+        "className": "",
+        "x": 700,
+        "y": 1040,
+        "wires": []
+    },
+    {
+        "id": "407a01e4.6b637",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "f17ec3c03a87413687b6d237e547e349.s1.eu.hivemq.cloud",
+        "port": "8883",
+        "tls": "",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": true,
+        "protocolVersion": 4,
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "1c1a5edef41716e3",
+        "type": "influxdb",
+        "hostname": "127.0.0.1",
+        "port": "8086",
+        "protocol": "http",
+        "database": "my_data",
+        "name": "Cmon",
+        "usetls": false,
+        "tls": "",
+        "influxdbVersion": "2.0",
+        "url": "http://192.168.1.37:8086",
+        "timeout": "",
+        "rejectUnauthorized": true
+    },
+    {
+        "id": "5dce26ecd485ef49",
+        "type": "ui_group",
+        "name": "Default",
+        "tab": "2613c33e37cc7a96",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "2613c33e37cc7a96",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]

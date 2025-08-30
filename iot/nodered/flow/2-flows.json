@@ -1,0 +1,91 @@
+[
+    {
+        "id": "6258c6555bb61739",
+        "type": "tab",
+        "label": "FlowInfluxdb",
+        "disabled": true,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "ecbb02face30cbcd",
+        "type": "influxdb out",
+        "z": "6258c6555bb61739",
+        "influxdb": "1c1a5edef41716e3",
+        "name": "InfluxDB",
+        "measurement": "temperature",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "s",
+        "retentionPolicyV18Flux": "",
+        "org": "cmon",
+        "bucket": "cmon",
+        "x": 480,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "de83c2b49ba249fd",
+        "type": "inject",
+        "z": "6258c6555bb61739",
+        "name": "",
+        "props": [
+            {
+                "p": "measurement",
+                "v": "temperature",
+                "vt": "str"
+            },
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "[{\"time\":1688987984,\"temperature\":24},{\"device\":\"dQBgXeWLRE\",\"deviceType\":\"Pi4\",\"deviceName\":\"demo-pi-rob\"}]",
+        "payloadType": "json",
+        "x": 310,
+        "y": 300,
+        "wires": [
+            [
+                "aad6353f2f00333e",
+                "ecbb02face30cbcd"
+            ]
+        ]
+    },
+    {
+        "id": "aad6353f2f00333e",
+        "type": "debug",
+        "z": "6258c6555bb61739",
+        "name": "debug 31",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 480,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "1c1a5edef41716e3",
+        "type": "influxdb",
+        "hostname": "127.0.0.1",
+        "port": "8086",
+        "protocol": "http",
+        "database": "my_data",
+        "name": "CmonInfuxDb",
+        "usetls": false,
+        "tls": "",
+        "influxdbVersion": "2.0",
+        "url": "https://localhost:8086",
+        "timeout": "",
+        "rejectUnauthorized": true
+    }
+]

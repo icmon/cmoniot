@@ -1,0 +1,36 @@
+version: "3.7"
+services:
+  mqtt5:
+    image: eclipse-mosquitto:2 # Use a specific version tag for stability
+    container_name: mqtt5
+    ports:
+      - "1883:1883"
+      - "9001:9001"
+    expose:
+      - "1883"
+      - "9001" 
+    volumes:
+      - ./config:/mosquitto/config:rw
+      - ./data:/mosquitto/data:rw
+      - ./log:/mosquitto/log:rw
+    restart: unless-stopped # A more robust restart policy for a broker
+    # restart: always
+    healthcheck:
+      test: ["CMD-SHELL", "mosquitto_sub -t '$$SYS/#' -C 1 --quiet || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+networks:
+  default:
+    name: mqtt5-network
+
+
+# https://github.com/sukesh-ak/setup-mosquitto-with-docker
+# https://github.com/sukesh-ak/setup-mosquitto-with-docker?tab=readme-ov-file
+
+###
+#  docker compose up --build -d  
+#  docker ps               
+#  docker-compose down
+#  docker-compose up --build

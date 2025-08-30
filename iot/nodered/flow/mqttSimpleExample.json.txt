@@ -1,0 +1,113 @@
+[
+    {
+        "id": "4e8f3adc.8366c4",
+        "type": "tab",
+        "label": "MQTT simple example",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "2a928e72.4018fa",
+        "type": "inject",
+        "z": "4e8f3adc.8366c4",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "test",
+        "payload": "This is a test",
+        "payloadType": "str",
+        "x": 180,
+        "y": 100,
+        "wires": [
+            [
+                "41fc9fc6.f54338"
+            ]
+        ]
+    },
+    {
+        "id": "236069e3.c89a9e",
+        "type": "debug",
+        "z": "4e8f3adc.8366c4",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 830,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "2e3574e9.ca655c",
+        "type": "mqtt in",
+        "z": "4e8f3adc.8366c4",
+        "name": "",
+        "topic": "test",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "236088dc.d74e48",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "x": 600,
+        "y": 100,
+        "wires": [
+            [
+                "236069e3.c89a9e"
+            ]
+        ]
+    },
+    {
+        "id": "41fc9fc6.f54338",
+        "type": "mqtt out",
+        "z": "4e8f3adc.8366c4",
+        "name": "",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "236088dc.d74e48",
+        "x": 370,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "236088dc.d74e48",
+        "type": "mqtt-broker",
+        "name": "Stackhero integrated MQTT server",
+        "broker": "mosquitto",
+        "port": "1883",
+        "clientid": "node-red",
+        "usetls": false,
+        "compatmode": true,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    }
+]

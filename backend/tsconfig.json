@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "esModuleInterop": false,
+    "skipLibCheck": true,
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "target": "es2017",
+    "typeRoots": ["node_modules/@types"],
+    "sourceMap": true,
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "incremental": true,
+    "paths": {
+      "@entities/*": ["./entities/*"],
+      "@helpers/*": ["src/helpers/*"],
+      "@public/*": ["./public/*"],
+      "@view/*": ["./view/*"],
+      "@template/*": ["./template/*"],
+      "@i18n/*": ["./i18n/*"],
+      "@types/*": ["./types/*"],
+      "@src/*": ["./src/*"],
+      "@root/*": ["./*"], 
+      "@shared/*": ["./src/shared/*"]
+    }
+  },
+  "exclude": ["node_modules", "dist"]
+}

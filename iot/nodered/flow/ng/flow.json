@@ -1,0 +1,529 @@
+[
+    {
+        "id": "f6f2187d.f17ca8",
+        "type": "tab",
+        "label": "Gas",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "04a51e7006123b81",
+        "type": "http request",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "https://dashboard.elering.ee/api/gas-balance/price?start=2020-05-31T20%3A59%3A59.999Z&end=2020-06-30T20%3A59%3A59.999Z",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 270,
+        "y": 80,
+        "wires": [
+            [
+                "60a331f6302ccdfb"
+            ]
+        ]
+    },
+    {
+        "id": "cda4556bcefc8f69",
+        "type": "influxdb out",
+        "z": "f6f2187d.f17ca8",
+        "influxdb": "69d3ebcdba70cea3",
+        "name": "influxDb",
+        "measurement": "prices",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "Taltech",
+        "bucket": "ESG",
+        "x": 660,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "60a331f6302ccdfb",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "imbalance gas price",
+        "func": "msg.payload = msg.payload.data[0];\nreturn msg;\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 80,
+        "wires": [
+            [
+                "b84466a7a30cff7b",
+                "cda4556bcefc8f69"
+            ]
+        ]
+    },
+    {
+        "id": "4461e1552883d21f",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "3600",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 110,
+        "y": 120,
+        "wires": [
+            [
+                "04a51e7006123b81",
+                "ea63362e9ec23388"
+            ]
+        ]
+    },
+    {
+        "id": "5098cb2dd54460f3",
+        "type": "influxdb out",
+        "z": "f6f2187d.f17ca8",
+        "influxdb": "69d3ebcdba70cea3",
+        "name": "influxDb",
+        "measurement": "domestic",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "Taltech",
+        "bucket": "GAS",
+        "x": 660,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "ea63362e9ec23388",
+        "type": "http request",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "https://dashboard.elering.ee/api/gas-system/latest",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 270,
+        "y": 140,
+        "wires": [
+            [
+                "6b47c9e6ab2d1c23"
+            ]
+        ]
+    },
+    {
+        "id": "0d3e2a14a7c9600d",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 660,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "6b47c9e6ab2d1c23",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "latest domestic gas",
+        "func": "msg.payload = msg.payload.data[0];\nreturn msg;\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 450,
+        "y": 140,
+        "wires": [
+            [
+                "0d3e2a14a7c9600d",
+                "5098cb2dd54460f3"
+            ]
+        ]
+    },
+    {
+        "id": "b84466a7a30cff7b",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 660,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "05ae14cf58c1ecd7",
+        "type": "influxdb in",
+        "z": "f6f2187d.f17ca8",
+        "influxdb": "69d3ebcdba70cea3",
+        "name": "Read influx",
+        "query": "from(bucket:\"GAS\")\n        |> range(start:-7d)\n        |> filter(fn:(r) => r._measurement == \"domestic\")\n        |> filter(fn: (r) => r[\"_field\"] == \"value\")\n        |> yield(name: \"mean\")\n        |> group()\n        |> last()",
+        "rawOutput": false,
+        "precision": "",
+        "retentionPolicy": "",
+        "org": "Taltech",
+        "x": 270,
+        "y": 320,
+        "wires": [
+            [
+                "6f37a67903302ebd",
+                "78ff253a4f42134f"
+            ]
+        ]
+    },
+    {
+        "id": "78ff253a4f42134f",
+        "type": "ui_table",
+        "z": "f6f2187d.f17ca8",
+        "group": "c5b7454a4519d216",
+        "name": "Domestic gas table",
+        "order": 2,
+        "width": "11",
+        "height": "3",
+        "columns": [],
+        "outputs": 0,
+        "cts": false,
+        "x": 450,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "2365034bd17fee78",
+        "type": "ui_chart",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "group": "c5b7454a4519d216",
+        "order": 1,
+        "width": "10",
+        "height": "6",
+        "label": "Domestic gas flow value",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "dd HH:mm",
+        "interpolate": "linear",
+        "nodata": "retrieving domestic gas value...",
+        "dot": false,
+        "ymin": "400000",
+        "ymax": "1200000",
+        "removeOlder": "7",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "86400",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": true,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 730,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ca03fdfb0877311b",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "debug 7",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 680,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "6f37a67903302ebd",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "format domestic gas data",
+        "func": "\n// used to get all distinct values from an array\nconst distinct = (value, index, self) => {\n    return self.indexOf(value) === index;\n}\n\n\nconst fields = msg.payload.map(x => x._field);\nconst distinctfields = fields.filter(distinct);\nconst timestamps = msg.payload.map(x => Date.parse(x._time));\nconst values = msg.payload.map(x => x._value);\n\n\nvar ind;\nvar data = [];\nvar arr = []\nfor (var n = 0; n < distinctfields.length; n++) {\n    ind = [];\n    for (var m = 0; m < fields.length; m++) {\n        if (fields[m] === distinctfields[n]) {\n            ind.push(m);\n        }\n    }\n\n    var matchingtimestamps = ind.map(x => timestamps[x])\n    var matchingvalues = ind.map(x => values[x])\n\n    arr = [];\n    for (m = 0; m < matchingtimestamps.length; m++) {\n        arr.push({ 'x': matchingtimestamps[m], 'y': matchingvalues[m] });\n    }\n    data.push(arr);\n}\n\nconst payload = [{ \"series\": distinctfields, \"data\": data, \"labels\": distinctfields }];\nmsg.payload = payload;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 340,
+        "wires": [
+            [
+                "ca03fdfb0877311b",
+                "2365034bd17fee78"
+            ]
+        ]
+    },
+    {
+        "id": "5eb5dd398d31bb20",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "3600",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 110,
+        "y": 320,
+        "wires": [
+            [
+                "05ae14cf58c1ecd7"
+            ]
+        ]
+    },
+    {
+        "id": "e501fb02ac926012",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "60",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 110,
+        "y": 460,
+        "wires": [
+            [
+                "32c0e7013b6e8bad"
+            ]
+        ]
+    },
+    {
+        "id": "32c0e7013b6e8bad",
+        "type": "influxdb in",
+        "z": "f6f2187d.f17ca8",
+        "influxdb": "69d3ebcdba70cea3",
+        "name": "Read influx",
+        "query": "from(bucket: \"ESG\")\n   |> range(start:-7d)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"prices\")\n  |> filter(fn: (r) => r[\"_field\"] == \"imbalance_buy_price\" or r[\"_field\"] == \"imbalance_sell_price\")\n  |> yield(name: \"mean\")",
+        "rawOutput": false,
+        "precision": "",
+        "retentionPolicy": "",
+        "org": "Taltech",
+        "x": 270,
+        "y": 460,
+        "wires": [
+            [
+                "27b8350dfcbb02ce",
+                "92984a307b01a530"
+            ]
+        ]
+    },
+    {
+        "id": "27b8350dfcbb02ce",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "format domestic gas data",
+        "func": "\n// used to get all distinct values from an array\nconst distinct = (value, index, self) => {\n    return self.indexOf(value) === index;\n}\n\n\nconst fields = msg.payload.map(x => x._field);\nconst distinctfields = fields.filter(distinct);\nconst timestamps = msg.payload.map(x => Date.parse(x._time));\nconst values = msg.payload.map(x => x._value);\n\n\nvar ind;\nvar data = [];\nvar arr = []\nfor (var n = 0; n < distinctfields.length; n++) {\n    ind = [];\n    for (var m = 0; m < fields.length; m++) {\n        if (fields[m] === distinctfields[n]) {\n            ind.push(m);\n        }\n    }\n\n    var matchingtimestamps = ind.map(x => timestamps[x])\n    var matchingvalues = ind.map(x => values[x])\n\n    arr = [];\n    for (m = 0; m < matchingtimestamps.length; m++) {\n        arr.push({ 'x': matchingtimestamps[m], 'y': matchingvalues[m] });\n    }\n    data.push(arr);\n}\n\nconst payload = [{ \"series\": distinctfields, \"data\": data, \"labels\": distinctfields }];\nmsg.payload = payload;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 490,
+        "y": 480,
+        "wires": [
+            [
+                "5777e5809bde51b7",
+                "710e304350b007af"
+            ]
+        ]
+    },
+    {
+        "id": "5777e5809bde51b7",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "debug 8",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 680,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "710e304350b007af",
+        "type": "ui_chart",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "group": "0ac0226aedd2e854",
+        "order": 3,
+        "width": "11",
+        "height": "6",
+        "label": "Gas price imbalance comparison",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "dd HH:mm",
+        "interpolate": "step",
+        "nodata": "retrieving imbalance prices value...",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "10",
+        "removeOlder": "7",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "86400",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": true,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 760,
+        "y": 500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "92984a307b01a530",
+        "type": "ui_table",
+        "z": "f6f2187d.f17ca8",
+        "group": "0ac0226aedd2e854",
+        "name": "Imbalance sell_buy",
+        "order": 4,
+        "width": "12",
+        "height": "3",
+        "columns": [],
+        "outputs": 0,
+        "cts": false,
+        "x": 490,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "69d3ebcdba70cea3",
+        "type": "influxdb",
+        "hostname": "127.0.0.1",
+        "port": "8086",
+        "protocol": "http",
+        "database": "database",
+        "name": "influxdb",
+        "usetls": false,
+        "tls": "",
+        "influxdbVersion": "2.0",
+        "url": "http://nig-stack-influxdb-1:8086",
+        "rejectUnauthorized": false
+    },
+    {
+        "id": "c5b7454a4519d216",
+        "type": "ui_group",
+        "name": "Domestic gas flow",
+        "tab": "aeb389c4482a28ef",
+        "order": 1,
+        "disp": true,
+        "width": "11",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "0ac0226aedd2e854",
+        "type": "ui_group",
+        "name": "Gas prices",
+        "tab": "aeb389c4482a28ef",
+        "order": 2,
+        "disp": true,
+        "width": "12",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "aeb389c4482a28ef",
+        "type": "ui_tab",
+        "name": "Nordic energy monitoring",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]

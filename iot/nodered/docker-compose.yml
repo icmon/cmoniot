@@ -1,0 +1,19 @@
+version: "3"
+services:
+  node-red:
+      image: nodered/node-red
+      container_name: node-red
+      environment:
+        - TZ=Asia/Bangkok
+      ports:
+        - ${NODERED_PORT}:1880
+      volumes:
+        - "node-red-data:/data:rw"
+volumes:
+  node-red-data:
+networks:
+  nodedrednet:
+      # use the bridge driver, but enable IPv6
+      driver: bridge
+      driver_opts:
+          com.docker.network.enable_ipv6: "true"

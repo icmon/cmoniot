@@ -1,0 +1,546 @@
+[
+    {
+        "id": "62a07c5e91a30eb1",
+        "type": "tab",
+        "label": "CmonIoT",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "b757f33eb658e84e",
+        "type": "mqtt in",
+        "z": "62a07c5e91a30eb1",
+        "name": "",
+        "topic": "Cmon/Temp1",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "f94943df.4b82a",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 110,
+        "y": 60,
+        "wires": [
+            [
+                "3e1c5d2cb8dc309c"
+            ]
+        ]
+    },
+    {
+        "id": "3e1c5d2cb8dc309c",
+        "type": "debug",
+        "z": "62a07c5e91a30eb1",
+        "name": "debug",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 590,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "f6e48235506d2363",
+        "type": "mqtt in",
+        "z": "62a07c5e91a30eb1",
+        "name": "",
+        "topic": "Cmon/Humi1",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "f94943df.4b82a",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 110,
+        "y": 340,
+        "wires": [
+            [
+                "3e1c5d2cb8dc309c"
+            ]
+        ]
+    },
+    {
+        "id": "c3fee30b5589a547",
+        "type": "influxdb in",
+        "z": "62a07c5e91a30eb1",
+        "influxdb": "04c522a8962e03d2",
+        "name": "testDb",
+        "query": "",
+        "rawOutput": false,
+        "precision": "",
+        "retentionPolicy": "",
+        "org": "organisation",
+        "x": 550,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "380b7e286e4da8f3",
+        "type": "join",
+        "z": "62a07c5e91a30eb1",
+        "name": "filesave",
+        "mode": "custom",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "useparts": true,
+        "accumulate": true,
+        "timeout": "1000",
+        "count": "8",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 570,
+        "y": 360,
+        "wires": [
+            [
+                "113d8a8282ab1ce6"
+            ]
+        ]
+    },
+    {
+        "id": "113d8a8282ab1ce6",
+        "type": "json",
+        "z": "62a07c5e91a30eb1",
+        "name": "ob_to_json",
+        "property": "payload",
+        "action": "",
+        "pretty": true,
+        "x": 770,
+        "y": 360,
+        "wires": [
+            [
+                "8d63265ffde761eb"
+            ]
+        ]
+    },
+    {
+        "id": "8d63265ffde761eb",
+        "type": "file",
+        "z": "62a07c5e91a30eb1",
+        "name": "save_file_log",
+        "filename": "C:\\Program Files\\Ampps\\www\\mqtt.json",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 950,
+        "y": 360,
+        "wires": [
+            [
+                "b05b9e14c27f2e43"
+            ]
+        ]
+    },
+    {
+        "id": "b05b9e14c27f2e43",
+        "type": "debug",
+        "z": "62a07c5e91a30eb1",
+        "name": "debug",
+        "active": false,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "payload",
+        "statusType": "auto",
+        "x": 1140,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "6764013c73f1a596",
+        "type": "mqtt in",
+        "z": "62a07c5e91a30eb1",
+        "name": "",
+        "topic": "CmonTemp2",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "f94943df.4b82a",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 110,
+        "y": 120,
+        "wires": [
+            [
+                "3e1c5d2cb8dc309c"
+            ]
+        ]
+    },
+    {
+        "id": "ef082abb04b54979",
+        "type": "mqtt in",
+        "z": "62a07c5e91a30eb1",
+        "name": "",
+        "topic": "Cmon/Temp4",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "f94943df.4b82a",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 110,
+        "y": 240,
+        "wires": [
+            [
+                "3e1c5d2cb8dc309c"
+            ]
+        ]
+    },
+    {
+        "id": "91fdc4451416da2f",
+        "type": "mqtt in",
+        "z": "62a07c5e91a30eb1",
+        "name": "",
+        "topic": "Cmon/Temp3",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "f94943df.4b82a",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 110,
+        "y": 180,
+        "wires": [
+            [
+                "3e1c5d2cb8dc309c"
+            ]
+        ]
+    },
+    {
+        "id": "4373597c15adfeb4",
+        "type": "mqtt in",
+        "z": "62a07c5e91a30eb1",
+        "name": "",
+        "topic": "Cmon/Humi2",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "f94943df.4b82a",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 110,
+        "y": 400,
+        "wires": [
+            [
+                "3e1c5d2cb8dc309c"
+            ]
+        ]
+    },
+    {
+        "id": "52f9bf17b40810f0",
+        "type": "mqtt in",
+        "z": "62a07c5e91a30eb1",
+        "name": "",
+        "topic": "Cmon/Humi3",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "f94943df.4b82a",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 110,
+        "y": 460,
+        "wires": [
+            [
+                "3e1c5d2cb8dc309c"
+            ]
+        ]
+    },
+    {
+        "id": "69aa19fc8e9ddf77",
+        "type": "mqtt in",
+        "z": "62a07c5e91a30eb1",
+        "name": "",
+        "topic": "Cmon/Humi4",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "f94943df.4b82a",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 110,
+        "y": 520,
+        "wires": [
+            [
+                "3e1c5d2cb8dc309c"
+            ]
+        ]
+    },
+    {
+        "id": "e04f141939b021ed",
+        "type": "mqtt in",
+        "z": "62a07c5e91a30eb1",
+        "name": "",
+        "topic": "Cmon/pf",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "f94943df.4b82a",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 100,
+        "y": 600,
+        "wires": [
+            [
+                "3e1c5d2cb8dc309c"
+            ]
+        ]
+    },
+    {
+        "id": "2d39d53b6c4e7fbf",
+        "type": "mqtt in",
+        "z": "62a07c5e91a30eb1",
+        "name": "",
+        "topic": "Cmon/FREQ",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "f94943df.4b82a",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 110,
+        "y": 660,
+        "wires": [
+            [
+                "3e1c5d2cb8dc309c"
+            ]
+        ]
+    },
+    {
+        "id": "b7d98ed80069b682",
+        "type": "mqtt in",
+        "z": "62a07c5e91a30eb1",
+        "name": "",
+        "topic": "Cmon/energy1",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "f94943df.4b82a",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 120,
+        "y": 720,
+        "wires": [
+            [
+                "3e1c5d2cb8dc309c"
+            ]
+        ]
+    },
+    {
+        "id": "adff100428195e17",
+        "type": "mqtt in",
+        "z": "62a07c5e91a30eb1",
+        "name": "",
+        "topic": "Cmon/energy2",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "f94943df.4b82a",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 120,
+        "y": 780,
+        "wires": [
+            [
+                "3e1c5d2cb8dc309c"
+            ]
+        ]
+    },
+    {
+        "id": "23039b6e05f43251",
+        "type": "mqtt in",
+        "z": "62a07c5e91a30eb1",
+        "name": "",
+        "topic": "Cmon/amp",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "f94943df.4b82a",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 140,
+        "y": 840,
+        "wires": [
+            [
+                "3e1c5d2cb8dc309c"
+            ]
+        ]
+    },
+    {
+        "id": "001cd4ebaada39ce",
+        "type": "mqtt in",
+        "z": "62a07c5e91a30eb1",
+        "name": "",
+        "topic": "Cmon/volt",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "f94943df.4b82a",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 140,
+        "y": 900,
+        "wires": [
+            [
+                "3e1c5d2cb8dc309c"
+            ]
+        ]
+    },
+    {
+        "id": "fcc09fd134c98dc7",
+        "type": "mqtt in",
+        "z": "62a07c5e91a30eb1",
+        "name": "",
+        "topic": "Cmon/harmonics_p1",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "f94943df.4b82a",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 190,
+        "y": 960,
+        "wires": [
+            [
+                "3e1c5d2cb8dc309c"
+            ]
+        ]
+    },
+    {
+        "id": "53dbb25a85e36da1",
+        "type": "mqtt in",
+        "z": "62a07c5e91a30eb1",
+        "name": "",
+        "topic": "Cmon/harmonics_p2",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "f94943df.4b82a",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 210,
+        "y": 1020,
+        "wires": [
+            [
+                "3e1c5d2cb8dc309c"
+            ]
+        ]
+    },
+    {
+        "id": "ab2e15ad0bb14824",
+        "type": "mqtt in",
+        "z": "62a07c5e91a30eb1",
+        "name": "",
+        "topic": "Cmon/harmonics_p3",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "f94943df.4b82a",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 230,
+        "y": 1080,
+        "wires": [
+            [
+                "3e1c5d2cb8dc309c"
+            ]
+        ]
+    },
+    {
+        "id": "69498329e0fdd53d",
+        "type": "mqtt in",
+        "z": "62a07c5e91a30eb1",
+        "name": "",
+        "topic": "Cmon/motor",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "f94943df.4b82a",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 250,
+        "y": 1140,
+        "wires": [
+            [
+                "3e1c5d2cb8dc309c"
+            ]
+        ]
+    },
+    {
+        "id": "f94943df.4b82a",
+        "type": "mqtt-broker",
+        "name": "Cmon-mqtt",
+        "broker": "127.0.0.1",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "04c522a8962e03d2",
+        "type": "influxdb",
+        "hostname": "127.0.0.1",
+        "port": 8086,
+        "protocol": "http",
+        "database": "database",
+        "name": "cmon",
+        "usetls": false,
+        "tls": "",
+        "influxdbVersion": "2.0",
+        "url": "http://localhost:8086",
+        "timeout": 10,
+        "rejectUnauthorized": true
+    }
+]

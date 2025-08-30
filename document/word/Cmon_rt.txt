@@ -1,0 +1,83 @@
+MSSQLserver
+Host: KONGNAKORN\SQLEXPRESS
+U: tpacare
+Password: Tpa@1234@#
+
+
+
+https://radixweb.com/blog/installing-npm-and-nodejs-on-windows-and-mac
+
+
+
+https://themelock.com/
+
+# step 4  run application on service
+- install
+- Run `npm i g pm2` 
+- Run `npm audit` for details.
+ 
+- go to directory  `dist`
+ -- After Run `npm gulp ` is have directory `dist` file in package typescript
+- Run On pm2 
+- Run `npm install pm2 -g`  install pm2 on your machine
+- go to directory  `dist`
+- 1st  new install application service
+- Run `cd dist ` - Run `cd src `
+- Run `pm2 start server.js --name "cmonapp"  `  up to your , example ` "apiservice1" ` is `name service`
+- 2rd  Run `run application service on pm2`
+- Run `pm2 start server.js`  run pm2 service on your machine
+- Run `pm2 list` view list
+- 3th  run pm2 monitor service
+- Run `pm2 monit` * See how your program is working now, how are you using ram and cpu in real time?
+# C:\xampp\htdocs\cmon\api\dist>
+- 1.Run `npm install pm2 -g`
+- 2.Run `npm i pm2-windows-service -g`  and `npm install pm2-windows-startup -g`  and  Run `npm install -g npm-check-updates`
+- 3.Run `pm2-startup install`
+- Run `cd dist ` - Run `cd src `
+- 4.pm2 start myApp.js --name mySuperApp `pm2 start server.js --name "cmonapp" `
+- 5.Run `pm2 save`
+- 6.Run `reboot`
+- 7.Run `pm2 ls`
+- 8.Run `http://127.0.0.1:8008/cmonapp/run`
+
+
+http://localhost:5173/Dashboard1
+
+http://localhost:5173/
+
+
+- Run `pm2 start server.js --name "cmonapp" ` #  ติดตั้ง service cmonapp ใหม่ บน pm2
+# ############## How to Run PM2 on windows 
+- Run `I: cd I:\app\snmpapiv2\dist`
+- Run `cd D:\UwAmp\www\git\cmonapp`   # I:\app\snmpapiv2
+pm2 start server.js --name "cmonapp"
+npm run dev  
+
+
+- Run `pm2 list` # ดูว่า มี service ไหม
+- Run `pm2 delete cmonapp ` #  ลบ service cmonapp ออก จาก pm2
+- Run `pm2 flush cmonapp`  #  ลบ log cmonapp ออก จาก pm2
+
+
+   $scope.select = function() {
+      $scope.searchText = '';
+      $scope.selectedItem = null;
+      var url = 'http:xxxxxxxxxxxx.com';
+      url += $scope.selectModel.name;
+      console.debug("GOING TO: " + url);
+      $http.get(url).success(function(data2) {
+        $scope.records = [];
+        data2.forEach(function(r) {
+            $scope.records.push(r);
+        });
+      });
+      $interval(function() {
+        $http.get(url).success(function(data2) {
+        $scope.records = [];
+        data2.forEach(function(r) {
+            $scope.records.push(r);
+        });
+      });
+    }, 30000);
+};
+

@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  # proxy:
+  #   container_name: proxywebcmon
+  #   image: jwilder/nginx-proxy
+  #   ports:
+  #     - "8080:80"
+  #     - "80:80"
+  #     - "443:443"
+  #   volumes:
+  #     - /var/run/docker.sock:/tmp/docker.sock:ro
+  #   restart: always
+  app:
+    container_name: appwebcmon
+    image: nginx:alpine
+    environment:
+      - VIRTUAL_HOST=localhost # Can be removed if not using a proxy
+    volumes:
+      - ./etc/nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./etc/ssl:/etc/ssl
+      - ./web:/var/www/html
+      - ./etc/nginx/default.template.conf:/etc/nginx/conf.d/default.template
+    ports:
+      - "80:80" # Maps container's port 80 to host's port 80
+    command: /bin/sh -c "envsubst '\$NGINX_HOST' < /etc/nginx/conf.d/default.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
+    restart: always
+    depends_on:
+      - php
+
+  php:
+    container_name: phpwebcmon
+    image: nanoninja/php-fpm:${PHP_VERSION:-8.1}
+    restart: always
+    volumes:
+      - ./etc/php/php.ini:/usr/local/etc/php/conf.d/php.ini
+      - ./web:/var/www/html
+#  docker ps -a
+#  docker-compose down
+#  docker-compose up --build -d  
+#  docker-compose up   
+#  docker ps -a
+#  curl http://appwebcmon:8080
+#  nginx  php  htaccess

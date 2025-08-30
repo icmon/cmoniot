@@ -1,0 +1,129 @@
+version: "3.7"
+
+services:
+  app:
+    container_name: backendcmon
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./src:/app/src
+      - ./data:/app/data
+    ports:
+      - 3003:3003
+    expose:
+      - '3003'
+    env_file:
+      - .env
+    environment:
+      # PostgreSQL Configuration (สำหรับ common.config.ts)
+      - DATABASE_HOST=postgres
+      - DATABASE_PORT=5432
+      - DATABASE_username=postgres
+      - DATABASE_PASSWORD=postgres
+      - DATABASE_NAME=nest_cmon
+      
+      # PostgreSQL Configuration (สำหรับ database.config.ts)
+      - POSTGRES_HOST=postgres
+      - POSTGRES_PORT=5432
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=nest_cmon
+      
+      # Redis Configuration
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      
+      # Application Configuration
+      - NODE_ENV=development
+      - APP_PORT=3003
+      #- SQLITE_DATABASE_PATH=/app/src/dbsqlite/data.sqlite3
+      - SQLITE_DATABASE_PATH=/home/cmon/appcmon/backend/src/dbsqlite/data.sqlite3
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - docker.network
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+  postgres:
+    image: postgres:15-alpine
+    container_name: docker.postgres
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "5434:5432"
+    expose:
+      - '5432'          # changed from 5434 to 5432
+    networks:
+      - docker.network
+    volumes:
+      - /home/cmon/appcmon/backend/docker/postgres/dbdata:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: nest_cmon
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  redis:
+    container_name: redis
+    hostname: redis
+    image: redis:6.2-alpine
+    command: redis-server --port 6379
+    ports:
+      - "6379:6379"
+    expose:
+      - '6379'
+    volumes:
+      - redis-data:/data
+    restart: always
+    networks:
+      - docker.network
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: docker.pgadmin
+    restart: always
+    tty: true
+    depends_on:
+      - postgres
+    ports:
+      - "8091:80"
+    expose:
+      - '8091'
+    networks:
+      - docker.network
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@localhost.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+
+  redis-commander:
+    container_name: redis-commander
+    hostname: redis-commander
+    image: rediscommander/redis-commander:latest
+    restart: always
+    environment:
+      - REDIS_HOSTS=local:redis:6379
+    ports:
+      - "8082:8081"
+    expose:
+      - '8082'
+    depends_on:
+      - redis
+    networks:
+      - docker.network
+
+volumes:
+  redis-data: {}
+
+networks:
+  docker.network:
+    driver: bridge
+
+#  docker-compose up --build -d  
+#  docker ps               
+#  docker-compose down
+#  docker-compose up --build
+#  docker exec -t docker.postgres pg_dump -U postgres nest_cmon > public/backup_cmon.sql
