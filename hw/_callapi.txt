@@ -1,0 +1,35 @@
+<?php
+$config['allow_sign_up_from']='1';
+$config['api_call_time_mqtt_switch']='35000'; //35 sec 
+$config['api_call_time_mqtt']='30000'; //35 sec 
+$config['api_call_time']='35000';  
+$config['api_call_time2']='15000';  
+$config['api_url']='http://192.168.1.57:3003/v1/';
+$config['api_url2']='http://192.168.1.57/api';
+$config['api_url_nodered']='http://192.168.1.57:1881';  
+$config['api_getsenser']='iot/sensers';
+$config['api_getsenserchart']='iot/sensercharts';
+$config['api_auth_signin']='auth/signin';
+$config['api_auth_signinuser']='auth/signinuser';
+$config['api_auth_signinapp']='auth/signinapp';
+$config['api_auth_users_logout']='users/logout';
+$config['api_auth_users_profile']='users/profile';
+$config['api_auth_signup']='auth/signup';
+$config['api_iot_chart']='api/iot';  
+$config['api_iot_getsenser_top']='api/iot/getsenser?bucket=';
+$config['api_iot_getsenser']='api/iot/getsenser?bucket=';
+$config['api_iot_getsenserlistdata']='api/iot/getsenserlistdata?bucket=';
+$config['api_iot_getsenserlistdata2']='api/iot/getsenserlistdata2?bucket=';
+$config['api_iot_getsenserlistdata_monitor']='api/iot/getsenserlistdatamonitor?bucket=';
+$config['api_data']='api';
+$config['api_iot_table']='iot/getdatatble?bucket=';
+$config['api_iot_getsenserchartfilter']='/api/iot/getsenserchartfilter?bucket=';
+$config['api_iot_devicemonitor']='/api/iot/devicemonitor?bucket=';
+$config['api_iot_devicemonitorv2']='/api/iot/devicemonitorv2?bucket=';
+$config['api_iot_chart_bucket']='/api/iot/chartbucket?bucket=';
+$config['api_forgot_password']='users/forgot-password';
+$config['api_resetpassword']='users/resetpassword';
+$config['api_updateprofile']='users/updateprofile';
+$config['api_signinotp']='auth/signinotp';
+$config['api_verificationotp']='auth/verifyuserotp';
+$config['api_sqlite_productjoin']='sqlite/productjoin';
