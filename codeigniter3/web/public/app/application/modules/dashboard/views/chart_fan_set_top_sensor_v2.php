@@ -2,17 +2,16 @@
     $a='a7';
     $input=@$this->input->post(); 
     if($input==null){$input=@$this->input->get();}
-    $bucket=@@$input['bucket'];
+    $bucket=@$input['bucket'];
     $token=$_SESSION['token'];
-    $deletecache=@@$input['deletecache']; 
+    $deletecache=@$input['deletecache']; 
     $segment1 = $this->uri->segment(1);
     $segment2 = $this->uri->segment(2);
     $token = $_SESSION['token'];
     $api_call = $this->config->item('api_url').'mqtt?bucket='. $bucket.'&deletecache='. $deletecache;
     $rsapi = $this->Crul_model->call_api_with_token($api_call, $token);
     if ($rsapi['code'] != 200) {
-        // echo 'Error: Could not retrieve initial data from API.'; 
-        
+        // echo 'Error: Could not retrieve initial data from API.';  
     }
     $payload = $rsapi['payload']['0'];
     $mqtt_name=$payload['mqtt_name'];
@@ -28,7 +27,7 @@
 // $rsapi=$this->Crul_model->call_api_with_token($api_call,$token);
 // $code=$rsapi['code'];
 // if($code!=200){
-//     echo 'Error data api'; die();
+//     // echo 'Error data api'; die();
 // }
 //http://localhost:8081/api/iot/mqttsensercharts?bucket=BAACTW02
 ?>

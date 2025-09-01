@@ -1,10 +1,10 @@
 <?php 
     $input=@$this->input->post(); 
     if($input==null){$input=@$this->input->get();}
-    $sensor_name=@@$input['bucket'];
+    $sensor_name=@$input['bucket'];
     $token=$_SESSION['token'];
-    $deletecache=@@$input['deletecache']; 
-    $pageSize=@@$input['pageSize']; 
+    $deletecache=@$input['deletecache']; 
+    $pageSize=@$input['pageSize']; 
     if($pageSize==''){$pageSize=10;}
     $segment1 = $this->uri->segment(1);
     $segment2 = $this->uri->segment(2);
@@ -49,7 +49,7 @@ thead tr:first-child th {
                 <tr>
                     <!-- <th width="10%">NO</th> -->
                     <th width="30%"><a href="#"> Location </a></th>
-                    <th width="20%">Name</th>
+                    <th width="20%">Notifications name</th>
                     <th width="20%">Data</th>
                     <th width="30%">Date Time</th>
                 </tr>

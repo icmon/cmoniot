@@ -171,7 +171,7 @@ export class MqttController {
             var ResultDatadevice:any =  await Cache.GetCacheData(kaycache_cache); 
             if(!ResultDatadevice){
                 var ResultDatadevice: any = await this.settingsService.device_lists(filter2);
-                var InpuDatacache: any = {keycache: `${kaycache_cache}`,time: 120,data: ResultDatadevice};
+                var InpuDatacache: any = {keycache: `${kaycache_cache}`,time: 60,data: ResultDatadevice};
                 await Cache.SetCacheData(InpuDatacache); 
                 var cache_data_2:any='no cache'; 
             }else{
@@ -183,6 +183,19 @@ export class MqttController {
                   var mqtt_data_value:any=ResultDatadevice[key2].mqtt_data_value; 
                   var mqtt_data_control:any=ResultDatadevice[key2].mqtt_data_control; 
                   var mqttdata = await this.mqttService.getdevicedata(mqtt_data_value);
+                  /********************/ 
+                  var rss = await this.mqttService.getdevicedataDirec(mqtt_data_value);
+                  if(!rss){
+                          res.status(500).json({
+                              statusCode: 500,
+                              code: 500, 
+                              payload: null, 
+                              status: 0,
+                              message: `Mqtt..`,
+                              message_th: `Mqtt..`,
+                          });
+                        return;
+                  }
                   const arraydata: any = { 
                           device_id: ResultDatadevice[key2].device_id,  
                           type_id: ResultDatadevice[key2].type_id,  

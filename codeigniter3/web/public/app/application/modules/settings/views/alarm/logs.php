@@ -35,7 +35,7 @@ th.dt-head-right {
             <div class="row g-2 align-items-center">
                 <div class="col">
                     <h2 class="page-title">
-                        Alarm log
+                        Alarm Report
                     </h2>
                 </div>
                 <div class="col-auto ms-auto d-print-none">
@@ -48,7 +48,7 @@ th.dt-head-right {
                                 <path d="M12 5l0 14" />
                                 <path d="M5 12l14 0" />
                             </svg>
-                            alarm
+                            Alarm report
                         </a>
                         <a href="#" class="btn btn-primary btn-6 d-sm-none btn-icon" data-bs-toggle="modal"
                             data-bs-target="#modal-report" aria-label="Create new report">

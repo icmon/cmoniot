@@ -38,7 +38,7 @@ class Log extends MX_Controller {
         //  {{base_url}}/v1/syslog/listuserlog?id=1
 		$ListSelect = array("title" => 'signinlog');
 		$data = array("ListSelect" => $ListSelect);
-        $id=@@$input['id'];
+        $id=@$input['id'];
 		$api_url= $this->config->item('api_url').'syslog/listuserlog?id='.$id; 
 		#echo '<pre> api_url=>'; print_r($api_url); echo '</pre>'; 
         $token=@$_SESSION['token'];

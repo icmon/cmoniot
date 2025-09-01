@@ -1,10 +1,10 @@
 <?php 
     $input=@$this->input->post(); 
     if($input==null){$input=@$this->input->get();}
-    $sensor_name=@@$input['bucket'];
+    $sensor_name=@$input['bucket'];
     $token=$_SESSION['token'];
-    $deletecache=@@$input['deletecache']; 
-    $pageSize=@@$input['pageSize']; 
+    $deletecache=@$input['deletecache']; 
+    $pageSize=@$input['pageSize']; 
     if($pageSize==''){$pageSize=10;}
     $segment1 = $this->uri->segment(1);
     $segment2 = $this->uri->segment(2);
@@ -50,7 +50,7 @@ thead tr:first-child th {
                 <tr>
                     <!-- <th width="10%">NO</th> -->
                     <th width="30%"><a href="#"> Location </a></th>
-                    <th width="20%">Name</th>
+                    <th width="20%">Notifications name</th>
                     <th width="20%"><a href="#"> Data </a></th>
                     <th width="30%">Date Time</th>
                 </tr>
@@ -63,7 +63,7 @@ thead tr:first-child th {
 </div>
 
 <!-- Scrollbar Info Display -->
-<div class="scrollbar-info mt-2">
+<div>
     <!-- <small class="text-muted">
         แสดง: <span id="visibleRows">0</span> จาก <span id="totalRows">0</span> รายการ
         | ตำแหน่ง: <span id="scrollPosition">0%</span>

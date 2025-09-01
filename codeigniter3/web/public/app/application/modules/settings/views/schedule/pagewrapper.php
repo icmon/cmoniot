@@ -23,7 +23,7 @@
                     <div class="btn-list">
                         <a href="<?php echo base_url('settings/schedule/logs');?>"
                             class="btn btn-primary btn-5 d-none d-sm-inline-block" data-bs-target="#modal-report">
-                            Logs
+                            Schedule Report
                         </a>
 
                         <a href="<?php echo base_url('settings/schedule/insert');?>"

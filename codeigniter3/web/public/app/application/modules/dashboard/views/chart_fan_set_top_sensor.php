@@ -2,9 +2,9 @@
     $a='a7';
     $input=@$this->input->post(); 
     if($input==null){$input=@$this->input->get();}
-    $bucket=@@$input['bucket'];
+    $bucket=@$input['bucket'];
     $token=$_SESSION['token'];
-    $deletecache=@@$input['deletecache']; 
+    $deletecache=@$input['deletecache']; 
     $segment1 = $this->uri->segment(1);
     $segment2 = $this->uri->segment(2);
     $token = $_SESSION['token'];
@@ -22,15 +22,6 @@
     $mqtt_data_value=$payload['device']['0']['mqtt_data_value'];
     $bucket=$mqtt_bucket;
     $token=$_SESSION['token'];
- 
-// $token=$_SESSION['token'];
-// $api_call=$this->config->item('api_url').'mqtt?bucket='.$bucket;
-// $rsapi=$this->Crul_model->call_api_with_token($api_call,$token);
-// $code=$rsapi['code'];
-// if($code!=200){
-//     echo 'Error data api'; die();
-// }
-//http://localhost:8081/api/iot/mqttsensercharts?bucket=BAACTW02
 ?>
 <style>
 /* CSS เดิมของคุณสำหรับ status-green และ status-red */

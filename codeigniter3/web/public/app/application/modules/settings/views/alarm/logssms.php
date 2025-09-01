@@ -35,7 +35,7 @@ th.dt-head-right {
             <div class="row g-2 align-items-center">
                 <div class="col">
                     <h2 class="page-title">
-                        Alarm SMS
+                        Alarm SMS Report
                     </h2>
                 </div>
                 <div class="col-auto ms-auto d-print-none">

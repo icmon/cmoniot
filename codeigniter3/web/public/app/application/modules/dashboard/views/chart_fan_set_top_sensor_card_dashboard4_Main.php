@@ -612,29 +612,30 @@ document.addEventListener("DOMContentLoaded", function() {
             //     timer: 1000,
             //     showConfirmButton: false
             // });
+            var bucket= '<?php echo $bucket; ?>';
             let timerInterval;
-            // Swal.fire({
-            //     title: "API IOT Issue fetching data!",
-            //     html: "I will close in <b></b> milliseconds | ระเชื่อมต่อ IoT ขัดข้อง กำลังพยาม ตรวจสอบ",
-            //     timer: 10000,
-            //     timerProgressBar: true,
-            //     didOpen: () => {
-            //         Swal.showLoading();
-            //         var timer = Swal.getPopup().querySelector("b");
-            //         timerInterval = setInterval(() => {
-            //             timer.textContent = `${Swal.getTimerLeft()}`;
-            //         }, 6000);
-            //     },
-            //     willClose: () => {
-            //         clearInterval(timerInterval);
-            //     }
-            // }).then((result) => {
-            //     /* Read more about handling dismissals below */
-            //     if (result.dismiss === Swal.DismissReason.timer) {
-            //         console.log(
-            //             "I was closed by the timer .ระเชื่อมต่อ IoT ขัดข้อง กำลังพยาม ตรวจสอบ");
-            //     }
-            // });
+            Swal.fire({
+                 title: "IoT connectivity issues! "+bucket,
+                html: "IoT Failure Checker <b></b> to check the device | การเชื่อมต่อ IoT ขัดข้อง กรุณาตรวจสอบ การเชื่มต่อ อุปปกรณ์",
+                timer: 10000,
+                timerProgressBar: true,
+                didOpen: () => {
+                    Swal.showLoading();
+                    var timer = Swal.getPopup().querySelector("b");
+                    timerInterval = setInterval(() => {
+                        timer.textContent = `${Swal.getTimerLeft()}`;
+                    }, 6000);
+                },
+                willClose: () => {
+                    clearInterval(timerInterval);
+                }
+            }).then((result) => {
+                /* Read more about handling dismissals below */
+                if (result.dismiss === Swal.DismissReason.timer) {
+                    console.log(
+                        "I was closed by the timer .ระเชื่อมต่อ IoT ขัดข้อง กำลังพยาม ตรวจสอบ");
+                }
+            });
             console.log('redirect===>' + redirect);
 
         }

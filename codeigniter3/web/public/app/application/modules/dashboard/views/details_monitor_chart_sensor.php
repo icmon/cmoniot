@@ -5,7 +5,7 @@
 <?php 
 $input=@$this->input->post(); 
 if($input==null){$input=@$this->input->get();}
-$sensor_name_set1=@@$input['bucket'];
+$sensor_name_set1=@$input['bucket'];
 if($sensor_name_set1==''){
    $sensor_name_set1="BAACTW02";
 }

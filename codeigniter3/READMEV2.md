@@ -3,6 +3,7 @@
 # docker version
 # docker-compose version 
 # docker ps -a -s
+# codeigniter 504 Gateway Time-out nginx/1.29.1
 
 ```bash
 

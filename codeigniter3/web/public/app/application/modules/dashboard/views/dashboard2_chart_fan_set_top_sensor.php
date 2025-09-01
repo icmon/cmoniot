@@ -2,9 +2,9 @@
 $i = 'a7';
 $input = @$this->input->post();
 if ($input == null) { $input = @$this->input->get(); }
-$bucket         = @@$input['bucket'];
+$bucket         = @$input['bucket'];
 $token          = $_SESSION['token'];
-$deletecache    = @@$input['deletecache'];
+$deletecache    = @$input['deletecache'];
 $segment1       = $this->uri->segment(1);
 $segment2       = $this->uri->segment(2);
 
@@ -259,7 +259,38 @@ async function fetchAndUpdate_<?php echo $i;?>() {
             tempChart_<?php echo $i;?>.updateSeries([parseFloat(data.temperature)]);
         }
     } catch (error) {
-        console.error("Could not fetch data:", error);
+        console.error("Could not fetch data:", error); 
+        var bucket ='<?php echo $bucket; ?>';
+            // swal({
+            //     title: "API IOT Error fetching data",
+            //     text: '' + error + '',
+            //     timer: 1000,
+            //     showConfirmButton: false
+            // });
+            let timerInterval;
+            Swal.fire({
+                title: "IoT connectivity issues! "+bucket,
+                html: "IoT Failure Checker <b></b> to check the device | การเชื่อมต่อ IoT ขัดข้อง กรุณาตรวจสอบ การเชื่มต่อ อุปปกรณ์",
+                timer: 10000,
+                timerProgressBar: true,
+                didOpen: () => {
+                    Swal.showLoading();
+                    var timer = Swal.getPopup().querySelector("b");
+                    timerInterval = setInterval(() => {
+                        timer.textContent = `${Swal.getTimerLeft()}`;
+                    }, 6000);
+                },
+                willClose: () => {
+                    clearInterval(timerInterval);
+                }
+            }).then((result) => {
+                /* Read more about handling dismissals below */
+                if (result.dismiss === Swal.DismissReason.timer) {
+                    console.log(
+                        "IoT Failure Checker <b></b> to check the device | การเชื่อมต่อ IoT ขัดข้อง กรุณาตรวจสอบ การเชื่มต่อ อุปปกรณ์");
+                }
+            });
+            console.log('redirect===>' + redirect);
     }
 }
 document.addEventListener("DOMContentLoaded", function() {

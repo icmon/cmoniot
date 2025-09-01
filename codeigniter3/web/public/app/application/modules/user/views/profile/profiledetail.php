@@ -7,7 +7,7 @@ $langs=$this->lang->line('langs');
 # echo '<pre> profile=>'; print_r($profile); echo '</pre>'; die();
 $input=@$this->input->post(); 
 if($input==null){$input=@$this->input->get();   }
-$uid=@@$input['uid'];
+$uid=@$input['uid'];
 
 $role_id=@$profile['role_id'];
 $email=@$profile['email'];

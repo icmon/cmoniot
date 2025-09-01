@@ -2,7 +2,7 @@
 $a='a7';
 $input=@$this->input->post(); 
 if($input==null){$input=@$this->input->get();}
-    $sensor_name_set=@@$input['bucket'];
+    $sensor_name_set=@$input['bucket'];
 if($sensor_name_set==''){
    $sensor_name_set="BAACTW02";
 }

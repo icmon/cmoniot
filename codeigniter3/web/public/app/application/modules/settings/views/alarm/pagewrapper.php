@@ -13,7 +13,7 @@
 
                     <h2 class="page-title">
 
-                        Alarm Config
+                        Alarm Report
                     </h2>
                 </div>
                 <!-- Page title actions -->
@@ -21,11 +21,11 @@
                     <div class="btn-list">
                         <a href="<?php echo base_url('settings/alarm/logs');?>"
                             class="btn btn-primary btn-5 d-none d-sm-inline-block" data-bs-target="#modal-report">
-                            Logs all
+                            Report all
                         </a>
                         <a href="<?php echo base_url('settings/alarm/logsemail');?>"
                             class="btn btn-primary btn-5 d-none d-sm-inline-block" data-bs-target="#modal-report">
-                            Email
+                            Email Report
                         </a>
                         <!-- <a href="<?php echo base_url('settings/alarm/logssms');?>"
                             class="btn btn-primary btn-5 d-none d-sm-inline-block" data-bs-target="#modal-report">
@@ -37,7 +37,7 @@
                         </a> -->
                         <a href="<?php echo base_url('settings/alarm/logscontrol');?>"
                             class="btn btn-primary btn-5 d-none d-sm-inline-block" data-bs-target="#modal-report">
-                            Control
+                            Control Report
                         </a>
 
                         <a href="<?php echo base_url('settings/alarm/insert');?>"

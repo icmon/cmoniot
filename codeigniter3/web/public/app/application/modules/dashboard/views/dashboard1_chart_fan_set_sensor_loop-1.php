@@ -113,10 +113,6 @@ $token = $_SESSION['token'];
 $ipi_call = $this->config->item('api_url') . 'mqtt/fan';
 $rsapi = $this->Crul_model->call_api_with_token($ipi_call, $token);
 $code = $rsapi['code'];
-if ($code != 200) {
-    echo 'Error data api'; 
-    die();
-}
 $payload = $rsapi['payload'];
 if ($payload) {
 ?>

@@ -73,7 +73,7 @@ class Iot extends CI_Controller {
         if($input==''){
             $bucket="BAACTW02";
         }else{
-            $bucket=@@$input['bucket'];
+            $bucket=@$input['bucket'];
         }
         if(@$bucket==''){
             $bucket="BAACTW02";
@@ -130,7 +130,7 @@ class Iot extends CI_Controller {
         } 
         $code=$api_path['code'];
         if($code!='200'){
-            echo 'Error data api'; die();
+            // echo 'Error data api'; die();
         }
         $payload=$api_path['payload'];
         $arr=array();
@@ -221,7 +221,7 @@ class Iot extends CI_Controller {
         } 
         $code=$api_path['code'];
         if($code!='200'){
-            echo 'Error data api'; die();
+            // echo 'Error data api'; die();
         }
         $payload=$api_path['payload'];
         $arr=array();
@@ -464,9 +464,9 @@ class Iot extends CI_Controller {
         } 
         $input=@$this->input->post(); 
         if($input==null){$input=@$this->input->get();}
-        $device=@@$input['device']; // || 'BAACTW05/DATA';
-        if($device==''){$device=@@$input['bucket'];} 
-        $deletecache=@@$input['deletecache']; // || 'BAACTW05/DATA'; 
+        $device=@$input['device']; // || 'BAACTW05/DATA';
+        if($device==''){$device=@$input['bucket'];} 
+        $deletecache=@$input['deletecache']; // || 'BAACTW05/DATA'; 
         $apiurl= $this->config->item('api_url').'mqtt/getdevice?topic='.$device.'&deletecache='.@$input['deletecache']; 
         // <<base_url>>/v1/mqtt/getdevice?topic=BAACTW02/DATA&deletecache=
         // http://localhost:8081/api/iot/devicemonitor?bucket=BAACTW02
@@ -560,9 +560,9 @@ class Iot extends CI_Controller {
         } 
         $input=@$this->input->post(); 
         if($input==null){$input=@$this->input->get();}
-        $device=@@$input['device']; // || 'BAACTW05/DATA';
-        if($device==''){$device=@@$input['bucket'];} 
-        $deletecache=@@$input['deletecache']; // || 'BAACTW05/DATA';
+        $device=@$input['device']; // || 'BAACTW05/DATA';
+        if($device==''){$device=@$input['bucket'];} 
+        $deletecache=@$input['deletecache']; // || 'BAACTW05/DATA';
         //http://localhost:8081:3003/v1/mqtt/getdevice?topic=BAACTW02/DATA
         //http://192.168.1.57:3003/v1/mqtt/getdevice?topic=BAACTW02/DATA
         $apiurl= $this->config->item('api_url').'mqtt/getdevice?topic='.$device.'&deletecache='.@$input['deletecache'];  // mqtt/getdevice?topic=BAACTW05/DATA
@@ -658,7 +658,7 @@ class Iot extends CI_Controller {
         if($input==''){
             $bucket="BAACTW02";
         }else{
-            $bucket=@@$input['bucket'];
+            $bucket=@$input['bucket'];
         }
         if(@$bucket==''){
             $bucket="BAACTW02";
@@ -747,8 +747,8 @@ class Iot extends CI_Controller {
         } 
         $input=@$this->input->post(); 
         if($input==null){$input=@$this->input->get();}
-        $device=@@$input['device']; // || 'BAACTW05/DATA';
-        $deletecache=@@$input['deletecache']; // || 'BAACTW05/DATA';
+        $device=@$input['device']; // || 'BAACTW05/DATA';
+        $deletecache=@$input['deletecache']; // || 'BAACTW05/DATA';
         //http://localhost:8081:3003/v1/mqtt/getdevice?topic=BAACTW02/DATA
         //http://192.168.1.57:3003/v1/mqtt/getdevice?topic=BAACTW02/DATA
         $apiurl= $this->config->item('api_url').'mqtt/getdevice?topic='.$device.'&deletecache='.@$input['deletecache'];  // mqtt/getdevice?topic=BAACTW05/DATA
@@ -839,7 +839,7 @@ class Iot extends CI_Controller {
         if($input==''){
             $bucket="BAACTW02";
         }else{
-            $bucket=@@$input['bucket'];
+            $bucket=@$input['bucket'];
         }
         if(@$bucket==''){
             $bucket="BAACTW02";
@@ -912,7 +912,7 @@ class Iot extends CI_Controller {
         if($input==''){
             $bucket="BAACTW02";
         }else{
-            $bucket=@@$input['bucket'];
+            $bucket=@$input['bucket'];
         }
         if(@$bucket==''){
             $bucket="BAACTW02";
@@ -956,7 +956,7 @@ class Iot extends CI_Controller {
         if($input==''){
             $bucket="BAACTW02";
         }else{
-            $bucket=@@$input['bucket'];
+            $bucket=@$input['bucket'];
         }
         if(@$bucket==''){
             $bucket="BAACTW02";
@@ -1043,7 +1043,7 @@ class Iot extends CI_Controller {
         if($input==''){
             $bucket="BAACTW02";
         }else{
-            $bucket=@@$input['bucket'];
+            $bucket=@$input['bucket'];
         }
         if(@$bucket==''){
             $bucket="BAACTW02";
@@ -1177,7 +1177,7 @@ class Iot extends CI_Controller {
         if($input==''){
             $bucket="BAACTW02";
         }else{
-            $bucket=@@$input['bucket'];
+            $bucket=@$input['bucket'];
         }
         if(@$bucket==''){
             $bucket="BAACTW02";
@@ -1216,7 +1216,7 @@ class Iot extends CI_Controller {
         if($input==''){
             $bucket="BAACTW02";
         }else{
-            $bucket=@@$input['bucket'];
+            $bucket=@$input['bucket'];
         }
         if(@$bucket==''){
             $bucket="BAACTW02";
@@ -1260,7 +1260,7 @@ class Iot extends CI_Controller {
         if($input==''){
             $bucket="BAACTW02";
         }else{
-            $bucket=@@$input['bucket'];
+            $bucket=@$input['bucket'];
         }
         if(@$bucket==''){
             $bucket="BAACTW02";
@@ -1362,7 +1362,7 @@ class Iot extends CI_Controller {
         if($input==''){
             $bucket="BAACTW02";
         }else{
-            $bucket=@@$input['bucket'];
+            $bucket=@$input['bucket'];
         }
         if(@$bucket==''){
             $bucket="BAACTW02";
@@ -1441,7 +1441,7 @@ class Iot extends CI_Controller {
         if($input==''){
             $bucket="BAACTW02";
         }else{
-            $bucket=@@$input['bucket'];
+            $bucket=@$input['bucket'];
         }
         if(@$bucket==''){
             $bucket="BAACTW02";
@@ -1488,7 +1488,7 @@ class Iot extends CI_Controller {
         if($input==''){
             $bucket="BAACTW02";
         }else{
-            $bucket=@@$input['bucket'];
+            $bucket=@$input['bucket'];
         }
         if(@$bucket==''){
             $bucket="BAACTW02";
@@ -1535,7 +1535,7 @@ class Iot extends CI_Controller {
         if($input==''){
             $bucket="BAACTW02";
         }else{
-            $bucket=@@$input['bucket'];
+            $bucket=@$input['bucket'];
         }
         if(@$bucket==''){
             $bucket="BAACTW02";
@@ -1582,7 +1582,7 @@ class Iot extends CI_Controller {
         if($input==''){
             $bucket="BAACTW02";
         }else{
-            $bucket=@@$input['bucket'];
+            $bucket=@$input['bucket'];
         }
         if(@$bucket==''){
             $bucket="BAACTW02";
@@ -1655,7 +1655,7 @@ class Iot extends CI_Controller {
         if($input==''){
             $bucket="BAACTW02";
         }else{
-            $bucket=@@$input['bucket'];
+            $bucket=@$input['bucket'];
         }
         if(@$bucket==''){
             $bucket="BAACTW03";
@@ -1728,7 +1728,7 @@ class Iot extends CI_Controller {
         if($input==''){
             $bucket="BAACTW02";
         }else{
-            $bucket=@@$input['bucket'];
+            $bucket=@$input['bucket'];
         }
         if(@$bucket==''){
             $bucket="BAACTW04";
@@ -1801,7 +1801,7 @@ class Iot extends CI_Controller {
         if($input==''){
             $bucket="BAACTW02";
         }else{
-            $bucket=@@$input['bucket'];
+            $bucket=@$input['bucket'];
         }
         if(@$bucket==''){
             $bucket="BAACTW05";

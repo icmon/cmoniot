@@ -72,8 +72,8 @@ class User extends MX_Controller {
         if($input==null){$input=@$this->input->get();   }
 		$api_url= $this->config->item('api_url');
 		 // auth/signin  email
-		$username=@@$input['username']; 
-		$password=@@$input['password']; 
+		$username=@$input['username']; 
+		$password=@$input['password']; 
 		// echo '<hr>';  
 		// echo '<pre> h api_url=>'; print_r($api_url); echo '</pre>';  
 		// echo '<pre> h input=>'; print_r($input); echo '</pre>';   	
@@ -345,8 +345,8 @@ class User extends MX_Controller {
         if($input==null){$input=@$this->input->get();   }
 		$api_url= $this->config->item('api_url');
 		 // auth/signin  email
-		$username=@@$input['username']; 
-		$password=@@$input['password']; 
+		$username=@$input['username']; 
+		$password=@$input['password']; 
 		// echo '<hr>';  
 		// echo '<pre> h api_url=>'; print_r($api_url); echo '</pre>';  
 		// echo '<pre> h input=>'; print_r($input); echo '</pre>';   	
@@ -505,8 +505,8 @@ class User extends MX_Controller {
 	public function verifyotpapp(){
 		$input=@$this->input->post(); 
 		if($input==null){$input=@$this->input->get();   }
-		$otpkey=@@$input['otpkey'];
-		$otp=@@$input['otp'];
+		$otpkey=@$input['otpkey'];
+		$otp=@$input['otp'];
 		$urldirec=base_url('user/signin2'); 
 			if(!$otpkey){
 					echo'<script>
@@ -690,7 +690,7 @@ class User extends MX_Controller {
     public function signup(){
 		$input=@$this->input->post(); 
         if($input==null){$input=@$this->input->get();   }
-		$allowsignup=@@$input['allowsignup'];
+		$allowsignup=@$input['allowsignup'];
 		if($allowsignup==''){
 			$allow_sign_up_from= $this->config->item('allow_sign_up_from');
 		}if($allowsignup==1){
@@ -717,17 +717,17 @@ class User extends MX_Controller {
 		// header('Access-Control-Allow-Headers: Content-Type');
 		$input=@$this->input->post(); 
         if($input==null){$input=@$this->input->get(); }
-		$option=@@$input['option'];
+		$option=@$input['option'];
 		if($option=='1'){ 
 			$option='1';
 		}else{ 
 			$option='0';
 		}
-		$username=@@$input['username'];
-		$email=@@$input['email'];
-		$password=@@$input['password'];
-		$confirm_password=@@$input['confirm_password'];
-		$agree=@@$input['agree'];
+		$username=@$input['username'];
+		$email=@$input['email'];
+		$password=@$input['password'];
+		$confirm_password=@$input['confirm_password'];
+		$agree=@$input['agree'];
 		if($agree=='on'){ 
 			$agree_option='1';
 		}else{ 
@@ -802,7 +802,7 @@ class User extends MX_Controller {
 	public function signup3(){
 		$input=@$this->input->post(); 
         if($input==null){$input=@$this->input->get();   }
-		$allowsignup=@@$input['allowsignup'];
+		$allowsignup=@$input['allowsignup'];
 		if($allowsignup==''){
 			$allow_sign_up_from= $this->config->item('allow_sign_up_from');
 		}if($allowsignup==1){
@@ -827,17 +827,17 @@ class User extends MX_Controller {
 		// header('Access-Control-Allow-Headers: Content-Type');
 		$input=@$this->input->post(); 
         if($input==null){$input=@$this->input->get(); }
-		$option=@@$input['option'];
+		$option=@$input['option'];
 		if($option=='1'){ 
 			$option='1';
 		}else{ 
 			$option='0';
 		}
-		$username=@@$input['username'];
-		$email=@@$input['email'];
-		$password=@@$input['password'];
-		$confirm_password=@@$input['confirm_password'];
-		$agree=@@$input['agree'];
+		$username=@$input['username'];
+		$email=@$input['email'];
+		$password=@$input['password'];
+		$confirm_password=@$input['confirm_password'];
+		$agree=@$input['agree'];
 		if($agree=='on'){ 
 			$agree_option='1';
 		}else{ 
@@ -976,8 +976,8 @@ class User extends MX_Controller {
 		} 
 		$input=@$this->input->post(); 
         if($input==null){$input=@$this->input->get();   }
-		$code = @@$input['code'];
-		$email = @@$input['email'];
+		$code = @$input['code'];
+		$email = @$input['email'];
 
 		if(!$code){   
             $redirect_url=base_url('user/forgotpassword');
@@ -1039,7 +1039,7 @@ class User extends MX_Controller {
 	public function resetdb(){
 		$input=@$this->input->post(); 
         if($input==null){$input=@$this->input->get();   }
-		$code=@@$input['code'];
+		$code=@$input['code'];
 		if(!$code){
 			$message='code is null'; 
 			$message_th='code is null can not accesss'; 
@@ -1059,7 +1059,7 @@ class User extends MX_Controller {
 					});
 			}); </script>'; 
 		}
-		$email=@@$input['email'];
+		$email=@$input['email'];
 		if(!$code){
 			$message='email is null'; 
 			$message_th='email is null can not accesss'; 
@@ -1079,7 +1079,7 @@ class User extends MX_Controller {
 					});
 			}); </script>'; 
 		}
-		$password=@@$input['password'];
+		$password=@$input['password'];
 		if(!$password){
 			$message='password is null'; 
 			$message_th='password is null can not accesss'; 
@@ -1099,7 +1099,7 @@ class User extends MX_Controller {
 					});
 			}); </script>'; 
 		}
-		$confirm_password=@@$input['confirm_password'];
+		$confirm_password=@$input['confirm_password'];
  		if(!$confirm_password){
 			$message='confirm password is null'; 
 			$message_th='confirm password is null can not accesss'; 
@@ -1197,7 +1197,7 @@ class User extends MX_Controller {
     public function forgotpassworddb(){
 		$input=@$this->input->post(); 
         if($input==null){$input=@$this->input->get();   }
-		$email = @@$input['email'];
+		$email = @$input['email'];
 		//echo'<hr><pre> verificationcodedb input=>';print_r($input);echo'</pre>';
         // ตรวจสอบว่ามีการส่งอีเมลมาหรือไม่
         if(empty($email)) {
@@ -1538,7 +1538,7 @@ class User extends MX_Controller {
 	public function profileadd(){
 		$input=@$this->input->post(); 
         if($input==null){$input=@$this->input->get();   }
-		$allowsignup=@@$input['allowsignup'];
+		$allowsignup=@$input['allowsignup'];
 		if($allowsignup==''){
 			$allow_sign_up_from= $this->config->item('allow_sign_up_from');
 		}if($allowsignup==1){
@@ -1555,17 +1555,17 @@ class User extends MX_Controller {
 		// header('Access-Control-Allow-Headers: Content-Type');
 		$input=@$this->input->post(); 
         if($input==null){$input=@$this->input->get(); }
-		$option=@@$input['option'];
+		$option=@$input['option'];
 		if($option=='1'){ 
 			$option='1';
 		}else{ 
 			$option='0';
 		}
-		$username=@@$input['username'];
-		$email=@@$input['email'];
-		$password=@@$input['password'];
-		$confirm_password=@@$input['confirm_password'];
-		$agree=@@$input['agree'];
+		$username=@$input['username'];
+		$email=@$input['email'];
+		$password=@$input['password'];
+		$confirm_password=@$input['confirm_password'];
+		$agree=@$input['agree'];
 		if($agree=='on'){ 
 			$agree_option='1';
 		}else{ 
@@ -1640,7 +1640,7 @@ class User extends MX_Controller {
 		$ListSelect = array("title" => 'profile');
 		$data = array("ListSelect" => $ListSelect);
 		$token=@$_SESSION['token'];
-		$uid=@@$input['uid'];
+		$uid=@$input['uid'];
 		$api_url= $this->config->item('api_url').'users/profiledetail?uid='.$uid; 
 		#echo '<pre> api_url=>'; print_r($api_url); echo '</pre>'; 
 		$rsapi=$this->Crul_model->call_api_with_token($api_url,$token);
@@ -1688,7 +1688,7 @@ class User extends MX_Controller {
 		$ListSelect = array("title" => 'profile');
 		$data = array("ListSelect" => $ListSelect);
 		$token=@$_SESSION['token'];
-		$uid=@@$input['uid'];
+		$uid=@$input['uid'];
 		$api_url= $this->config->item('api_url').'users/profiledetail?uid='.$uid; 
 		#echo '<pre> api_url=>'; print_r($api_url); echo '</pre>'; 
 		$rsapi=$this->Crul_model->call_api_with_token($api_url,$token);
@@ -1760,10 +1760,10 @@ class User extends MX_Controller {
 		$api_call=$api_url.$api_updateprofile;
 		$token=@$_SESSION['token']; 
 		// echo '<pre> h email_user_status=>'; print_r($email_user_status); echo '</pre>';  
-		$email_user_status=@@$input['email_user_status']; 
+		$email_user_status=@$input['email_user_status']; 
 		if($email_user_status=='1'){
-			$email=@@$input['email']; 
-			$uid=@@$input['uid']; 
+			$email=@$input['email']; 
+			$uid=@$input['uid']; 
 			$input_array=array('uid'=>$uid ,'email'=>$email);
 			$rsapi=$this->Crul_model->call_api_with_token_post($api_call,$token,$input_array);
 			// echo '<pre> h input_array=>'; print_r($input_array); echo '</pre>';  
@@ -1797,10 +1797,10 @@ class User extends MX_Controller {
 
 		$input_set_array['email']=$email;
 		/**********************/
-		$username_status=@@$input['username_status']; 
+		$username_status=@$input['username_status']; 
 		if($username_status=='1'){
-			$username=@@$input['username']; 
-			$uid=@@$input['uid'];  
+			$username=@$input['username']; 
+			$uid=@$input['uid'];  
 			$input_array2=array('uid'=>$uid ,'username'=>$username);
 			$rsapi=$this->Crul_model->call_api_with_token_post($api_call,$token,$input_array2);
 			// echo '<pre> h input_array2=>'; print_r($input_array2); echo '</pre>';  
@@ -1834,10 +1834,10 @@ class User extends MX_Controller {
 		$input_set_array['username']=$username;
 		/**********************/
 		
-		$change_password_status=@@$input['change_password_status']; 
+		$change_password_status=@$input['change_password_status']; 
 		if($change_password_status==1){
-			$password=@@$input['password']; 
-			$confirm_password=@@$input['confirm_password']; 
+			$password=@$input['password']; 
+			$confirm_password=@$input['confirm_password']; 
 		}else if($change_password_status==0){
 			$password=''; 
 			$confirm_password=''; 
@@ -1848,15 +1848,15 @@ class User extends MX_Controller {
 		// echo '<pre> ALL input_set_array=>'; print_r($input_set_array); echo '</pre>'; 
 		// echo '<pre> ALL input=>'; print_r($input); echo '</pre>'; die();
 
-		$uid=@@$input['uid']; 
+		$uid=@$input['uid']; 
 	 
-		$firstname=@@$input['firstname']; 
-		$lastname=@@$input['lastname']; 
-		$idcard=@@$input['idcard']; 
-		$fullname=@@$input['fullname']; 
-		$nickname=@@$input['nickname']; 
-		$remark=@@$input['remark']; 
-		$public_status=@@$input['public_status']; 
+		$firstname=@$input['firstname']; 
+		$lastname=@$input['lastname']; 
+		$idcard=@$input['idcard']; 
+		$fullname=@$input['fullname']; 
+		$nickname=@$input['nickname']; 
+		$remark=@$input['remark']; 
+		$public_status=@$input['public_status']; 
 		
 		$input_set_array['uid']=$uid;
 		$input_set_array['firstname']=$firstname;
@@ -1866,13 +1866,13 @@ class User extends MX_Controller {
 		$input_set_array['nickname']=$nickname;
 		$input_set_array['remark']=$remark;
 		$input_set_array['public_status']=$public_status;
-		$input_set_array['public_notification']=@@$input['public_notification']; 
-		$input_set_array['sms_notification']=@@$input['sms_notification']; 
-		$input_set_array['email_notification']=@@$input['email_notification']; 
-		$input_set_array['mobile_number']=@@$input['mobile_number']; 
-		$input_set_array['phone_number']=@@$input['phone_number']; 
-		$input_set_array['lineid']=@@$input['lineid']; 
-		$input_set_array['line_notification']=@@$input['line_notification']; 
+		$input_set_array['public_notification']=@$input['public_notification']; 
+		$input_set_array['sms_notification']=@$input['sms_notification']; 
+		$input_set_array['email_notification']=@$input['email_notification']; 
+		$input_set_array['mobile_number']=@$input['mobile_number']; 
+		$input_set_array['phone_number']=@$input['phone_number']; 
+		$input_set_array['lineid']=@$input['lineid']; 
+		$input_set_array['line_notification']=@$input['line_notification']; 
 
 		// echo '<pre> h input_set_array=>'; print_r($input_set_array); echo '</pre>';  die();
 		$rsapi=$this->Crul_model->call_api_with_token_post($api_call,$token,$input_set_array);
@@ -1956,10 +1956,10 @@ class User extends MX_Controller {
 		$api_call=$api_url.$api_updateprofile;
 		$token=@$_SESSION['token']; 
 		// echo '<pre> h email_user_status=>'; print_r($email_user_status); echo '</pre>';  
-		$email_user_status=@@$input['email_user_status']; 
+		$email_user_status=@$input['email_user_status']; 
 		if($email_user_status=='1'){
-			$email=@@$input['email']; 
-			$uid=@@$input['uid']; 
+			$email=@$input['email']; 
+			$uid=@$input['uid']; 
 			$input_array=array('uid'=>$uid ,'email'=>$email); 
 			$rsapi=$this->Crul_model->call_api_with_token_post($api_call,$token,$input_array);
 			// echo '<pre> h input_array=>'; print_r($input_array); echo '</pre>';  
@@ -1993,10 +1993,10 @@ class User extends MX_Controller {
 
 		$input_set_array['email']=$email;
 		/**********************/
-		$username_status=@@$input['username_status']; 
+		$username_status=@$input['username_status']; 
 		if($username_status=='1'){
-			$username=@@$input['username']; 
-			$uid=@@$input['uid'];  
+			$username=@$input['username']; 
+			$uid=@$input['uid'];  
 			$input_array2=array('uid'=>$uid ,'username'=>$username);
 			$rsapi=$this->Crul_model->call_api_with_token_post($api_call,$token,$input_array2);
 			// echo '<pre> h input_array2=>'; print_r($input_array2); echo '</pre>';  
@@ -2030,10 +2030,10 @@ class User extends MX_Controller {
 		$input_set_array['username']=$username;
 		/**********************/
 		
-		$change_password_status=@@$input['change_password_status']; 
+		$change_password_status=@$input['change_password_status']; 
 		if($change_password_status==1){
-			$password=@@$input['password']; 
-			$confirm_password=@@$input['confirm_password']; 
+			$password=@$input['password']; 
+			$confirm_password=@$input['confirm_password']; 
 		}else if($change_password_status==0){
 			$password=''; 
 			$confirm_password=''; 
@@ -2044,16 +2044,16 @@ class User extends MX_Controller {
 		// echo '<pre> ALL input_set_array=>'; print_r($input_set_array); echo '</pre>'; 
 		// echo '<pre> ALL input=>'; print_r($input); echo '</pre>'; die();
 
-		$uid=@@$input['uid']; 
+		$uid=@$input['uid']; 
 	 
-		$firstname=@@$input['firstname']; 
-		$lastname=@@$input['lastname']; 
-		$idcard=@@$input['idcard']; 
-		$fullname=@@$input['fullname']; 
-		$nickname=@@$input['nickname']; 
-		$remark=@@$input['remark']; 
-		$public_status=@@$input['public_status']; 
-		$role_id=@@$input['role_id']; 
+		$firstname=@$input['firstname']; 
+		$lastname=@$input['lastname']; 
+		$idcard=@$input['idcard']; 
+		$fullname=@$input['fullname']; 
+		$nickname=@$input['nickname']; 
+		$remark=@$input['remark']; 
+		$public_status=@$input['public_status']; 
+		$role_id=@$input['role_id']; 
 		$input_set_array['uid']=$uid;
 		$input_set_array['role_id']=$role_id;
 		$input_set_array['firstname']=$firstname;
@@ -2063,26 +2063,26 @@ class User extends MX_Controller {
 		$input_set_array['nickname']=$nickname;
 		$input_set_array['remark']=$remark;
 		$input_set_array['public_status']=$public_status;
-		$input_set_array['public_notification']=@@$input['public_notification']; 
-		$input_set_array['sms_notification']=@@$input['sms_notification']; 
-		$input_set_array['email_notification']=@@$input['email_notification']; 
-		$input_set_array['mobile_number']=@@$input['mobile_number']; 
-		$input_set_array['phone_number']=@@$input['phone_number']; 
-		$input_set_array['lineid']=@@$input['lineid']; 
-		$input_set_array['line_notification']=@@$input['line_notification']; 
-		$permision_insert=@@$input['permision_insert']; 
+		$input_set_array['public_notification']=@$input['public_notification']; 
+		$input_set_array['sms_notification']=@$input['sms_notification']; 
+		$input_set_array['email_notification']=@$input['email_notification']; 
+		$input_set_array['mobile_number']=@$input['mobile_number']; 
+		$input_set_array['phone_number']=@$input['phone_number']; 
+		$input_set_array['lineid']=@$input['lineid']; 
+		$input_set_array['line_notification']=@$input['line_notification']; 
+		$permision_insert=@$input['permision_insert']; 
 		if($permision_insert==""){$permision_insert=0;}
-		$permision_update=@@$input['permision_update']; 
+		$permision_update=@$input['permision_update']; 
 		if($permision_update==""){$permision_update=0;}
-		$permision_delete=@@$input['permision_delete']; 
+		$permision_delete=@$input['permision_delete']; 
 		if($permision_delete==""){$permision_delete=0;}
-		$permision_select=@@$input['permision_select']; 
+		$permision_select=@$input['permision_select']; 
 		if($permision_select==""){$permision_select=0;} 
-		$permision_log=@@$input['permision_log']; 
+		$permision_log=@$input['permision_log']; 
 		if($permision_log==""){$permision_log=0;}
-		$permision_config=@@$input['permision_config']; 
+		$permision_config=@$input['permision_config']; 
 		if($permision_config==""){$permision_config=0;}
-		$permision_truncate=@@$input['permision_truncate']; 
+		$permision_truncate=@$input['permision_truncate']; 
 		if($permision_truncate==""){$permision_truncate=0;}
 		// $input_set_array['permision_insert']=@$permision_insert; 
 		// $input_set_array['permision_update']=@$permision_update; 

@@ -21,7 +21,7 @@ class Iot extends CI_Controller {
         if($input==''){
             $bucket="BAACTW02";
         }
-        $bucket=@@$input['bucket'];
+        $bucket=@$input['bucket'];
         if(@$bucket==''){
             $bucket="BAACTW02";
         }
@@ -64,7 +64,7 @@ class Iot extends CI_Controller {
         } 
         $input=@$this->input->post(); 
         if($input==null){$input=@$this->input->get();}
-        $bucket=@@$input['bucket'];
+        $bucket=@$input['bucket'];
         if(@$bucket==''){
             $bucket="BAACTW02";
         }
@@ -130,7 +130,7 @@ class Iot extends CI_Controller {
         } 
         $input=@$this->input->post(); 
         if($input==null){$input=@$this->input->get();}
-        $bucket=@@$input['bucket'];
+        $bucket=@$input['bucket'];
         if(@$bucket==''){
             $bucket="BAACTW02";
         }
@@ -168,7 +168,7 @@ class Iot extends CI_Controller {
         } 
         $input=@$this->input->post(); 
         if($input==null){$input=@$this->input->get();}
-        $bucket=@@$input['bucket'];
+        $bucket=@$input['bucket'];
         if(@$bucket==''){
             $bucket="BAACTW02";
         }
@@ -248,7 +248,7 @@ class Iot extends CI_Controller {
         } 
         $input=@$this->input->post(); 
         if($input==null){$input=@$this->input->get();}
-        $bucket=@@$input['bucket'];
+        $bucket=@$input['bucket'];
         if(@$bucket==''){
             $bucket="BAACTW02";
         }
@@ -373,7 +373,7 @@ class Iot extends CI_Controller {
         } 
         $input=@$this->input->post(); 
         if($input==null){$input=@$this->input->get();}
-        $bucket=@@$input['bucket'];
+        $bucket=@$input['bucket'];
         if(@$bucket==''){
             $bucket="BAACTW02";
         }
@@ -406,7 +406,7 @@ class Iot extends CI_Controller {
         } 
         $input=@$this->input->post(); 
         if($input==null){$input=@$this->input->get();}
-        $bucket=@@$input['bucket'];
+        $bucket=@$input['bucket'];
         if(@$bucket==''){
             $bucket="BAACTW02";
         }
@@ -444,7 +444,7 @@ class Iot extends CI_Controller {
         } 
         $input=@$this->input->post(); 
         if($input==null){$input=@$this->input->get();}
-        $bucket=@@$input['bucket'];
+        $bucket=@$input['bucket'];
         if(@$bucket==''){
             $bucket="BAACTW02";
         }
@@ -539,7 +539,7 @@ class Iot extends CI_Controller {
         } 
         $input=@$this->input->post(); 
         if($input==null){$input=@$this->input->get();}
-        $bucket=@@$input['bucket'];
+        $bucket=@$input['bucket'];
         if(@$bucket==''){
             $bucket="BAACTW02";
         }
@@ -611,7 +611,7 @@ class Iot extends CI_Controller {
         } 
         $input=@$this->input->post(); 
         if($input==null){$input=@$this->input->get();}
-        $bucket=@@$input['bucket'];
+        $bucket=@$input['bucket'];
         if(@$bucket==''){
             $bucket="BAACTW02";
         }
@@ -652,7 +652,7 @@ class Iot extends CI_Controller {
         } 
         $input=@$this->input->post(); 
         if($input==null){$input=@$this->input->get();}
-        $bucket=@@$input['bucket'];
+        $bucket=@$input['bucket'];
         if(@$bucket==''){
             $bucket="BAACTW02";
         }
@@ -693,7 +693,7 @@ class Iot extends CI_Controller {
         } 
         $input=@$this->input->post(); 
         if($input==null){$input=@$this->input->get();}
-        $bucket=@@$input['bucket'];
+        $bucket=@$input['bucket'];
         if(@$bucket==''){
             $bucket="BAACTW02";
         }
@@ -759,7 +759,7 @@ class Iot extends CI_Controller {
         } 
         $input=@$this->input->post(); 
         if($input==null){$input=@$this->input->get();}
-        $bucket=@@$input['bucket'];
+        $bucket=@$input['bucket'];
         if(@$bucket==''){
             $bucket="BAACTW03";
         }
@@ -825,7 +825,7 @@ class Iot extends CI_Controller {
         } 
         $input=@$this->input->post(); 
         if($input==null){$input=@$this->input->get();}
-        $bucket=@@$input['bucket'];
+        $bucket=@$input['bucket'];
         if(@$bucket==''){
             $bucket="BAACTW04";
         }
@@ -891,7 +891,7 @@ class Iot extends CI_Controller {
         } 
         $input=@$this->input->post(); 
         if($input==null){$input=@$this->input->get();}
-        $bucket=@@$input['bucket'];
+        $bucket=@$input['bucket'];
         if(@$bucket==''){
             $bucket="BAACTW05";
         }

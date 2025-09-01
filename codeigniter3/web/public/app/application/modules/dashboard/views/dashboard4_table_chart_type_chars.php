@@ -132,6 +132,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 }]
             });
         } catch (error) {
+            var bucket ='<?php echo $bucket; ?>';
             // alert('API IOT Error fetching data');
             console.error('Error fetching data:', error);
             // swal({
@@ -163,6 +164,39 @@ document.addEventListener("DOMContentLoaded", function() {
             //             "I was closed by the timer .ระเชื่อมต่อ IoT ขัดข้อง กำลังพยาม ตรวจสอบ");
             //     }
             // });
+            // console.log('redirect===>' + redirect);
+           // handle error
+           // alert('API IOT Error fetching data');
+            console.error('Error fetching data:', error);
+            // swal({
+            //     title: "API IOT Error fetching data",
+            //     text: '' + error + '',
+            //     timer: 1000,
+            //     showConfirmButton: false
+            // });
+            let timerInterval;
+            Swal.fire({
+                title: "IoT connectivity issues! "+bucket,
+                html: "IoT Failure Checker <b></b> to check the device | การเชื่อมต่อ IoT ขัดข้อง กรุณาตรวจสอบ การเชื่มต่อ อุปปกรณ์",
+                timer: 10000,
+                timerProgressBar: true,
+                didOpen: () => {
+                    Swal.showLoading();
+                    var timer = Swal.getPopup().querySelector("b");
+                    timerInterval = setInterval(() => {
+                        timer.textContent = `${Swal.getTimerLeft()}`;
+                    }, 6000);
+                },
+                willClose: () => {
+                    clearInterval(timerInterval);
+                }
+            }).then((result) => {
+                /* Read more about handling dismissals below */
+                if (result.dismiss === Swal.DismissReason.timer) {
+                    console.log(
+                        "IoT Failure Checker <b></b> to check the device | การเชื่อมต่อ IoT ขัดข้อง กรุณาตรวจสอบ การเชื่มต่อ อุปปกรณ์");
+                }
+            });
             console.log('redirect===>' + redirect);
 
         }

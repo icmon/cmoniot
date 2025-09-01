@@ -15,7 +15,7 @@ $token=@$_SESSION['token'];
 $uid_api=@$_SESSION['uid_api'];
 $role_id=@$_SESSION['role_id'];
 $username=@$_SESSION['username'];
-$uid=@@$input['uid'];
+$uid=@$input['uid'];
 if(!$uid){
     $uid=@$_SESSION['uid'];
 }else if(!$uid){

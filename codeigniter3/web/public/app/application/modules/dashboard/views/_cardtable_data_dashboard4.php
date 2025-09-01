@@ -1,9 +1,9 @@
 <?php 
     $input=@$this->input->post(); 
     if($input==null){$input=@$this->input->get();}
-    $sensor_name=@@$input['bucket'];
+    $sensor_name=@$input['bucket'];
     $token=$_SESSION['token'];
-    $deletecache=@@$input['deletecache']; 
+    $deletecache=@$input['deletecache']; 
     $segment1 = $this->uri->segment(1);
     $segment2 = $this->uri->segment(2);
     $token = $_SESSION['token'];
