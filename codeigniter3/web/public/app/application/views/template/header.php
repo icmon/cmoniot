@@ -70,7 +70,7 @@ $role_id_api=@$_SESSION['role_id_api'];
 if($role_id_api==""){
     $role_id_api=4;
 }
-if(@@@$input['debug']==1){
+if(@@$input['debug']==1){
     if($role_id_api==1){
             echo '<hr>';
             echo '_COOKIE<pre>';print_r($_COOKIE);echo '</pre>';

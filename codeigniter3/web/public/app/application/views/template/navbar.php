@@ -104,12 +104,15 @@ if($layout_sess==''){
                     $this->load->view('template/navbar_item');
                     ?>
                         <div class="d-none d-md-flex">
-                            <?php 
-						$this->load->view('template/navbar_changetheme');
-						#$this->load->view('template/navbar_notifications');
-						//$this->load->view('template/navbar_app');
-						// $this->load->view('template/navbar_lang');
-                        $this->load->view('template/navbar_theme');
+                         <?php 
+                            // $this->load->view('template/navbar_changetheme');
+                            if($segment1=='home' || $segment1=='dashboard'){}else{
+                              $this->load->view('template/navbar_notifications');  
+                            } 
+                            // $this->load->view('template/navbar_app'); 
+                            ///////////////////////////////////
+                            $this->load->view('template/navbar_theme');
+                            $this->load->view('template/navbar_lang');
 						?>
                         </div>
                         <div class="nav-item dropdown">
@@ -139,11 +142,11 @@ if($layout_sess==''){
                                 </a>
 
                                 <div class="dropdown-divider"></div>
-                                <a href="<?php echo base_url();?>/lang/language?lang=english&uri=<?php print(uri_string()).'?uid='.@@$input['uid']; ?>"
+                                <a href="<?php echo base_url();?>/lang/language?lang=english&uri=<?php print(uri_string()).'?uid='.@$input['uid']; ?>"
                                     class="dropdown-item">
                                     <img src="<?=base_url()?>/assets/lang/en.png" onClick="lanfTrans('en');" height="25"
                                         title="<?php  echo $this->lang->line('english');?>"> English </a>
-                                <a href="<?php echo base_url();?>/lang/language?lang=thai&uri=<?php print(uri_string()).'?uid='.@@$input['uid'];  ?>"
+                                <a href="<?php echo base_url();?>/lang/language?lang=thai&uri=<?php print(uri_string()).'?uid='.@$input['uid'];  ?>"
                                     class="dropdown-item">
                                     <img src="<?=base_url()?>/assets/lang/th.png" onClick="lanfTrans('th');" height="25"
                                         title="<?php  echo $this->lang->line('thai');?>"> Thai </a>

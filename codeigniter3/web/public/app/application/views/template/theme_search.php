@@ -27,7 +27,7 @@ if($segment2){
 }
 $input=@$this->input->post(); 
 if($input==null){ $input=@$this->input->get();}
-$input_search=@@$input['keyword'];
+$input_search=@$input['keyword'];
 // echo '<pre> lang=>'; print_r($lang); echo '</pre>';  
 
 // echo '<pre> urlsearch=>'; print_r($urlsearch); echo '</pre>';  

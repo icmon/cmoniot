@@ -1,123 +1,152 @@
-  <div class="nav-item dropdown d-none d-md-flex">
-      <?php ############## ?>
-      <a href="#" class="nav-link px-0" data-bs-toggle="dropdown" tabindex="-1" aria-label="Show notifications"
-          data-bs-auto-close="outside" aria-expanded="false">
-          <!-- Download SVG icon from http://tabler.io/icons/icon/bell -->
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-1">
-              <path d="M10 5a2 2 0 1 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6" />
-              <path d="M9 17v1a3 3 0 0 0 6 0v-1" />
-          </svg>
-          <!-- <span class="badge bg-red"></span> -->
-          <span class="badge bg-red badge-notification badge-blink"></span>
-      </a>
-      <?php ############## ?>
-      <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-end dropdown-menu-card">
-          <div class="card">
-              <?php ############## ?>
-              <div class="card-header d-flex">
-                  <h3 class="card-title">Notifications</h3>
-                  <div class="btn-close ms-auto" data-bs-dismiss="dropdown"></div>
-              </div>
-              <?php ############## ?>
-              <div class="list-group list-group-flush list-group-hoverable">
-                  <?php ############## ?>
-                  <div class="list-group-item">
-                      <div class="row align-items-center">
-                          <div class="col-auto"><span class="status-dot status-dot-animated bg-red d-block"></span>
-                          </div>
-                          <div class="col text-truncate">
-                              <a href="#" class="text-body d-block">Example 1</a>
+<?php 
+    $input = @$this->input->post(); 
+    if ($input == null) {
+        $input = @$this->input->get();
+    }
+    $sensor_name = @$input['bucket'];
+    $token = $_SESSION['token'];
+    $deletecache = @$input['deletecache']; 
+    $pageSize = @$input['pageSize']; 
+    if ($pageSize == '') {
+        $pageSize = 10;
+    }
+    $segment1 = $this->uri->segment(1);
+    $segment2 = $this->uri->segment(2);
+?>
+<div class="nav-item dropdown d-none d-md-flex">
+    <a href="#" class="nav-link px-0" data-bs-toggle="dropdown" tabindex="-1" aria-label="Show notifications"
+       data-bs-auto-close="outside" aria-expanded="false">
+        <!-- Bell SVG icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-1">
+            <path d="M10 5a2 2 0 1 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6" />
+            <path d="M9 17v1a3 3 0 0 0 6 0v-1" />
+        </svg>
+       <span id="notificationBadge" class="badge bg-red badge-notification badge-blink" style="display:none;"></span>
+    </a>
+    <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-end dropdown-menu-card">
+        <div class="card">
+            <div class="card-header d-flex">
+                <span class="status-dot status-dot-animated bg-red d-block"></span> &nbsp;&nbsp;
+                <h3 class="card-title">Notifications</h3>
+            </div>
+            <div class="list-group-Notifi list-group-Notifi-flush list-group-Notifi-hoverable">
+                <div class="list-group-Notifi-item">
+                    <div class="row align-items-center">                       
+                        <div id="tableContainerNotifi" style="max-height: 400px; overflow-y: auto; width: 100%;">
+                            <table class="table table-selectable card-table table-vcenter text-nowrap datatable table-vcenter"
+                                   id="sensorTableNotifi">
+                                <thead>
+                                    <tr>
+                                        <th width="30%"><a href="#">Location</a></th>
+                                        <th width="20%">Name</th>
+                                        <th width="20%"><a href="#">Data</a></th> 
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Notifications inserted here by JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+            <div class="scrollbar-info mt-2" style="padding: 0 1rem;">
+                <small>
+                    Total rows: <span id="totalRowsNotifi">0</span>, 
+                    Visible rows: <span id="visibleRows">0</span>, 
+                    Scroll: <span id="scrollPosition">0%</span>
+                </small>
+            </div>
+        </div>
+    </div>
+</div>
 
+<script>
+let currentDataNotifi = [];
+async function fetchNotificationsData() {
+    try {
+        const apiUrlNoti = '<?php echo $this->config->item('api_url').'settings/listdevicealarm?deletecache=';?><?php echo $deletecache; ?>';
+        const bearerToken = '<?php echo $_SESSION['token'];?>';
 
-                              <div class="d-block text-secondary text-truncate mt-n1">
-                                  Change deprecated html tags to text decoration classes (#29604)
-                              </div>
-                          </div>
-                          <div class="col-auto">
-                              <a href="#" class="list-group-item-actions">
-                                  <!-- Download SVG icon from http://tabler.io/icons/icon/star -->
-                                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                      fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                      stroke-linejoin="round" class="icon text-muted icon-2">
-                                      <path
-                                          d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z" />
-                                  </svg>
-                              </a>
-                          </div>
-                      </div>
-                  </div>
-                  <?php ############## ?>
-                  <div class="list-group-item">
-                      <div class="row align-items-center">
-                          <div class="col-auto"><span class="status-dot d-block"></span></div>
-                          <div class="col text-truncate">
-                              <a href="#" class="text-body d-block">Example 2</a>
-                              <div class="d-block text-secondary text-truncate mt-n1">
-                                  justify-content:between ⇒ justify-content:space-between (#29734)
-                              </div>
-                          </div>
-                          <div class="col-auto">
-                              <a href="#" class="list-group-item-actions show">
-                                  <!-- Download SVG icon from http://tabler.io/icons/icon/star -->
-                                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                      fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                      stroke-linejoin="round" class="icon text-yellow icon-2">
-                                      <path
-                                          d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z" />
-                                  </svg>
-                              </a>
-                          </div>
-                      </div>
-                  </div>
-                  <?php ############## ?>
-                  <div class="list-group-item">
-                      <div class="row align-items-center">
-                          <div class="col-auto"><span class="status-dot status-dot-animated bg-green d-block"></span>
-                          </div>
-                          <div class="col text-truncate">
-                              <a href="#" class="text-body d-block">Example 3</a>
-                              <div class="d-block text-secondary text-truncate mt-n1">
-                                  Regenerate package-lock.json (#29730)
-                              </div>
-                          </div>
-                          <div class="col-auto">
-                              <a href="#" class="list-group-item-actions">
-                                  <!-- Download SVG icon from http://tabler.io/icons/icon/star -->
-                                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                      fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                      stroke-linejoin="round" class="icon text-muted icon-2">
-                                      <path
-                                          d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z" />
-                                  </svg>
-                              </a>
-                          </div>
-                      </div>
-                  </div>
-                  <?php ############## ?>
-              </div>
-              <div class="card-body">
-                  <div class="row">
-                      <div class="col">
+        const response = await fetch(apiUrlNoti, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${bearerToken}`,
+                'Content-Type': 'application/json'
+            }
+        });
 
-                          <a href="#" class="btn btn-2 w-100">
+        if (!response.ok) throw new Error(`API request failed with status ${response.status}`);
 
-                              Archive all
+        const data = await response.json();
+        const tableBody = document.querySelector('#sensorTableNotifi tbody');
+        const container = document.getElementById('tableContainerNotifi');
 
-                          </a>
-                      </div>
-                      <div class="col">
+        const scrollTop = container ? container.scrollTop : 0;
 
-                          <a href="#" class="btn btn-2 w-100">
+        const badge = document.getElementById('notificationBadge');
 
-                              Mark all as read
+        if (data && data.payload && data.payload.length > 0) {
+            badge.style.display = 'inline-block'; // show badge
+            // populate table rows ...
+        } else {
+            badge.style.display = 'none'; // hide badge
+            // show no data message ...
+        }
 
-                          </a>
-                      </div>
-                  </div>
-              </div>
-              <?php ############## ?>
-          </div>
-          <?php ############## ?>
-      </div>
-  </div>
+        tableBody.innerHTML = '';
+        currentDataNotifi = [];
+
+        if (data && data.payload && data.payload.length > 0) {
+            data.payload.forEach(item => {
+                const row = `<tr>
+                    <td><a href="<?php echo base_url('settings/device/deviceactive').'?bucket=';?>${item.mqtt_bucket}&mqtt_id=${item.mqtt_id}">${item.mqtt_name}</a></td>
+                    <td><a href="<?php echo base_url('settings/alarm/logs').'?bucket=';?>${item.mqtt_bucket}&mqtt_id=${item.mqtt_id}">${item.device_name}</a></td>
+                    <td><a href="<?php echo base_url('settings/alarm/logs').'?bucket=';?>${item.mqtt_bucket}&mqtt_id=${item.mqtt_id}">${item.sensor_data_name}</a></td> 
+                </tr>`;
+                tableBody.innerHTML += row;
+                currentDataNotifi.push(item);
+            });
+            if (container) container.scrollTop = scrollTop;
+            updateScrollbarInfoNotifi();
+        } else {
+            // ถ้าไม่มีข้อมูล ให้แสดง alert และข้อความในตาราง
+            tableBody.innerHTML = `<tr><td colspan="4" class="text-center">ไม่มีข้อมูลการแจ้งเตือน</td></tr>`;
+            currentDataNotifi = [];
+            if (container) container.scrollTop = 0;
+            updateScrollbarInfoNotifi();
+        }
+    } catch (error) {
+        console.error('Error fetching sensor data:', error);
+    }
+}
+
+function updateScrollbarInfoNotifi() {
+    const container = document.getElementById('tableContainerNotifi');
+    if (!container) return;
+
+    const totalRows = currentDataNotifi.length;
+    const containerHeight = container.clientHeight;
+    const scrollHeight = container.scrollHeight;
+    const scrollTop = container.scrollTop;
+
+    const scrollPercent = scrollHeight > containerHeight
+        ? Math.round((scrollTop / (scrollHeight - containerHeight)) * 100)
+        : 0;
+
+    const rowHeight = 45;
+    const visibleRows = Math.min(Math.ceil(containerHeight / rowHeight), totalRows);
+
+    document.getElementById('totalRowsNotifi').textContent = totalRows;
+    document.getElementById('visibleRows').textContent = visibleRows;
+    document.getElementById('scrollPosition').textContent = scrollPercent + '%';
+}
+
+document.getElementById('tableContainerNotifi')?.addEventListener('scroll', updateScrollbarInfoNotifi);
+
+// Initial load
+fetchNotificationsData();
+// Refresh periodically, time in milliseconds from PHP config
+setInterval(fetchNotificationsData, <?php echo $this->config->item('api_call_time_mqtt');?>);
+</script>
