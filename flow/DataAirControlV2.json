@@ -1,0 +1,1699 @@
+[
+    {
+        "id": "0eba769d91b3e925",
+        "type": "tab",
+        "label": "DataAirControl",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "f39e898fa78bd88f",
+        "type": "mqtt in",
+        "z": "0eba769d91b3e925",
+        "name": "",
+        "topic": "KEICR21072025V4203/DATA",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "fc2a7a8fd08b2b4b",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 140,
+        "y": 140,
+        "wires": [
+            [
+                "06ebd70d6245acf9",
+                "82dd73083f4f7d5c"
+            ]
+        ]
+    },
+    {
+        "id": "06ebd70d6245acf9",
+        "type": "function",
+        "z": "0eba769d91b3e925",
+        "name": "String to array",
+        "func": "let str = msg.payload;\nmsg.payload = str.split(',').map(item => item.trim());\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 140,
+        "y": 200,
+        "wires": [
+            [
+                "5756f3e9b2e6af7a"
+            ]
+        ]
+    },
+    {
+        "id": "5756f3e9b2e6af7a",
+        "type": "split",
+        "z": "0eba769d91b3e925",
+        "name": "",
+        "splt": ",",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "property": "payload",
+        "x": 110,
+        "y": 280,
+        "wires": [
+            [
+                "8ee163dca3f532d0"
+            ]
+        ]
+    },
+    {
+        "id": "8ee163dca3f532d0",
+        "type": "function",
+        "z": "0eba769d91b3e925",
+        "name": "parts.index",
+        "func": "msg.idx = msg.parts.index;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 130,
+        "y": 360,
+        "wires": [
+            [
+                "83d93f8ccfe684cb"
+            ]
+        ]
+    },
+    {
+        "id": "83d93f8ccfe684cb",
+        "type": "switch",
+        "z": "0eba769d91b3e925",
+        "name": "Route by index",
+        "property": "idx",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "0",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "2",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "3",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "4",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "5",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "6",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "7",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "8",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "9",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "10",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "11",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "12",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "13",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "14",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "15",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "16",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "17",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 18,
+        "x": 560,
+        "y": 460,
+        "wires": [
+            [
+                "2bf6322ca85440b3"
+            ],
+            [
+                "d059363dc6bea4d2"
+            ],
+            [
+                "38ab0d1fc72278ea"
+            ],
+            [
+                "eda8d289ebc8e0d0"
+            ],
+            [
+                "43a202e700dade9b"
+            ],
+            [
+                "27322ca258a132a4"
+            ],
+            [
+                "9e6a4ea41e0fb52e"
+            ],
+            [
+                "122a358901739f08"
+            ],
+            [
+                "4d2e55e30cb7108e"
+            ],
+            [
+                "84f3336a268cc205"
+            ],
+            [
+                "0624efbd6feab298"
+            ],
+            [
+                "e0bd594eee141165"
+            ],
+            [
+                "cb674e2e59c95cc3"
+            ],
+            [
+                "5eaeb5f51c74188e"
+            ],
+            [
+                "c433aa51ca9b5fbe"
+            ],
+            [
+                "1aad126e67951427"
+            ],
+            [
+                "4a4c9cb8919c0b7b"
+            ],
+            [
+                "740277bb6906a6f3"
+            ]
+        ]
+    },
+    {
+        "id": "2bf6322ca85440b3",
+        "type": "link out",
+        "z": "0eba769d91b3e925",
+        "name": "link out temp",
+        "mode": "link",
+        "links": [
+            "3b61e69c18fd0cb2"
+        ],
+        "x": 865,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "82dd73083f4f7d5c",
+        "type": "debug",
+        "z": "0eba769d91b3e925",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 400,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "8bf6cd29242c9e0b",
+        "type": "comment",
+        "z": "0eba769d91b3e925",
+        "name": "Temp",
+        "info": "",
+        "x": 950,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "d059363dc6bea4d2",
+        "type": "link out",
+        "z": "0eba769d91b3e925",
+        "name": "link out warning",
+        "mode": "link",
+        "links": [
+            "4009ca34b66e4f0c"
+        ],
+        "x": 865,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "8e9e5fe8cb4ffacc",
+        "type": "comment",
+        "z": "0eba769d91b3e925",
+        "name": "warning",
+        "info": "",
+        "x": 950,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "38ab0d1fc72278ea",
+        "type": "link out",
+        "z": "0eba769d91b3e925",
+        "name": "link out Recovery",
+        "mode": "link",
+        "links": [
+            "d19f5a38ce445f17"
+        ],
+        "x": 865,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "c737e8c00f8a721a",
+        "type": "comment",
+        "z": "0eba769d91b3e925",
+        "name": "Recovery",
+        "info": "",
+        "x": 960,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "eda8d289ebc8e0d0",
+        "type": "link out",
+        "z": "0eba769d91b3e925",
+        "name": "link out Period",
+        "mode": "link",
+        "links": [
+            "0eb9e62e2ededb5b"
+        ],
+        "x": 865,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "a7ca7c0ac1868ef9",
+        "type": "comment",
+        "z": "0eba769d91b3e925",
+        "name": "Period",
+        "info": "",
+        "x": 950,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "43a202e700dade9b",
+        "type": "link out",
+        "z": "0eba769d91b3e925",
+        "name": "link out percent",
+        "mode": "link",
+        "links": [
+            "5b5c4c54a147f702"
+        ],
+        "x": 865,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "432c8aced256a6ea",
+        "type": "comment",
+        "z": "0eba769d91b3e925",
+        "name": "percent",
+        "info": "",
+        "x": 950,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "27322ca258a132a4",
+        "type": "link out",
+        "z": "0eba769d91b3e925",
+        "name": "link out FireAlarm",
+        "mode": "link",
+        "links": [
+            "c800328023631c87"
+        ],
+        "x": 865,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "1c03e018421d1a5a",
+        "type": "comment",
+        "z": "0eba769d91b3e925",
+        "name": "FireAlarm",
+        "info": "",
+        "x": 960,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "9e6a4ea41e0fb52e",
+        "type": "link out",
+        "z": "0eba769d91b3e925",
+        "name": "link out HumiAlarm",
+        "mode": "link",
+        "links": [
+            "b93d18934a42ec4d"
+        ],
+        "x": 865,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "dd7f57a101f318a0",
+        "type": "comment",
+        "z": "0eba769d91b3e925",
+        "name": "HumiAlarm",
+        "info": "",
+        "x": 960,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "122a358901739f08",
+        "type": "link out",
+        "z": "0eba769d91b3e925",
+        "name": "link out Air2Alarm",
+        "mode": "link",
+        "links": [
+            "b29f92c96a16c21c"
+        ],
+        "x": 865,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "7a2bd41b222b3840",
+        "type": "comment",
+        "z": "0eba769d91b3e925",
+        "name": "Air2Alarm",
+        "info": "",
+        "x": 960,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "4d2e55e30cb7108e",
+        "type": "link out",
+        "z": "0eba769d91b3e925",
+        "name": "link out Air1Alarm",
+        "mode": "link",
+        "links": [
+            "b4d616133942284a"
+        ],
+        "x": 865,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "911d3b92a0358382",
+        "type": "comment",
+        "z": "0eba769d91b3e925",
+        "name": "Air1Alarm",
+        "info": "",
+        "x": 960,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "84f3336a268cc205",
+        "type": "link out",
+        "z": "0eba769d91b3e925",
+        "name": "link out temp_alarm",
+        "mode": "link",
+        "links": [
+            "4301ee4c8dae3ca3"
+        ],
+        "x": 865,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "0634c8a0b2d7fd48",
+        "type": "comment",
+        "z": "0eba769d91b3e925",
+        "name": "temp_alarm",
+        "info": "",
+        "x": 970,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "0624efbd6feab298",
+        "type": "link out",
+        "z": "0eba769d91b3e925",
+        "name": "link out MODE",
+        "mode": "link",
+        "links": [
+            "29cb6f064e1f80ca"
+        ],
+        "x": 865,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "7d1d15d3a57be77f",
+        "type": "comment",
+        "z": "0eba769d91b3e925",
+        "name": "MODE",
+        "info": "",
+        "x": 950,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "e0bd594eee141165",
+        "type": "link out",
+        "z": "0eba769d91b3e925",
+        "name": "link out state_AIR1",
+        "mode": "link",
+        "links": [
+            "f6bdc3d14f8faee6"
+        ],
+        "x": 865,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "eb730c9bdde6338a",
+        "type": "comment",
+        "z": "0eba769d91b3e925",
+        "name": "state_AIR1",
+        "info": "",
+        "x": 960,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "cb674e2e59c95cc3",
+        "type": "link out",
+        "z": "0eba769d91b3e925",
+        "name": "link out state_AIR2",
+        "mode": "link",
+        "links": [
+            "8a47e2132c815f97"
+        ],
+        "x": 865,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "27e273d316acf0b6",
+        "type": "comment",
+        "z": "0eba769d91b3e925",
+        "name": "state_AIR2",
+        "info": "",
+        "x": 960,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "5eaeb5f51c74188e",
+        "type": "link out",
+        "z": "0eba769d91b3e925",
+        "name": "link out TempAlarmOFF",
+        "mode": "link",
+        "links": [
+            "5e4c5151b2a38dfb"
+        ],
+        "x": 865,
+        "y": 840,
+        "wires": []
+    },
+    {
+        "id": "3de4fd2353a580e5",
+        "type": "comment",
+        "z": "0eba769d91b3e925",
+        "name": "TempAlarmOFF",
+        "info": "",
+        "x": 980,
+        "y": 840,
+        "wires": []
+    },
+    {
+        "id": "c433aa51ca9b5fbe",
+        "type": "link out",
+        "z": "0eba769d91b3e925",
+        "name": "link out UPS1Alarm",
+        "mode": "link",
+        "links": [
+            "c08c0896ecb32bd2"
+        ],
+        "x": 865,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "56f89f4353e5aab5",
+        "type": "comment",
+        "z": "0eba769d91b3e925",
+        "name": "UPS1Alarm",
+        "info": "",
+        "x": 970,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "1aad126e67951427",
+        "type": "link out",
+        "z": "0eba769d91b3e925",
+        "name": "link out UPS2Alarm",
+        "mode": "link",
+        "links": [
+            "f6e108cf977c6e11"
+        ],
+        "x": 865,
+        "y": 960,
+        "wires": []
+    },
+    {
+        "id": "b85d55cd28d58adb",
+        "type": "comment",
+        "z": "0eba769d91b3e925",
+        "name": "UPS2Alarm",
+        "info": "",
+        "x": 970,
+        "y": 960,
+        "wires": []
+    },
+    {
+        "id": "4a4c9cb8919c0b7b",
+        "type": "link out",
+        "z": "0eba769d91b3e925",
+        "name": "link out HSSDAlarm",
+        "mode": "link",
+        "links": [
+            "aba7402a62208349"
+        ],
+        "x": 865,
+        "y": 1020,
+        "wires": []
+    },
+    {
+        "id": "ca55cbd5e138c20a",
+        "type": "comment",
+        "z": "0eba769d91b3e925",
+        "name": "HSSDAlarm",
+        "info": "",
+        "x": 970,
+        "y": 1020,
+        "wires": []
+    },
+    {
+        "id": "740277bb6906a6f3",
+        "type": "link out",
+        "z": "0eba769d91b3e925",
+        "name": "link out WaterleakAlarm",
+        "mode": "link",
+        "links": [
+            "4fd8102fea93db34"
+        ],
+        "x": 865,
+        "y": 1080,
+        "wires": []
+    },
+    {
+        "id": "c9ebffd9d9e09b88",
+        "type": "comment",
+        "z": "0eba769d91b3e925",
+        "name": "WaterleakAlarm",
+        "info": "",
+        "x": 980,
+        "y": 1080,
+        "wires": []
+    },
+    {
+        "id": "3b61e69c18fd0cb2",
+        "type": "link in",
+        "z": "0eba769d91b3e925",
+        "name": "link in Temp",
+        "links": [
+            "2bf6322ca85440b3"
+        ],
+        "x": 1095,
+        "y": 60,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4009ca34b66e4f0c",
+        "type": "link in",
+        "z": "0eba769d91b3e925",
+        "name": "link in warning",
+        "links": [
+            "d059363dc6bea4d2"
+        ],
+        "x": 1095,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d19f5a38ce445f17",
+        "type": "link in",
+        "z": "0eba769d91b3e925",
+        "name": "link in Recovery",
+        "links": [
+            "38ab0d1fc72278ea"
+        ],
+        "x": 1095,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0eb9e62e2ededb5b",
+        "type": "link in",
+        "z": "0eba769d91b3e925",
+        "name": "link in Period",
+        "links": [
+            "eda8d289ebc8e0d0"
+        ],
+        "x": 1095,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5b5c4c54a147f702",
+        "type": "link in",
+        "z": "0eba769d91b3e925",
+        "name": "link in percent",
+        "links": [
+            "43a202e700dade9b"
+        ],
+        "x": 1095,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c800328023631c87",
+        "type": "link in",
+        "z": "0eba769d91b3e925",
+        "name": "link in FireAlarm",
+        "links": [
+            "27322ca258a132a4"
+        ],
+        "x": 1095,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b93d18934a42ec4d",
+        "type": "link in",
+        "z": "0eba769d91b3e925",
+        "name": "link in HumiAlarm",
+        "links": [
+            "9e6a4ea41e0fb52e"
+        ],
+        "x": 1095,
+        "y": 420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b29f92c96a16c21c",
+        "type": "link in",
+        "z": "0eba769d91b3e925",
+        "name": "link in Air2Alarm",
+        "links": [
+            "122a358901739f08"
+        ],
+        "x": 1095,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b4d616133942284a",
+        "type": "link in",
+        "z": "0eba769d91b3e925",
+        "name": "link in Air1Alarm",
+        "links": [
+            "4d2e55e30cb7108e"
+        ],
+        "x": 1095,
+        "y": 540,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4301ee4c8dae3ca3",
+        "type": "link in",
+        "z": "0eba769d91b3e925",
+        "name": "link in temp_alarm",
+        "links": [
+            "84f3336a268cc205"
+        ],
+        "x": 1095,
+        "y": 600,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "29cb6f064e1f80ca",
+        "type": "link in",
+        "z": "0eba769d91b3e925",
+        "name": "link in MODE",
+        "links": [
+            "0624efbd6feab298"
+        ],
+        "x": 1095,
+        "y": 660,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f6bdc3d14f8faee6",
+        "type": "link in",
+        "z": "0eba769d91b3e925",
+        "name": "link in state_AIR1",
+        "links": [
+            "e0bd594eee141165"
+        ],
+        "x": 1095,
+        "y": 720,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8a47e2132c815f97",
+        "type": "link in",
+        "z": "0eba769d91b3e925",
+        "name": "link in state_AIR2",
+        "links": [
+            "cb674e2e59c95cc3"
+        ],
+        "x": 1095,
+        "y": 780,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5e4c5151b2a38dfb",
+        "type": "link in",
+        "z": "0eba769d91b3e925",
+        "name": "link in TempAlarmOFF",
+        "links": [
+            "5eaeb5f51c74188e"
+        ],
+        "x": 1095,
+        "y": 840,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c08c0896ecb32bd2",
+        "type": "link in",
+        "z": "0eba769d91b3e925",
+        "name": "link in UPS1Alarm",
+        "links": [
+            "c433aa51ca9b5fbe"
+        ],
+        "x": 1095,
+        "y": 900,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f6e108cf977c6e11",
+        "type": "link in",
+        "z": "0eba769d91b3e925",
+        "name": "link in UPS2Alarm",
+        "links": [
+            "1aad126e67951427"
+        ],
+        "x": 1095,
+        "y": 960,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "aba7402a62208349",
+        "type": "link in",
+        "z": "0eba769d91b3e925",
+        "name": "link in HSSDAlarm",
+        "links": [
+            "4a4c9cb8919c0b7b"
+        ],
+        "x": 1095,
+        "y": 1020,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4fd8102fea93db34",
+        "type": "link in",
+        "z": "0eba769d91b3e925",
+        "name": "link in WaterleakAlarm",
+        "links": [
+            "740277bb6906a6f3"
+        ],
+        "x": 1095,
+        "y": 1080,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "43314b67f19e1b7f",
+        "type": "mqtt out",
+        "z": "0eba769d91b3e925",
+        "name": "",
+        "topic": "KEICR21072025V4203/CONTROL",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "fc2a7a8fd08b2b4b",
+        "x": 1080,
+        "y": 1480,
+        "wires": []
+    },
+    {
+        "id": "c813ab048681ccad",
+        "type": "inject",
+        "z": "0eba769d91b3e925",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "w25",
+        "payloadType": "str",
+        "x": 310,
+        "y": 1200,
+        "wires": [
+            [
+                "f6b0565c5f757d61"
+            ]
+        ]
+    },
+    {
+        "id": "f6b0565c5f757d61",
+        "type": "link out",
+        "z": "0eba769d91b3e925",
+        "name": "link out warning",
+        "mode": "link",
+        "links": [
+            "e32cbc02bf8aae9b"
+        ],
+        "x": 595,
+        "y": 1320,
+        "wires": []
+    },
+    {
+        "id": "e32cbc02bf8aae9b",
+        "type": "link in",
+        "z": "0eba769d91b3e925",
+        "name": "link in CONTROL",
+        "links": [
+            "f6b0565c5f757d61",
+            "05b5a70d708acfa2",
+            "b4f2ef606752e3ed",
+            "6de904409e4dfe80"
+        ],
+        "x": 745,
+        "y": 1480,
+        "wires": [
+            [
+                "43314b67f19e1b7f"
+            ]
+        ]
+    },
+    {
+        "id": "faeffe0cb41b5fdf",
+        "type": "inject",
+        "z": "0eba769d91b3e925",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "w40",
+        "payloadType": "str",
+        "x": 310,
+        "y": 1440,
+        "wires": [
+            [
+                "f6b0565c5f757d61"
+            ]
+        ]
+    },
+    {
+        "id": "a9bfb527a60af78c",
+        "type": "inject",
+        "z": "0eba769d91b3e925",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "w30",
+        "payloadType": "str",
+        "x": 310,
+        "y": 1260,
+        "wires": [
+            [
+                "f6b0565c5f757d61"
+            ]
+        ]
+    },
+    {
+        "id": "ae5d381f43bb8f8e",
+        "type": "inject",
+        "z": "0eba769d91b3e925",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "w35",
+        "payloadType": "str",
+        "x": 310,
+        "y": 1320,
+        "wires": [
+            [
+                "f6b0565c5f757d61"
+            ]
+        ]
+    },
+    {
+        "id": "c80c8bd6a80fca6c",
+        "type": "inject",
+        "z": "0eba769d91b3e925",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "w37",
+        "payloadType": "str",
+        "x": 310,
+        "y": 1380,
+        "wires": [
+            [
+                "f6b0565c5f757d61"
+            ]
+        ]
+    },
+    {
+        "id": "1192393894b9d21b",
+        "type": "inject",
+        "z": "0eba769d91b3e925",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "p1",
+        "payloadType": "str",
+        "x": 310,
+        "y": 1560,
+        "wires": [
+            [
+                "05b5a70d708acfa2"
+            ]
+        ]
+    },
+    {
+        "id": "05b5a70d708acfa2",
+        "type": "link out",
+        "z": "0eba769d91b3e925",
+        "name": "link out Period",
+        "mode": "link",
+        "links": [
+            "e32cbc02bf8aae9b"
+        ],
+        "x": 595,
+        "y": 1680,
+        "wires": []
+    },
+    {
+        "id": "621552cf047dd1dd",
+        "type": "inject",
+        "z": "0eba769d91b3e925",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "p24",
+        "payloadType": "str",
+        "x": 310,
+        "y": 1800,
+        "wires": [
+            [
+                "05b5a70d708acfa2"
+            ]
+        ]
+    },
+    {
+        "id": "555205de4b4b663d",
+        "type": "inject",
+        "z": "0eba769d91b3e925",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "p6",
+        "payloadType": "str",
+        "x": 310,
+        "y": 1620,
+        "wires": [
+            [
+                "05b5a70d708acfa2"
+            ]
+        ]
+    },
+    {
+        "id": "a4318851c74092bd",
+        "type": "inject",
+        "z": "0eba769d91b3e925",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "p12",
+        "payloadType": "str",
+        "x": 310,
+        "y": 1680,
+        "wires": [
+            [
+                "05b5a70d708acfa2"
+            ]
+        ]
+    },
+    {
+        "id": "dab8dac6f323acc3",
+        "type": "inject",
+        "z": "0eba769d91b3e925",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "p20",
+        "payloadType": "str",
+        "x": 310,
+        "y": 1740,
+        "wires": [
+            [
+                "05b5a70d708acfa2"
+            ]
+        ]
+    },
+    {
+        "id": "c9c1c262bd85cffd",
+        "type": "inject",
+        "z": "0eba769d91b3e925",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "a",
+        "payloadType": "str",
+        "x": 310,
+        "y": 2000,
+        "wires": [
+            [
+                "b4f2ef606752e3ed"
+            ]
+        ]
+    },
+    {
+        "id": "b4f2ef606752e3ed",
+        "type": "link out",
+        "z": "0eba769d91b3e925",
+        "name": "link out Mode",
+        "mode": "link",
+        "links": [
+            "e32cbc02bf8aae9b"
+        ],
+        "x": 595,
+        "y": 2060,
+        "wires": []
+    },
+    {
+        "id": "0ceed6efad8e0ac6",
+        "type": "inject",
+        "z": "0eba769d91b3e925",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "m",
+        "payloadType": "str",
+        "x": 310,
+        "y": 2060,
+        "wires": [
+            [
+                "b4f2ef606752e3ed"
+            ]
+        ]
+    },
+    {
+        "id": "219462451c992acd",
+        "type": "inject",
+        "z": "0eba769d91b3e925",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "s",
+        "payloadType": "str",
+        "x": 310,
+        "y": 2120,
+        "wires": [
+            [
+                "b4f2ef606752e3ed"
+            ]
+        ]
+    },
+    {
+        "id": "4b195cf0b3711567",
+        "type": "comment",
+        "z": "0eba769d91b3e925",
+        "name": "MODE",
+        "info": "",
+        "x": 590,
+        "y": 2000,
+        "wires": []
+    },
+    {
+        "id": "20618085b12ac0b1",
+        "type": "inject",
+        "z": "0eba769d91b3e925",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "b1",
+        "payloadType": "str",
+        "x": 310,
+        "y": 2280,
+        "wires": [
+            [
+                "6de904409e4dfe80"
+            ]
+        ]
+    },
+    {
+        "id": "6de904409e4dfe80",
+        "type": "link out",
+        "z": "0eba769d91b3e925",
+        "name": "link out Mode",
+        "mode": "link",
+        "links": [
+            "e32cbc02bf8aae9b"
+        ],
+        "x": 595,
+        "y": 2340,
+        "wires": []
+    },
+    {
+        "id": "78d5ae39dab24d5f",
+        "type": "inject",
+        "z": "0eba769d91b3e925",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "b2",
+        "payloadType": "str",
+        "x": 310,
+        "y": 2340,
+        "wires": [
+            [
+                "6de904409e4dfe80"
+            ]
+        ]
+    },
+    {
+        "id": "ef007ae9a8c87422",
+        "type": "comment",
+        "z": "0eba769d91b3e925",
+        "name": "AIR1",
+        "info": "",
+        "x": 310,
+        "y": 2240,
+        "wires": []
+    },
+    {
+        "id": "ede5efc72e7e0495",
+        "type": "comment",
+        "z": "0eba769d91b3e925",
+        "name": "AIR1 off 1",
+        "info": "",
+        "x": 160,
+        "y": 2280,
+        "wires": []
+    },
+    {
+        "id": "22d2f04e115e17fe",
+        "type": "comment",
+        "z": "0eba769d91b3e925",
+        "name": "AIR1 on 2",
+        "info": "",
+        "x": 160,
+        "y": 2340,
+        "wires": []
+    },
+    {
+        "id": "dbf11c1051270a3e",
+        "type": "comment",
+        "z": "0eba769d91b3e925",
+        "name": "AIR2 off 1",
+        "info": "",
+        "x": 160,
+        "y": 2440,
+        "wires": []
+    },
+    {
+        "id": "70c144e0047dc893",
+        "type": "comment",
+        "z": "0eba769d91b3e925",
+        "name": "AIR2 on 2",
+        "info": "",
+        "x": 160,
+        "y": 2500,
+        "wires": []
+    },
+    {
+        "id": "2bf61f928edfc20e",
+        "type": "inject",
+        "z": "0eba769d91b3e925",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "c1",
+        "payloadType": "str",
+        "x": 310,
+        "y": 2440,
+        "wires": [
+            [
+                "6de904409e4dfe80"
+            ]
+        ]
+    },
+    {
+        "id": "61dfb9008a9a8381",
+        "type": "inject",
+        "z": "0eba769d91b3e925",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "c2",
+        "payloadType": "str",
+        "x": 310,
+        "y": 2500,
+        "wires": [
+            [
+                "6de904409e4dfe80"
+            ]
+        ]
+    },
+    {
+        "id": "8109b4d4d4242846",
+        "type": "comment",
+        "z": "0eba769d91b3e925",
+        "name": "AIR2",
+        "info": "",
+        "x": 310,
+        "y": 2400,
+        "wires": []
+    },
+    {
+        "id": "58d0fac8a71ca237",
+        "type": "comment",
+        "z": "0eba769d91b3e925",
+        "name": "Period",
+        "info": "",
+        "x": 570,
+        "y": 1620,
+        "wires": []
+    },
+    {
+        "id": "3fdbb59b6704ff86",
+        "type": "comment",
+        "z": "0eba769d91b3e925",
+        "name": "Control",
+        "info": "",
+        "x": 590,
+        "y": 2280,
+        "wires": []
+    },
+    {
+        "id": "e7002591211850d6",
+        "type": "comment",
+        "z": "0eba769d91b3e925",
+        "name": "warning",
+        "info": "",
+        "x": 590,
+        "y": 1260,
+        "wires": []
+    },
+    {
+        "id": "b7b5fbe0016d7022",
+        "type": "comment",
+        "z": "0eba769d91b3e925",
+        "name": "auto",
+        "info": "",
+        "x": 130,
+        "y": 2000,
+        "wires": []
+    },
+    {
+        "id": "7b712e5d96b4b593",
+        "type": "comment",
+        "z": "0eba769d91b3e925",
+        "name": "manual",
+        "info": "",
+        "x": 130,
+        "y": 2060,
+        "wires": []
+    },
+    {
+        "id": "fd8b9477f8977f12",
+        "type": "comment",
+        "z": "0eba769d91b3e925",
+        "name": "Schedule",
+        "info": "",
+        "x": 140,
+        "y": 2120,
+        "wires": []
+    },
+    {
+        "id": "cf5018ed95711991",
+        "type": "comment",
+        "z": "0eba769d91b3e925",
+        "name": "1-24",
+        "info": "",
+        "x": 150,
+        "y": 1680,
+        "wires": []
+    },
+    {
+        "id": "5949ca31174f8d4f",
+        "type": "comment",
+        "z": "0eba769d91b3e925",
+        "name": "20-40",
+        "info": "",
+        "x": 150,
+        "y": 1340,
+        "wires": []
+    },
+    {
+        "id": "fc2a7a8fd08b2b4b",
+        "type": "mqtt-broker",
+        "name": "broker.hivemq.com",
+        "broker": "broker.hivemq.com",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    }
+]

@@ -4,14 +4,14 @@
 
 sudo chmod -R 777 /etc/docker/daemon.json
 
-sudo chmod -R 777 /home/cmon/appcmon
+sudo chmod -R 777 /home/cmon/cmoniot
 #  docker-compose up --build -d  
 #  docker-compose up 
-sudo chmod -R 777 /home/cmon/appcmon/backend
+sudo chmod -R 777 /home/cmon/cmoniot/backend
 
-sudo chown -R 999:999 /home/cmon/appcmon/backend/docker/postgres/dbdata
-sudo chown -R $(id -u):$(id -g) /home/cmon/appcmon/backend/docker/postgres/dbdata
-sudo chmod -R 777 /home/cmon/appcmon/backend/docker/postgres/dbdata
+sudo chown -R 999:999 /home/cmon/cmoniot/backend/docker/postgres/dbdata
+sudo chown -R $(id -u):$(id -g) /home/cmon/cmoniot/backend/docker/postgres/dbdata
+sudo chmod -R 777 /home/cmon/cmoniot/backend/docker/postgres/dbdata
 
 # ubutu allow port ให้เครืองอื่น  เข้าใช้ถึง การใช้งาน
 sudo ufw allow from 192.168.1.10 to any port 80
@@ -144,7 +144,7 @@ sudo ufw status
 sudo ufw status verbose
 sudo ufw disable && sudo ufw enable
 sudo sysctl -p
-sudo chmod -R 777 /home/cmon/appcmon/backend
+sudo chmod -R 777 /home/cmon/cmoniot/backend
 hostname -I
 ifconfig -a
 docker pull php:8.3-fpm
@@ -189,7 +189,7 @@ docker rm -f 14f2708507de
 # docker ps     
 
 2. cd backend
-# sudo chmod -R 777 /home/cmon/appcmon
+# sudo chmod -R 777 /home/cmon/cmoniot
 # docker-compose up --build -d  
 # docker ps   
 # docker-compose up --build -d app  
@@ -234,7 +234,7 @@ docker-compose restart
  - BUCKET= BAACTW02
  - RETENTION= 365d
  - create Token : Exp :  ZF44HLIfNeb6meem6rIPDE8C48uCUMmH0x8r25M7TgFatm-r05dIxHyhYvJPzYGNYz6Aj_H2TcTrfPEN2BMCZw==
-# /home/cmon/appcmon/backend/docker/postgres/dbdata: permission denied
+# /home/cmon/cmoniot/backend/docker/postgres/dbdata: permission denied
 
 
 
@@ -319,7 +319,7 @@ sudo journalctl -u docker.service
         //         },
 
 
-# cd  /home/cmon/Public/appcmon/frontend
+# cd  /home/cmon/Public/cmoniot/frontend
 # docker-compose up --build -d  
 # ###############
  

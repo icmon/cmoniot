@@ -7,9 +7,8 @@ ubuntu install docker  docker.io  docker cs   docker comporse       podman-docke
 
 sudo snap install docker         # version 28.1.1+1, or
 sudo apt  install docker.io      # version 27.5.1-0ubuntu3~22.04.2
-sudo apt  install podman-docker  # version 3.4.4+ds1-1ubuntu1.22.04.3
-
 sudo snap install docker compose  
+sudo apt  install podman-docker  # version 3.4.4+ds1-1ubuntu1.22.04.3
  
 
 
@@ -398,6 +397,13 @@ MQTT_HOST_IP=172.25.99.60
 MQTT_PORT=1883
 influxdb_host=http://172.25.99.60:8086
 influxdb_token=LN929D1sMCiV7cMNcXt-Ne-ltrxHVBNrCNDyQp2C48uQ06j8BL7lV1SRROPPnf8rGGVj2vC32i5Hu9hUP9Cvlg==
+
+
+
+- docker-compose build
+- docker-ompose up -d
+- docker-compose up --build -d
+
 
 
 ```
