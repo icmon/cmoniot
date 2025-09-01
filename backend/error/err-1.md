@@ -1,4 +1,4 @@
-cmon@cmon-OptiPlex-3040:~/Public/appcmon/backend$ docker compose up --build -d  
+cmon@cmon-OptiPlex-3040:~/Public/cmoniot/backend$ docker compose up --build -d  
 WARN[0000] The "FgQ" variable is not set. Defaulting to a blank string. 
 WARN[0000] The "FgQ" variable is not set. Defaulting to a blank string. 
 WARN[0000] The "FgQ" variable is not set. Defaulting to a blank string. 
@@ -76,7 +76,7 @@ WARN[0000] The "FgQ" variable is not set. Defaulting to a blank string.
 #0 1.842 sh: 1: rimraf: not found
 ------
 failed to solve: process "/bin/sh -c npm run build" did not complete successfully: exit code: 127
-cmon@cmon-OptiPlex-3040:~/Public/appcmon/backend$ docker compose up --build -d  
+cmon@cmon-OptiPlex-3040:~/Public/cmoniot/backend$ docker compose up --build -d  
 WARN[0000] The "FgQ" variable is not set. Defaulting to a blank string. 
 WARN[0000] The "FgQ" variable is not set. Defaulting to a blank string. 
 WARN[0000] The "FgQ" variable is not set. Defaulting to a blank string. 
@@ -106,7 +106,7 @@ WARN[0000] The "FgQ" variable is not set. Defaulting to a blank string.
 #0 1.215 sh: 1: rimraf: not found
 ------
 failed to solve: process "/bin/sh -c npm run build" did not complete successfully: exit code: 127
-cmon@cmon-OptiPlex-3040:~/Public/appcmon/backend$ docker compose up --build -d  
+cmon@cmon-OptiPlex-3040:~/Public/cmoniot/backend$ docker compose up --build -d  
 WARN[0000] The "FgQ" variable is not set. Defaulting to a blank string. 
 WARN[0000] The "FgQ" variable is not set. Defaulting to a blank string. 
 WARN[0000] The "FgQ" variable is not set. Defaulting to a blank string. 
@@ -136,7 +136,7 @@ WARN[0000] The "FgQ" variable is not set. Defaulting to a blank string.
 #0 1.233 sh: 1: rimraf: not found
 ------
 failed to solve: process "/bin/sh -c npm run build" did not complete successfully: exit code: 127
-cmon@cmon-OptiPlex-3040:~/Public/appcmon/backend$ docker compose up --build -d  
+cmon@cmon-OptiPlex-3040:~/Public/cmoniot/backend$ docker compose up --build -d  
 WARN[0000] The "FgQ" variable is not set. Defaulting to a blank string. 
 WARN[0000] The "FgQ" variable is not set. Defaulting to a blank string. 
 WARN[0000] The "FgQ" variable is not set. Defaulting to a blank string. 
@@ -162,7 +162,7 @@ WARN[0000] The "FgQ" variable is not set. Defaulting to a blank string.
 #0 276.7 npm error A complete log of this run can be found in: /root/.npm/_logs/2025-07-22T12_40_08_246Z-debug-0.log
 ------
 failed to solve: process "/bin/sh -c npm install" did not complete successfully: exit code: 1
-cmon@cmon-OptiPlex-3040:~/Public/appcmon/backend$ docker compose up --build -d  
+cmon@cmon-OptiPlex-3040:~/Public/cmoniot/backend$ docker compose up --build -d  
 WARN[0000] The "FgQ" variable is not set. Defaulting to a blank string. 
 WARN[0000] The "FgQ" variable is not set. Defaulting to a blank string. 
 WARN[0000] The "FgQ" variable is not set. Defaulting to a blank string. 
@@ -218,7 +218,7 @@ WARN[0000] The "FgQ" variable is not set. Defaulting to a blank string.
 #0 272.0 npm error A complete log of this run can be found in: /root/.npm/_logs/2025-07-22T12_49_11_364Z-debug-0.log
 ------
 failed to solve: process "/bin/sh -c npm install --build-from-source" did not complete successfully: exit code: 1
-cmon@cmon-OptiPlex-3040:~/Public/appcmon/backend$ docker compose up --build -d  
+cmon@cmon-OptiPlex-3040:~/Public/cmoniot/backend$ docker compose up --build -d  
 WARN[0000] The "FgQ" variable is not set. Defaulting to a blank string. 
 WARN[0000] The "FgQ" variable is not set. Defaulting to a blank string. 
 WARN[0000] The "FgQ" variable is not set. Defaulting to a blank string. 
@@ -245,4 +245,4 @@ WARN[0000] The "FgQ" variable is not set. Defaulting to a blank string.
 #0 271.8 npm error A complete log of this run can be found in: /root/.npm/_logs/2025-07-22T12_55_11_948Z-debug-0.log
 ------
 failed to solve: process "/bin/sh -c npm install" did not complete successfully: exit code: 1
-cmon@cmon-OptiPlex-3040:~/Public/appcmon/backend$ 
+cmon@cmon-OptiPlex-3040:~/Public/cmoniot/backend$ 

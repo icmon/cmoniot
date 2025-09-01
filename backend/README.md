@@ -1,6 +1,6 @@
 2. cd backend
 # docker-compose down app
-# sudo chmod -R 777 /home/cmon/appcmon
+# sudo chmod -R 777 /home/cmon/cmoniot
 # docker-compose up --build -d app 
 # docker-compose down app
 # docker-compose up app
@@ -27,13 +27,13 @@ docker version
 docker-compose version 
 docker ps -a -s
 -----------
-sudo chmod -R 777 /home/cmon/appcmon
-sudo chmod -R 777 /home/cmon/appcmon/backend
-sudo chown -R 999:999 /home/cmon/appcmon/backend/docker/postgres/dbdata
-sudo chown -R $(id -u):$(id -g) /home/cmon/appcmon/backend/docker/postgres/dbdata
-sudo chmod -R 777 /home/cmon/appcmon/backend/docker/postgres/dbdata
+sudo chmod -R 777 /home/cmon/cmoniot
+sudo chmod -R 777 /home/cmon/cmoniot/backend
+sudo chown -R 999:999 /home/cmon/cmoniot/backend/docker/postgres/dbdata
+sudo chown -R $(id -u):$(id -g) /home/cmon/cmoniot/backend/docker/postgres/dbdata
+sudo chmod -R 777 /home/cmon/cmoniot/backend/docker/postgres/dbdata
 -------------
-sudo chmod -R 777 /home/cmon/appcmon
+sudo chmod -R 777 /home/cmon/cmoniot
 clear
 docker compose down app
 docker compose up --build app

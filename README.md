@@ -1,7 +1,32 @@
 # docker Install CmonIoT
 ```bash
-
-
+------------ 
+- docker --version
+- docker-compose --version
+- podman --version
+- sudo apt install docker
+- sudo apt install docker-compose 
+- sudo apt install podman
+-- sudo apt update && sudo apt upgrade -y
+-- sudo apt install podman -y
+-- podman --version
+-- podman run --rm hello-world
+------------ 
+sudo apt update && sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+sudo apt update && sudo apt install podman -y
+------------ 
+docker --version
+docker-compose --version
+podman --version
+Docker version 28.3.3, build 980b856
+Docker Compose version v2.18.1
+podman version 3.4.4
+------------   
+-- 
+-- 
+-- 
+-- 
+-- 
 sudo chmod -R 777 /etc/docker/daemon.json
 
 sudo chmod -R 777 /home/cmon/cmoniot
@@ -239,6 +264,7 @@ docker-compose restart
 
 
 #  docker compose up --build -d  
+#  docker compose up --build app
 #  docker ps               
 #  docker-compose down
 #  docker-compose up --build
@@ -344,6 +370,20 @@ MQTT_HOST_IP=172.25.99.60
 MQTT_PORT=1883
 influxdb_host=http://172.25.99.60:8086
 influxdb_token=LN929D1sMCiV7cMNcXt-Ne-ltrxHVBNrCNDyQp2C48uQ06j8BL7lV1SRROPPnf8rGGVj2vC32i5Hu9hUP9Cvlg==
+# Ubuntu  สั่ง   reboot ทุกวันเวลา ตี 1.30  และ  12.30  ทุกวัน
+- sudo crontab -e
+- cmon
+30 1 * * * /sbin/shutdown -r now
+30 12 * * * /sbin/shutdown -r now
+
+
+คำสั่ง reboot กับ shutdown -r now ต่างกันดังนี้:
+
+คำสั่ง reboot จะรีสตาร์ทเครื่องทันทีโดยที่ระบบไม่ได้สั่งหยุดโปรเซสท์ต่างๆ อย่างเป็นขั้นตอน (force kill process) ซึ่งอาจทำให้ข้อมูลเสียหายหรือโปรแกรมบางตัวไม่ถูกปิดอย่างถูกวิธี
+
+ส่วนคำสั่ง shutdown -r now จะทำการรีสตาร์ทเครื่องอย่างสุภาพ (graceful) โดยหยุดโปรเซสท์ต่างๆ อย่างเป็นระบบและปลอดภัยก่อนรีบูต ช่วยลดความเสี่ยงข้อมูลเสียหาย
+
+โดยทั่วไปจึงแนะนำให้ใช้คำสั่ง shutdown -r now มากกว่าเพื่อความปลอดภัยของระบบและข้อมูล แต่ถ้าต้องการใช้ reboot จริงๆ ก็สามารถใช้งานได้แต่ต้องระวังผลกระทบด้านข้อมูลหรือโปรแกรมที่ยังทำงานอยู่
 
 
 ```

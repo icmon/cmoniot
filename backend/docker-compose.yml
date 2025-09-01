@@ -39,7 +39,7 @@ services:
       - NODE_ENV=development
       - APP_PORT=3003
       #- SQLITE_DATABASE_PATH=/app/src/dbsqlite/data.sqlite3
-      - SQLITE_DATABASE_PATH=/home/cmon/appcmon/backend/src/dbsqlite/data.sqlite3
+      - SQLITE_DATABASE_PATH=/home/cmon/cmoniot/backend/src/dbsqlite/data.sqlite3
     depends_on:
       - postgres
       - redis
@@ -61,7 +61,7 @@ services:
     networks:
       - docker.network
     volumes:
-      - /home/cmon/appcmon/backend/docker/postgres/dbdata:/var/lib/postgresql/data
+      - /home/cmon/cmoniot/backend/docker/postgres/dbdata:/var/lib/postgresql/data
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres

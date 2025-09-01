@@ -297,8 +297,8 @@ $config['error_views_path'] = '';
 |
 */
 // 
-$config['cache_path'] ='/home/cmon/appcmon/codeigniter3/web/public/app/application/cache';
-$config['cache_path_db'] ='/home/cmon/appcmon/codeigniter3/web/public/app/application/cache';
+$config['cache_path'] ='/home/cmon/cmoniot/codeigniter3/web/public/app/application/cache';
+$config['cache_path_db'] ='/home/cmon/cmoniot/codeigniter3/web/public/app/application/cache';
 // $config['cache_path'] =$filepathroot.'cache/';
 // $config['cache_path_db'] =$filepathroot.'cache/';
 /*
